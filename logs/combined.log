@@ -1,0 +1,20 @@
+2025-05-12 01:08:39:839 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:08:42:842 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:08:42:842 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:08:50:850 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:08:52:852 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:08:52:852 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:09:03:93 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:09:07:97 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:09:09:99 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:09:09:99 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:09:21:921 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:09:23:923 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:09:23:923 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:09:38:938 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:09:40:940 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:09:40:940 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:09:44:944 [32minfo[39m: [32mPrisma Info: Starting a postgresql pool with 17 connections.[39m
+2025-05-12 01:09:46:946 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-05-12 01:09:46:946 [32minfo[39m: [32mServer running on port 3000 in development mode[39m
+2025-05-12 01:10:19:1019 [32minfo[39m: [32mShutting down gracefully...[39m

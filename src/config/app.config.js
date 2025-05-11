@@ -8,7 +8,7 @@ class AppConfig {
     this.apiPrefix = process.env.API_PREFIX || '/api/v1';
     
     this.cors = {
-      origin: process.env.CORS_ORIGIN?.split(',') || '*',
+      origin: process.env.CORS_ORIGIN === '*' ? '*' : process.env.CORS_ORIGIN?.split(','),
       credentials: true,
       optionsSuccessStatus: 200
     };
@@ -20,14 +20,23 @@ class AppConfig {
     };
 
     this.jwt = {
-      secret: process.env.JWT_SECRET || 'your-jwt-secret',
+      secret: process.env.JWT_SECRET,
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
       refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d'
     };
 
     this.google = {
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      web: {
+        clientId: process.env.GOOGLE_WEB_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_WEB_CLIENT_SECRET,
+        redirectUri: process.env.GOOGLE_WEB_REDIRECT_URI
+      },
+      android: {
+        clientId: process.env.GOOGLE_ANDROID_CLIENT_ID
+      },
+      ios: {
+        clientId: process.env.GOOGLE_IOS_CLIENT_ID
+      }
     };
 
     this.fatSecret = {
@@ -38,6 +47,10 @@ class AppConfig {
     this.upload = {
       maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '5242880', 10), // 5MB
       uploadDir: process.env.UPLOAD_DIR || 'uploads/'
+    };
+
+    this.logging = {
+      level: process.env.LOG_LEVEL || 'info'
     };
   }
 
@@ -54,11 +67,31 @@ class AppConfig {
   }
 
   validate() {
-    const required = ['JWT_SECRET', 'GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'];
+    const required = [
+      'JWT_SECRET', 
+      'GOOGLE_WEB_CLIENT_ID', 
+      'GOOGLE_WEB_CLIENT_SECRET',
+      'DATABASE_URL'
+    ];
+    
     const missing = required.filter(key => !process.env[key]);
 
     if (missing.length > 0) {
       throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+    }
+
+    // Optional variables warning
+    const optional = [
+      'GOOGLE_ANDROID_CLIENT_ID', 
+      'GOOGLE_IOS_CLIENT_ID',
+      'FATSECRET_CLIENT_ID',
+      'FATSECRET_CLIENT_SECRET'
+    ];
+    
+    const missingOptional = optional.filter(key => !process.env[key]);
+    
+    if (missingOptional.length > 0) {
+      console.warn(`Missing optional environment variables: ${missingOptional.join(', ')}`);
     }
   }
 }

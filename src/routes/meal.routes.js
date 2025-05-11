@@ -4,7 +4,7 @@ const MealController = require('../controllers/meal.controller');
 const AuthMiddleware = require('../middleware/auth.middleware');
 const ValidationMiddleware = require('../middleware/validation.middleware');
 const ErrorMiddleware = require('../middleware/error.middleware');
-const schemas = require('../database/validations/schemas');
+const schemas = require('../validations/schemas');
 
 class MealRoutes {
     constructor() {

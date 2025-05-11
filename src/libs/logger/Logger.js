@@ -1,5 +1,7 @@
+// src/libs/logger/Logger.js
 const winston = require('winston');
 const path = require('path');
+const AppConfig = require('../../config/app.config');
 
 class Logger {
   constructor() {
@@ -43,7 +45,7 @@ class Logger {
     ];
 
     this.logger = winston.createLogger({
-      level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+      level: AppConfig.logging.level || 'info',
       levels,
       format,
       transports,

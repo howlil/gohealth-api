@@ -1,4 +1,3 @@
-// src/services/auth.service.js
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const ApiError = require('../libs/http/ApiError');
@@ -10,7 +9,7 @@ const Logger = require('../libs/logger/Logger');
 class AuthService {
   constructor() {
     this.prisma = Database.getClient();
-    this.googleClient = new OAuth2Client();
+    this.googleClient = new OAuth2Client(AppConfig.google.web.clientId);
     this.logger = Logger;
   }
 
