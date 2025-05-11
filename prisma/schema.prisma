@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -7,4 +6,233 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  googleId      String         @unique
+  email         String         @unique
+  name          String
+  age           Int?
+  gender        GENDER? // Male, Female, Other
+  height        Float? // in cm
+  weight        Float? // in kg
+  activityLevel ACTIVITYLEVEL? // Sedentary, Lightly Active, Moderately Active, Very Active, Extra Active
+  profileImage  String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  meals            UserMeal[]
+  bmiRecords       BMIRecord[]
+  weightGoals      WeightGoal[]
+  nutritionTargets DailyNutritionTarget[]
+  favoriteFoods    FavoriteFood[]
+  activities       UserActivity[]
+  activityPlans    ActivityPlan[]
+}
+
+enum GENDER {
+  MALE
+  FEMALE
+}
+
+enum ACTIVITYLEVEL {
+  SEDENTARY
+  LIGHTLY
+  ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTRA_ACTIVE
+}
+
+model FavoriteFood {
+  id              String   @id @default(uuid())
+  userId          String
+  fatSecretFoodId String
+  foodName        String
+  brandName       String?
+  description     String?
+  defaultServing  Float?
+  defaultUnit     String?
+  nutritionData   Json
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, fatSecretFoodId])
+  @@index([userId])
+}
+
+model MealType {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  orderIndex Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  userMeals UserMeal[]
+}
+
+model UserMeal {
+  userId          String
+  mealTypeId      String
+  fatSecretFoodId String
+  foodName        String
+  brandName       String?
+  date            DateTime @db.Date
+  quantity        Float
+  unit            String
+  servingId       String?
+  nutritionData   Json
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user     User     @relation(fields: [userId], references: [id])
+  mealType MealType @relation(fields: [mealTypeId], references: [id])
+
+  @@id([userId, mealTypeId])
+  @@index([userId, date])
+  @@index([fatSecretFoodId])
+  @@index([mealTypeId])
+}
+
+model ActivityType {
+  id          String        @id @default(uuid())
+  name        String        @unique
+  category    ACTIVITY_TYPE // Cardio, Strength, Flexibility, Sports, Daily Activities
+  metValue    Float // Metabolic Equivalent of Task
+  description String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  userActivities    UserActivity[]
+  plannedActivities PlannedActivity[]
+}
+
+enum ACTIVITY_TYPE {
+  CARDIO
+  STRENGTH
+  FLEXIBILITY
+  SPORTS
+  DAILY
+}
+
+enum USER_ACTIVITY {
+  LOW
+  MODERATE
+  HIGH
+}
+
+model UserActivity {
+  userId         String
+  activityTypeId String
+  date           DateTime       @db.Date
+  duration       Float // in minutes
+  caloriesBurned Float
+  intensity      USER_ACTIVITY? // Low, Moderate, High
+  notes          String?
+  startTime      DateTime?
+  endTime        DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id])
+  activityType ActivityType @relation(fields: [activityTypeId], references: [id])
+
+  @@id([userId, activityTypeId])
+  @@index([userId, date])
+  @@index([activityTypeId])
+}
+
+model ActivityPlan {
+  id          String    @id @default(uuid())
+  userId      String
+  name        String
+  description String?
+  startDate   DateTime  @db.Date
+  endDate     DateTime? @db.Date
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user              User              @relation(fields: [userId], references: [id])
+  plannedActivities PlannedActivity[]
+
+  @@index([userId, isActive])
+}
+
+model PlannedActivity {
+  activityPlanId  String
+  activityTypeId  String
+  dayOfWeek       Int // 0-6 (Sunday-Saturday)
+  scheduledTime   DateTime @db.Time
+  plannedDuration Float // in minutes
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  activityPlan ActivityPlan @relation(fields: [activityPlanId], references: [id])
+  activityType ActivityType @relation(fields: [activityTypeId], references: [id])
+
+  @@id([activityPlanId, activityTypeId])
+  @@index([activityPlanId])
+  @@index([activityTypeId])
+}
+
+model BMIRecord {
+  id         String   @id @default(uuid())
+  userId     String
+  height     Float // in cm
+  weight     Float // in kg
+  bmi        Float
+  status     BMI // Underweight, Normal, Overweight, Obese
+  recordedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, recordedAt])
+}
+
+enum BMI {
+  UNDERWEIGHT
+  NORMAL
+  OVERWEIGHT
+  OBESE
+}
+
+model WeightGoal {
+  id           String    @id @default(uuid())
+  userId       String
+  startWeight  Float // in kg
+  targetWeight Float // in kg
+  startDate    DateTime  @db.Date
+  targetDate   DateTime? @db.Date
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, isActive])
+}
+
+model DailyNutritionTarget {
+  id            String   @id @default(uuid())
+  userId        String
+  calories      Float
+  protein       Float
+  carbohydrates Float
+  fat           Float
+  fiber         Float
+  effectiveDate DateTime @db.Date
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, effectiveDate])
+  @@index([userId, isActive])
 }
