@@ -11,45 +11,79 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '18'
 
     - name: Install dependencies
-      run: |
-        npm install
+      run: npm install
 
     - name: Set up SSH key
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+        ssh-keyscan -H "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
+
+    - name: Create .env file on server
+      run: |
+        ssh rahulilabs27@${{ secrets.SERVER_IP }} << 'EOF'
+          cd /gohealth-api
+          cat > .env << 'EOL'
+        NODE_ENV=${{ secrets.NODE_ENV }}
+        PORT=${{ secrets.PORT }}
+        API_PREFIX=${{ secrets.API_PREFIX }}
+        DATABASE_URL="${{ secrets.DATABASE_URL }}"
+        JWT_SECRET=${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}
+        JWT_REFRESH_EXPIRES_IN=${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        GOOGLE_WEB_CLIENT_ID="${{ secrets.GOOGLE_WEB_CLIENT_ID }}"
+        GOOGLE_WEB_CLIENT_SECRET="${{ secrets.GOOGLE_WEB_CLIENT_SECRET }}"
+        GOOGLE_WEB_REDIRECT_URI=${{ secrets.GOOGLE_WEB_REDIRECT_URI }}
+        GOOGLE_ANDROID_CLIENT_ID="${{ secrets.GOOGLE_ANDROID_CLIENT_ID }}"
+        GOOGLE_IOS_CLIENT_ID=${{ secrets.GOOGLE_IOS_CLIENT_ID }}
+        FATSECRET_CLIENT_ID="${{ secrets.FATSECRET_CLIENT_ID }}"
+        FATSECRET_CLIENT_SECRET="${{ secrets.FATSECRET_CLIENT_SECRET }}"
+        CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}
+        RATE_LIMIT_MAX=${{ secrets.RATE_LIMIT_MAX }}
+        UPLOAD_DIR=${{ secrets.UPLOAD_DIR }}
+        MAX_FILE_SIZE=${{ secrets.MAX_FILE_SIZE }}
+        LOG_LEVEL=${{ secrets.LOG_LEVEL }}
+        EOL
+        EOF
 
     - name: Deploy to Server
-      env:
-        NODE_ENV: ${{ secrets.NODE_ENV }}
-        PORT: ${{ secrets.PORT }}
-        API_PREFIX: ${{ secrets.API_PREFIX }}
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
-        JWT_REFRESH_EXPIRES_IN: ${{ secrets.JWT_REFRESH_EXPIRES_IN }}
-        GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
-        GOOGLE_WEB_CLIENT_SECRET: ${{ secrets.GOOGLE_WEB_CLIENT_SECRET }}
-        GOOGLE_WEB_REDIRECT_URI: ${{ secrets.GOOGLE_WEB_REDIRECT_URI }}
-        GOOGLE_ANDROID_CLIENT_ID: ${{ secrets.GOOGLE_ANDROID_CLIENT_ID }}
-        GOOGLE_IOS_CLIENT_ID: ${{ secrets.GOOGLE_IOS_CLIENT_ID }}
-        FATSECRET_CLIENT_ID: ${{ secrets.FATSECRET_CLIENT_ID }}
-        FATSECRET_CLIENT_SECRET: ${{ secrets.FATSECRET_CLIENT_SECRET }}
-        CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
-        RATE_LIMIT_MAX: ${{ secrets.RATE_LIMIT_MAX }}
-        UPLOAD_DIR: ${{ secrets.UPLOAD_DIR }}
-        MAX_FILE_SIZE: ${{ secrets.MAX_FILE_SIZE }}
-        LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
-        SERVER_IP: ${{ secrets.SERVER_IP }}
       run: |
-        ssh rahulilabs27@${{ secrets.SERVER_IP }} "cd /gohealth-api && git pull origin main && npm install && pm2 restart ecosystem.config.js"
+        ssh rahulilabs27@${{ secrets.SERVER_IP }} << 'EOF'
+          set -e
+          cd /gohealth-api
+          
+          echo "Pulling latest code..."
+          git pull origin main
+          
+          echo "Installing dependencies..."
+          npm install --only=production
+          
+          echo "Generating Prisma client..."
+          npx prisma generate
+          
+          
+          echo "Creating required directories..."
+          mkdir -p logs uploads/profile
+          
+          echo "Restarting application with PM2..."
+          pm2 restart ecosystem.config.js || pm2 start ecosystem.config.js
+          
+          echo "Saving PM2 configuration..."
+          pm2 save
+          
+          echo "Deployment completed successfully!"
+        EOF
+
+    - name: Verify deployment
+      run: |
+        sleep 10
+        ssh rahulilabs27@${{ secrets.SERVER_IP }} "pm2 status"
