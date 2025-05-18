@@ -4,86 +4,165 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
+
+    - name: Verify required secrets
+      run: |
+        if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+          echo "Error: SSH_PRIVATE_KEY secret is not set"
+          exit 1
+        fi
+        if [ -z "${{ secrets.SERVER_IP }}" ]; then
+          echo "Error: SERVER_IP secret is not set"
+          exit 1
+        fi
+        if [ -z "${{ secrets.SERVER_USER }}" ]; then
+          echo "Error: SERVER_USER secret is not set"
+          exit 1
+        fi
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Set up SSH key
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
+        # Add server to known hosts
+        ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+        # Start SSH agent and add key
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_rsa
+        
+    - name: Test SSH connection
+      run: |
+        ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "echo 'SSH connection successful'"
 
     - name: Create .env file on server
       run: |
-        ssh rahulilabs27@${{ secrets.SERVER_IP }} << 'EOF'
-          cd /gohealth-api
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          cd ${{ secrets.APP_DIR || '/gohealth-api' }}
+          
+          # Backup existing .env if it exists
+          if [ -f .env ]; then
+            cp .env .env.backup.$(date +%Y%m%d_%H%M%S)
+          fi
+          
+          # Create new .env file
           cat > .env << 'EOL'
-        NODE_ENV=${{ secrets.NODE_ENV }}
-        PORT=${{ secrets.PORT }}
-        API_PREFIX=${{ secrets.API_PREFIX }}
+        NODE_ENV=${{ secrets.NODE_ENV || 'production' }}
+        PORT=${{ secrets.PORT || '3000' }}
+        API_PREFIX=${{ secrets.API_PREFIX || '/api/v1' }}
         DATABASE_URL="${{ secrets.DATABASE_URL }}"
-        JWT_SECRET=${{ secrets.JWT_SECRET }}
-        JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}
-        JWT_REFRESH_EXPIRES_IN=${{ secrets.JWT_REFRESH_EXPIRES_IN }}
+        JWT_SECRET="${{ secrets.JWT_SECRET }}"
+        JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN || '7d' }}
+        JWT_REFRESH_EXPIRES_IN=${{ secrets.JWT_REFRESH_EXPIRES_IN || '30d' }}
         GOOGLE_WEB_CLIENT_ID="${{ secrets.GOOGLE_WEB_CLIENT_ID }}"
         GOOGLE_WEB_CLIENT_SECRET="${{ secrets.GOOGLE_WEB_CLIENT_SECRET }}"
         GOOGLE_WEB_REDIRECT_URI=${{ secrets.GOOGLE_WEB_REDIRECT_URI }}
         GOOGLE_ANDROID_CLIENT_ID="${{ secrets.GOOGLE_ANDROID_CLIENT_ID }}"
-        GOOGLE_IOS_CLIENT_ID=${{ secrets.GOOGLE_IOS_CLIENT_ID }}
+        GOOGLE_IOS_CLIENT_ID="${{ secrets.GOOGLE_IOS_CLIENT_ID }}"
         FATSECRET_CLIENT_ID="${{ secrets.FATSECRET_CLIENT_ID }}"
         FATSECRET_CLIENT_SECRET="${{ secrets.FATSECRET_CLIENT_SECRET }}"
-        CORS_ORIGIN=${{ secrets.CORS_ORIGIN }}
-        RATE_LIMIT_MAX=${{ secrets.RATE_LIMIT_MAX }}
-        UPLOAD_DIR=${{ secrets.UPLOAD_DIR }}
-        MAX_FILE_SIZE=${{ secrets.MAX_FILE_SIZE }}
-        LOG_LEVEL=${{ secrets.LOG_LEVEL }}
+        CORS_ORIGIN=${{ secrets.CORS_ORIGIN || '*' }}
+        RATE_LIMIT_MAX=${{ secrets.RATE_LIMIT_MAX || '100' }}
+        UPLOAD_DIR=${{ secrets.UPLOAD_DIR || 'uploads/' }}
+        MAX_FILE_SIZE=${{ secrets.MAX_FILE_SIZE || '5242880' }}
+        LOG_LEVEL=${{ secrets.LOG_LEVEL || 'info' }}
         EOL
+        
+          echo ".env file created successfully"
         EOF
 
     - name: Deploy to Server
       run: |
-        ssh rahulilabs27@${{ secrets.SERVER_IP }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           set -e
-          cd /gohealth-api
           
-          echo "Pulling latest code..."
-          git pull origin main
+          APP_DIR="${{ secrets.APP_DIR || '/gohealth-api' }}"
+          
+          echo "Navigating to application directory..."
+          cd $APP_DIR
+          
+          echo "Pulling latest code from main branch..."
+          git fetch origin
+          git reset --hard origin/main
           
           echo "Installing dependencies..."
-          npm install --only=production
+          npm ci --only=production
           
           echo "Generating Prisma client..."
           npx prisma generate
           
+          echo "Running database migrations..."
+          npx prisma migrate deploy
           
           echo "Creating required directories..."
           mkdir -p logs uploads/profile
           
-          echo "Restarting application with PM2..."
-          pm2 restart ecosystem.config.js || pm2 start ecosystem.config.js
+          echo "Setting proper permissions..."
+          chmod -R 755 uploads/
+          chmod -R 644 logs/ || true
+          
+          echo "Checking if PM2 is installed..."
+          if ! command -v pm2 &> /dev/null; then
+            echo "Installing PM2 globally..."
+            npm install -g pm2
+          fi
+          
+          echo "Stopping existing application..."
+          pm2 stop gohealth-api || true
+          
+          echo "Starting application with PM2..."
+          pm2 start ecosystem.config.js || pm2 start server.js --name gohealth-api
           
           echo "Saving PM2 configuration..."
           pm2 save
+          
+          echo "Setting up PM2 startup script..."
+          pm2 startup || true
           
           echo "Deployment completed successfully!"
         EOF
 
     - name: Verify deployment
       run: |
-        sleep 10
-        ssh rahulilabs27@${{ secrets.SERVER_IP }} "pm2 status"
+        echo "Waiting for application to start..."
+        sleep 15
+        
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          echo "PM2 Status:"
+          pm2 status
+          
+          echo "Application logs (last 20 lines):"
+          pm2 logs gohealth-api --lines 20 || echo "Could not fetch logs"
+          
+          echo "Checking application health..."
+          APP_PORT="${{ secrets.PORT || '3000' }}"
+          if curl -f http://localhost:$APP_PORT/api/v1/health > /dev/null 2>&1; then
+            echo "✅ Application is running and responding to health checks"
+          else
+            echo "❌ Application health check failed"
+            exit 1
+          fi
+        EOF
+
+    - name: Cleanup SSH
+      if: always()
+      run: |
+        rm -f ~/.ssh/id_rsa
