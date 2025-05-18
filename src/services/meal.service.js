@@ -222,7 +222,7 @@ class MealService extends BaseService {
 
   async getFoodDetails(foodId) {
     try {
-      return await this.fatSecret.getFood(foodId);
+      return await this.fatSecret.getFood(foodId)
     } catch (error) {
       this.logger.error(`Error getting food details: ${error.message}`);
       throw error;
