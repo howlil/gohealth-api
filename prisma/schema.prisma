@@ -4,14 +4,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
   id            String         @id @default(uuid())
-  googleId      String         @unique
+  googleId      String?         @unique
   email         String         @unique
+  password      String?
   name          String
   age           Int?
   gender        GENDER? // Male, Female, Other

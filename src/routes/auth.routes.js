@@ -14,6 +14,20 @@ class AuthRoutes {
     }
 
     initializeRoutes() {
+        // Register new user
+        this.router.post(
+            '/register',
+            ValidationMiddleware.validate(schemas.register),
+            ErrorMiddleware.asyncHandler(this.authController.register.bind(this.authController))
+        );
+
+        // Login
+        this.router.post(
+            '/login',
+            ValidationMiddleware.validate(schemas.login),
+            ErrorMiddleware.asyncHandler(this.authController.login.bind(this.authController))
+        );
+
         // Google OAuth login
         this.router.post(
             '/google',

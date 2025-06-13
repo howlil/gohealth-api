@@ -11,6 +11,7 @@ const Database = require('./database/prisma');
 const Routes = require('./routes');
 const ErrorMiddleware = require('./middleware/error.middleware');
 const Logger = require('./libs/logger/Logger');
+const SwaggerMiddleware = require('./middleware/swagger.middleware');
 
 class App {
   constructor() {
@@ -23,7 +24,9 @@ class App {
 
   setupMiddleware() {
     // Security middleware
-    this.app.use(helmet());
+    this.app.use(helmet({
+      contentSecurityPolicy: false
+    }));
     this.app.use(cors(this.config.cors));
 
     // Rate limiting
@@ -47,15 +50,17 @@ class App {
   }
 
   setupRoutes() {
-    // API routes
-    this.app.use(this.config.apiPrefix, Routes);
+    // Swagger documentation
+    SwaggerMiddleware.setup(this.app);
 
-    // Default route
+    // API routes
+    this.app.use('/api', Routes);
+
     this.app.get('/', (req, res) => {
       res.json({
         message: 'Welcome to GoHealth API',
         version: '1.0.0',
-        docs: `${this.config.apiPrefix}/docs`
+        docs: '/api-docs'
       });
     });
   }
@@ -92,7 +97,7 @@ class App {
 
   async shutdown() {
     Logger.info('Shutting down gracefully...');
-    
+
     try {
       await Database.disconnect();
       process.exit(0);

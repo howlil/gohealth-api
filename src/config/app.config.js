@@ -5,7 +5,7 @@ class AppConfig {
   constructor() {
     this.env = process.env.NODE_ENV || 'development';
     this.port = parseInt(process.env.PORT || '3000', 10);
-    this.apiPrefix = process.env.API_PREFIX || '/api/v1';
+    this.apiPrefix = '/api';
     
     this.cors = {
       origin: process.env.CORS_ORIGIN === '*' ? '*' : process.env.CORS_ORIGIN?.split(','),

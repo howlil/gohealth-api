@@ -42,6 +42,7 @@
   "dependencies": {
     "@prisma/client": "^6.7.0",
     "axios": "^1.9.0",
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
@@ -57,7 +58,10 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "winston": "^3.17.0",
+    "yamljs": "^0.3.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {

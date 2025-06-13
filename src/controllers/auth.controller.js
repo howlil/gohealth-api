@@ -10,6 +10,52 @@ class AuthController {
     this.logger = Logger;
   }
 
+  async register(req, res) {
+    try {
+      const { email, password, name, age, gender } = req.body;
+
+      if (!email || !password || !name) {
+        throw ApiError.badRequest('Email, password and name are required');
+      }
+
+      const result = await this.authService.register({
+        email,
+        password,
+        name,
+        age,
+        gender
+      });
+
+      this.logger.info(`User registered with email: ${email}`);
+
+      res.status(201).json(
+        ApiResponse.created(result, 'User registered successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async login(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        throw ApiError.badRequest('Email and password are required');
+      }
+
+      const result = await this.authService.login(email, password);
+
+      this.logger.info(`User logged in with email: ${email}`);
+
+      res.status(200).json(
+        ApiResponse.success(result, 'Login successful')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async googleAuth(req, res) {
     try {
       const { idToken } = req.body;

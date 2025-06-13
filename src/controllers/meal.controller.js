@@ -17,7 +17,7 @@ class MealController extends BaseController {
       });
 
       this.logger.info(`User ${req.user.id} created a meal`);
-      
+
       res.status(201).json(
         ApiResponse.created(meal, 'Meal created successfully')
       );
@@ -92,10 +92,10 @@ class MealController extends BaseController {
   async searchFoods(req, res) {
     try {
       const { query, page = 0 } = req.query;
-      
+
       if (!query) {
         return res.status(400).json(
-          ApiResponse.error('Search query is required', 400)
+          ApiResponse.error('Search query is required')
         );
       }
 
@@ -116,7 +116,7 @@ class MealController extends BaseController {
 
       if (!food) {
         return res.status(404).json(
-          ApiResponse.error('Food not found', 404)
+          ApiResponse.error('Food not found')
         );
       }
 

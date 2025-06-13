@@ -5,6 +5,12 @@ class ValidationMiddleware {
   validate(schema) {
     return async (req, res, next) => {
       try {
+        console.log('Validating request data:', {
+          body: req.body,
+          query: req.query,
+          params: req.params
+        });
+
         const validatedData = await schema.validate({
           body: req.body,
           query: req.query,
@@ -14,20 +20,24 @@ class ValidationMiddleware {
           stripUnknown: true
         });
 
-        // Replace request data with validated data
-        req.body = validatedData.body || req.body;
-        req.query = validatedData.query || req.query;
-        req.params = validatedData.params || req.params;
+        // Only replace req.body as it's writable
+        // Don't attempt to modify req.query or req.params
+        if (validatedData.body) {
+          req.body = validatedData.body;
+        }
 
         next();
       } catch (error) {
+        console.error('Validation error:', error);
+
         const errors = this.formatYupErrors(error);
-        
+        console.log('Formatted errors:', errors);
+
         return res.status(422).json(
           ApiResponse.error(
             'Validation failed',
             422,
-            errors
+            { errors }
           )
         );
       }
@@ -36,8 +46,8 @@ class ValidationMiddleware {
 
   formatYupErrors(error) {
     const errors = {};
-    
-    if (error.inner) {
+
+    if (error.inner && error.inner.length > 0) {
       error.inner.forEach((err) => {
         const path = err.path.split('.').slice(1).join('.');
         if (!errors[path]) {
@@ -45,8 +55,10 @@ class ValidationMiddleware {
         }
         errors[path].push(err.message);
       });
+    } else if (error.message) {
+      errors.general = [error.message];
     }
-    
+
     return errors;
   }
 }

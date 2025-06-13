@@ -6,3 +6,168 @@
 2025-05-12 01:12:57:1257 [31merror[39m: [31mRoute /api/v1/mentors/online not found - /api/v1/mentors/online - GET - ::1[39m
 2025-05-12 01:13:01:131 [31merror[39m: [31mRoute /api/v1/me not found - /api/v1/me - GET - ::1[39m
 2025-05-19 01:57:46:5746 [31merror[39m: [31mPrisma Error: Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "An existing connection was forcibly closed by the remote host." }) }[39m
+2025-06-13 06:59:58:5958 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:00:00:00 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-13 07:00:41:041 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:01:01:11 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:01:22:122 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:06:04:64 [31merror[39m: [31mRoute /api/api-dosc not found - /api/api-dosc - GET - ::1[39m
+2025-06-13 07:06:09:69 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:07:14:714 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:07:17:717 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:08:00:80 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:08:03:83 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:18:12:1812 [31merror[39m: [31mRoute /api/auth/register not found - /api/auth/register - POST - ::1[39m
+2025-06-13 07:18:48:1848 [31merror[39m: [31mRoute /api/auth/register not found - /api/auth/register - POST - ::1[39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing.[39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31mRegistration failed [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing.[39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31m[39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing. - /api/auth/register - POST - ::1[39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?.[39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31mRegistration failed [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?.[39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31m[39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?. - /api/auth/register - POST - ::1[39m
+2025-06-13 07:32:32:3232 [31merror[39m: [31mRoute /api/bmi/calculate not found - /api/bmi/calculate - POST - ::1[39m
+2025-06-13 07:33:44:3344 [31merror[39m: [31mError creating activity: User weight is required to calculate calories burned[39m
+2025-06-13 07:33:44:3344 [31merror[39m: [31mUser weight is required to calculate calories burned - /api/activities - POST - ::1[39m
+2025-06-13 07:35:05:355 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:35:05:355 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:37:40:3740 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:37:40:3740 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:37:43:3743 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:37:43:3743 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:43:50:4350 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:43:50:4350 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:44:47:4447 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:44:47:4447 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:48:58:4858 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:48:58:4858 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:49:39:4939 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:49:39:4939 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m

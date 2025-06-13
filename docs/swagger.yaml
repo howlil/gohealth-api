@@ -1,0 +1,1087 @@
+openapi: 3.0.0
+info:
+  title: GoHealth API Documentation
+  version: 1.0.0
+  description: Complete API documentation for GoHealth application. A comprehensive health and fitness tracking API that provides endpoints for managing user profiles, BMI calculations, meal tracking, and activity tracking.
+  contact:
+    name: GoHealth Team
+    email: support@gohealth.example.com
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+  - url: https://api.gohealth.example.com/api
+    description: Production server
+  - url: https://staging-api.gohealth.example.com/api
+    description: Staging server
+
+tags:
+  - name: System
+    description: System endpoints
+  - name: Auth
+    description: Authentication operations
+  - name: Users
+    description: User management operations
+  - name: BMI
+    description: BMI tracking and calculation
+  - name: Meals
+    description: Meal tracking operations
+  - name: Activities
+    description: Activity tracking operations
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from login endpoint
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        name:
+          type: string
+          example: John Doe
+        age:
+          type: integer
+          example: 30
+        gender:
+          type: string
+          enum: [MALE, FEMALE]
+          example: MALE
+        height:
+          type: number
+          format: float
+          example: 175.5
+        weight:
+          type: number
+          format: float
+          example: 70.2
+        activityLevel:
+          type: string
+          enum: [SEDENTARY, LIGHTLY, ACTIVE, MODERATELY_ACTIVE, VERY_ACTIVE, EXTRA_ACTIVE]
+          example: ACTIVE
+        profileImage:
+          type: string
+          nullable: true
+          example: https://example.com/profile.jpg
+        createdAt:
+          type: string
+          format: date-time
+          example: 2023-01-01T00:00:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-01-01T00:00:00.000Z
+    
+    AuthResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Authentication successful
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            accessToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+            refreshToken:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+            tokenType:
+              type: string
+              example: Bearer
+            expiresIn:
+              type: string
+              example: 1h
+    
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: Error message
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            name:
+              type: string
+              example: BadRequestError
+    
+    RegisterRequest:
+      type: object
+      required:
+        - email
+        - password
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: Password123!
+        name:
+          type: string
+          minLength: 2
+          maxLength: 50
+          example: John Doe
+        age:
+          type: integer
+          minimum: 1
+          maximum: 120
+          example: 30
+        gender:
+          type: string
+          enum: [MALE, FEMALE]
+          example: MALE
+    
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          example: Password123!
+    
+    GoogleAuthRequest:
+      type: object
+      required:
+        - idToken
+      properties:
+        idToken:
+          type: string
+          example: eyJhbGciOiJSUzI1NiIsImtpZCI6IjFlOWdkazcifQ...
+    
+    RefreshTokenRequest:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    
+    BMIRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        height:
+          type: number
+          format: float
+          example: 175.5
+        weight:
+          type: number
+          format: float
+          example: 70.2
+        bmi:
+          type: number
+          format: float
+          example: 22.8
+        status:
+          type: string
+          enum: [UNDERWEIGHT, NORMAL, OVERWEIGHT, OBESE]
+          example: NORMAL
+        recordedAt:
+          type: string
+          format: date-time
+          example: 2023-01-01T00:00:00.000Z
+    
+    CalculateBMIRequest:
+      type: object
+      required:
+        - height
+        - weight
+      properties:
+        height:
+          type: number
+          minimum: 50
+          maximum: 300
+          example: 175.5
+        weight:
+          type: number
+          minimum: 20
+          maximum: 500
+          example: 70.2
+    
+    WeightGoal:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        startWeight:
+          type: number
+          format: float
+          example: 75.0
+        targetWeight:
+          type: number
+          format: float
+          example: 70.0
+        startDate:
+          type: string
+          format: date
+          example: 2023-01-01
+        targetDate:
+          type: string
+          format: date
+          example: 2023-03-01
+        isActive:
+          type: boolean
+          example: true
+    
+    NutritionTarget:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        calories:
+          type: number
+          format: float
+          example: 2000
+        protein:
+          type: number
+          format: float
+          example: 150
+        carbohydrates:
+          type: number
+          format: float
+          example: 200
+        fat:
+          type: number
+          format: float
+          example: 65
+        fiber:
+          type: number
+          format: float
+          example: 25
+        effectiveDate:
+          type: string
+          format: date
+          example: 2023-01-01
+        isActive:
+          type: boolean
+          example: true
+    
+    Meal:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        mealTypeId:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440001
+        fatSecretFoodId:
+          type: string
+          example: "33691"
+        foodName:
+          type: string
+          example: Chicken Breast
+        brandName:
+          type: string
+          nullable: true
+          example: Tyson
+        date:
+          type: string
+          format: date
+          example: 2023-01-01
+        quantity:
+          type: number
+          format: float
+          example: 100
+        unit:
+          type: string
+          example: g
+        nutritionData:
+          type: object
+          example:
+            calories: 165
+            protein: 31
+            carbohydrates: 0
+            fat: 3.6
+            fiber: 0
+    
+    Activity:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        activityTypeId:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440001
+        date:
+          type: string
+          format: date
+          example: 2023-01-01
+        duration:
+          type: number
+          format: float
+          example: 30
+        caloriesBurned:
+          type: number
+          format: float
+          example: 150
+        intensity:
+          type: string
+          enum: [LOW, MODERATE, HIGH]
+          example: MODERATE
+        notes:
+          type: string
+          nullable: true
+          example: Morning run
+
+paths:
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Health check endpoint
+      description: Returns the current status of the API
+      tags:
+        - System
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Service is healthy
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: OK
+                      timestamp:
+                        type: string
+                        format: date-time
+                        example: 2023-01-01T00:00:00.000Z
+                      uptime:
+                        type: number
+                        example: 3600
+                      environment:
+                        type: string
+                        example: production
+
+  /info:
+    get:
+      operationId: getApiInfo
+      summary: API information
+      description: Returns basic information about the API
+      tags:
+        - System
+      responses:
+        '200':
+          description: API information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: API information
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: GoHealth API
+                      version:
+                        type: string
+                        example: 1.0.0
+                      description:
+                        type: string
+                        example: Health and fitness tracking API
+
+  /auth/register:
+    post:
+      operationId: registerUser
+      summary: Register a new user
+      description: Creates a new user account
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User successfully registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User registered successfully
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /auth/login:
+    post:
+      operationId: loginUser
+      summary: Login
+      description: Authenticates a user and returns access token
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /auth/google:
+    post:
+      operationId: googleAuth
+      summary: Authenticate with Google
+      description: Authenticates a user with Google OAuth
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleAuthRequest'
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /auth/refresh:
+    post:
+      operationId: refreshToken
+      summary: Refresh access token
+      description: Refreshes the access token using a refresh token
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Invalid refresh token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/logout:
+    post:
+      operationId: logoutUser
+      summary: Logout user
+      description: Logs out the current user
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Logged out successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Logged out successfully
+                  data:
+                    type: null
+                    example: null
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Returns the current authenticated user's profile
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Current user retrieved successfully
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/me:
+    get:
+      summary: Get current user profile
+      description: Returns the profile of the authenticated user
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User profile retrieved successfully
+                  data:
+                    $ref: '#/components/schemas/User'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /users/me:
+    put:
+      summary: Update user profile
+      description: Updates the profile of the authenticated user
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                age:
+                  type: integer
+                  example: 30
+                gender:
+                  type: string
+                  enum: [MALE, FEMALE]
+                  example: MALE
+                height:
+                  type: number
+                  example: 175.5
+                weight:
+                  type: number
+                  example: 70.2
+                activityLevel:
+                  type: string
+                  enum: [SEDENTARY, LIGHTLY, ACTIVE, MODERATELY_ACTIVE, VERY_ACTIVE, EXTRA_ACTIVE]
+                  example: ACTIVE
+      responses:
+        "200":
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User profile updated successfully
+                  data:
+                    $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /bmi/calculate:
+    post:
+      summary: Calculate BMI
+      description: Calculates BMI based on height and weight
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculateBMIRequest'
+      responses:
+        "200":
+          description: BMI calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: BMI calculated successfully
+                  data:
+                    $ref: '#/components/schemas/BMIRecord'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /bmi/history:
+    get:
+      summary: Get BMI history
+      description: Returns the BMI history for the authenticated user
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Number of records to return
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            default: 0
+          description: Number of records to skip
+      responses:
+        "200":
+          description: BMI history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: BMI history retrieved successfully
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BMIRecord'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /meals:
+    post:
+      summary: Add a meal
+      description: Adds a new meal record
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - foodName
+                - date
+                - quantity
+                - unit
+              properties:
+                foodName:
+                  type: string
+                  example: Chicken Breast
+                brandName:
+                  type: string
+                  example: Tyson
+                date:
+                  type: string
+                  format: date
+                  example: 2023-01-01
+                quantity:
+                  type: number
+                  example: 100
+                unit:
+                  type: string
+                  example: g
+                nutritionData:
+                  type: object
+                  example:
+                    calories: 165
+                    protein: 31
+                    carbohydrates: 0
+                    fat: 3.6
+                    fiber: 0
+      responses:
+        "201":
+          description: Meal added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Meal added successfully
+                  data:
+                    $ref: '#/components/schemas/Meal'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /meals:
+    get:
+      summary: Get meals
+      description: Returns meals for the authenticated user
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: string
+            format: date
+          description: Filter by date (YYYY-MM-DD)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Number of records to return
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            default: 0
+          description: Number of records to skip
+      responses:
+        "200":
+          description: Meals retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Meals retrieved successfully
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Meal'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /activities:
+    post:
+      summary: Add an activity
+      description: Adds a new activity record
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - activityTypeId
+                - date
+                - duration
+              properties:
+                activityTypeId:
+                  type: string
+                  format: uuid
+                  example: 550e8400-e29b-41d4-a716-446655440001
+                date:
+                  type: string
+                  format: date
+                  example: 2023-01-01
+                duration:
+                  type: number
+                  example: 30
+                caloriesBurned:
+                  type: number
+                  example: 150
+                intensity:
+                  type: string
+                  enum: [LOW, MODERATE, HIGH]
+                  example: MODERATE
+                notes:
+                  type: string
+                  example: Morning run
+      responses:
+        "201":
+          description: Activity added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Activity added successfully
+                  data:
+                    $ref: '#/components/schemas/Activity'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /activities:
+    get:
+      summary: Get activities
+      description: Returns activities for the authenticated user
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: date
+          schema:
+            type: string
+            format: date
+          description: Filter by date (YYYY-MM-DD)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Number of records to return
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            default: 0
+          description: Number of records to skip
+      responses:
+        "200":
+          description: Activities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Activities retrieved successfully
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Activity'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+security:
+  - bearerAuth: [] 

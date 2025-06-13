@@ -51,3 +51,585 @@
 2025-05-19 02:39:30:3930 [32minfo[39m: [32mDatabase connected successfully[39m
 2025-05-19 02:39:30:3930 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
 2025-05-19 02:39:35:3935 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-13 06:58:36:5836 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:58:36:5836 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:58:36:5836 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:58:47:5847 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:58:47:5847 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:58:47:5847 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:58:51:5851 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:58:51:5851 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:58:51:5851 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:59:14:5914 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:59:14:5914 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:59:14:5914 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:59:19:5919 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:59:19:5919 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:59:19:5919 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:59:29:5929 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 06:59:29:5929 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 06:59:29:5929 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 06:59:53:5953 [35mhttp[39m: [35m::1 - - [12/Jun/2025:23:59:53 +0000] "GET / HTTP/1.1" 200 77 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 06:59:58:5958 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 06:59:58:5958 [35mhttp[39m: [35m::1 - - [12/Jun/2025:23:59:58 +0000] "GET /api-docs/ HTTP/1.1" 404 136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:00:00:00 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-13 07:00:00:00 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:00:00 +0000] "GET /favicon.ico HTTP/1.1" 404 138 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:00:27:027 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:00:27:027 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:00:28:028 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:00:40:040 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:00:40:040 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:00:40:040 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:00:41:041 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:00:41:041 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:00:41 +0000] "GET /api-docs/ HTTP/1.1" 404 136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:00:55:055 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:00:55:055 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:00:55:055 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:01:01:11 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:01:01:11 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:01 +0000] "GET /api-docs/ HTTP/1.1" 404 136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:22:122 [31merror[39m: [31mRoute /api-docs/ not found - /api-docs/ - GET - ::1[39m
+2025-06-13 07:01:22:122 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:22 +0000] "GET /api-docs/ HTTP/1.1" 404 136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:44:144 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:01:44:144 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:01:44:144 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:01:47:147 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:01:47:147 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:01:47:147 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs HTTP/1.1" 301 158 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs/ HTTP/1.1" 200 3091 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs/swagger-ui-init.js HTTP/1.1" 200 14322 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs/swagger-ui.css HTTP/1.1" 200 154986 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 229223 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:51:151 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:51 +0000] "GET /api/docs/swagger-ui-bundle.js HTTP/1.1" 200 1485241 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:01:52:152 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:01:52 +0000] "GET /api/docs/favicon-32x32.png HTTP/1.1" 200 628 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:51:451 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:51 +0000] "GET /api/docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:51:451 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:51 +0000] "GET /api/docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:51:451 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:51 +0000] "GET /api/docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:51:451 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:51 +0000] "GET /api/docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:51:451 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:51 +0000] "GET /api/docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:04:52:452 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:04:52 +0000] "GET /api/docs/favicon-32x32.png HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:06:56 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:06 +0000] "GET /api/docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:06:56 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:06 +0000] "GET /api/docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:06:56 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:06 +0000] "GET /api/docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:06:56 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:06 +0000] "GET /api/docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:06:56 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:06 +0000] "GET /api/docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:29:529 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:29 +0000] "GET / HTTP/1.1" 200 74 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:33:533 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:33 +0000] "GET /api/docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:33:533 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:33 +0000] "GET /api/docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:33:533 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:33 +0000] "GET /api/docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:33:533 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:33 +0000] "GET /api/docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:33:533 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:05:33 +0000] "GET /api/docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:05:49:549 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:05:49:549 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:05:49:549 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:05:51:551 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:05:51:551 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:05:51:551 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:05:57:557 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:05:57:557 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:05:57:557 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:06:04:64 [31merror[39m: [31mRoute /api/api-dosc not found - /api/api-dosc - GET - ::1[39m
+2025-06-13 07:06:04:64 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:06:04 +0000] "GET /api/api-dosc HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:06:09:69 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:06:09:69 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:06:09 +0000] "GET /api-dosc HTTP/1.1" 404 135 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:06:28:628 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:06:28:628 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:06:28:628 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:06:40:640 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:06:40:640 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:06:40:640 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:06:54:654 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:06:54:654 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:06:54:654 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:06:59:659 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:06:59:659 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:06:59:659 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:07:01:71 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:07:01:71 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:07:01:71 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:07:07:77 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:07:07:77 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:07:07:77 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:07:14:714 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:07:14:714 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:07:14:714 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:07:14:714 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:07:14:714 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:07:14 +0000] "GET /api-dosc HTTP/1.1" 404 135 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:07:17:717 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:07:17:717 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:07:17 +0000] "GET /api-dosc HTTP/1.1" 404 135 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:07:56:756 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:07:56:756 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:07:56:756 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:07:58:758 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:07:58:758 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:07:58:758 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:08:00:80 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:08:00:80 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:00 +0000] "GET /api-dosc HTTP/1.1" 404 135 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:03:83 [31merror[39m: [31mRoute /api-dosc not found - /api-dosc - GET - ::1[39m
+2025-06-13 07:08:03:83 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:03 +0000] "GET /api-dosc HTTP/1.1" 404 135 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:10:810 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:10 +0000] "GET /api-docs/ HTTP/1.1" 200 3091 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:10:810 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:10 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:10:810 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:10 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:10:810 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:10 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:10:810 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:10 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 14322 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:08:12:812 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:08:12 +0000] "GET /api-docs/favicon-32x32.png HTTP/1.1" 200 628 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:20:920 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:20 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:20:920 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:20 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:20:920 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:20 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:20:920 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:20 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:20:920 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:20 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:09:21:921 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:09:21 +0000] "GET /api-docs/favicon-32x32.png HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:16:55:1655 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:16:55:1655 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:16:55:1655 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:17:35:1735 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:17:35:1735 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:17:35:1735 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:17:39:1739 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:17:39:1739 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:17:39:1739 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:17:44:1744 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:44 +0000] "GET /api-docs/ HTTP/1.1" 200 2976 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:17:44:1744 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:44 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:17:44:1744 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:44 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:17:44:1744 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:44 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 40356 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:17:44:1744 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:44 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:17:53:1753 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:17:53 +0000] "GET /api/health HTTP/1.1" 200 224 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:18:12:1812 [31merror[39m: [31mRoute /api/auth/register not found - /api/auth/register - POST - ::1[39m
+2025-06-13 07:18:12:1812 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:18:12 +0000] "POST /api/auth/register HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:18:40:1840 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:18:40:1840 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:18:40:1840 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:18:48:1848 [31merror[39m: [31mRoute /api/auth/register not found - /api/auth/register - POST - ::1[39m
+2025-06-13 07:18:48:1848 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:18:48 +0000] "POST /api/auth/register HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:18:57:1857 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:18:57:1857 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:18:57:1857 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:22:00:220 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:22:00:220 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:22:00:220 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:22:40:2240 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:22:40:2240 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:22:40:2240 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:24:20:2420 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:24:20:2420 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:24:20:2420 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:24:22:2422 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:24:22:2422 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:24:22:2422 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:24:29:2429 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:24:29 +0000] "POST /api/auth/register HTTP/1.1" 422 125 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:24:36:2436 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:24:36:2436 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:24:36:2436 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:25:56:2556 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:25:56:2556 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:25:56:2556 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:25:57:2557 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:25:57:2557 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:25:57:2557 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:26:12:2612 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:26:12 +0000] "POST /api/auth/register HTTP/1.1" 422 136 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:27:01:271 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:27:01:271 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:27:01:271 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:27:03:273 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:27:03:273 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:27:03:273 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:27:06:276 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:27:06 +0000] "POST /api/auth/register HTTP/1.1" 422 221 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:27:40:2740 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:27:40:2740 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:27:40:2740 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:27:41:2741 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:27:41:2741 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:27:41:2741 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:27:46:2746 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing.[39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31mRegistration failed [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing.[39m
+2025-06-13 07:27:46:2746 [31merror[39m: [31m[39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$2E3YiXS1O3Zp6IO3KZvG8efTVi/UsJ9shWX8CM/sE0uihrArWvhjO",[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m+   googleId: String[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `googleId` is missing. - /api/auth/register - POST - ::1[39m
+2025-06-13 07:27:46:2746 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:27:46 +0000] "POST /api/auth/register HTTP/1.1" 500 412 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:28:44:2844 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-13 07:29:20:2920 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:29:20:2920 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:29:20:2920 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:29:23:2923 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?.[39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31mRegistration failed [39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?.[39m
+2025-06-13 07:29:23:2923 [31merror[39m: [31m[39m
+[31mInvalid `prisma.user.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    email: "user@example.com",[39m
+[31m    password: "$2b$10$AuzP9mAlhupmYeRwNmNaZuPgHH6VCUndmsIgoDrS7Bl420LHTL0qu",[39m
+[31m    ~~~~~~~~[39m
+[31m    name: "John Doe",[39m
+[31m    age: 30,[39m
+[31m    gender: "MALE",[39m
+[31m?   id?: String,[39m
+[31m?   googleId?: String | Null,[39m
+[31m?   height?: Float | Null,[39m
+[31m?   weight?: Float | Null,[39m
+[31m?   activityLevel?: ACTIVITYLEVEL | Null,[39m
+[31m?   profileImage?: String | Null,[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime,[39m
+[31m?   meals?: UserMealCreateNestedManyWithoutUserInput,[39m
+[31m?   bmiRecords?: BMIRecordCreateNestedManyWithoutUserInput,[39m
+[31m?   weightGoals?: WeightGoalCreateNestedManyWithoutUserInput,[39m
+[31m?   nutritionTargets?: DailyNutritionTargetCreateNestedManyWithoutUserInput,[39m
+[31m?   favoriteFoods?: FavoriteFoodCreateNestedManyWithoutUserInput,[39m
+[31m?   activities?: UserActivityCreateNestedManyWithoutUserInput,[39m
+[31m?   activityPlans?: ActivityPlanCreateNestedManyWithoutUserInput[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `password`. Available options are marked with ?. - /api/auth/register - POST - ::1[39m
+2025-06-13 07:29:23:2923 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:29:23 +0000] "POST /api/auth/register HTTP/1.1" 500 1129 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:30:20:3020 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-13 07:30:31:3031 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:30:31:3031 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:30:31:3031 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:30:33:3033 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:30:33:3033 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:30:33:3033 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920","user@example.com","$2b$10$6.RwSuurDWth8c8/D/OMeOxq0mFPFQ0aIYQOPKq6Mzp7h48f9gc4q","John Doe",30,"MALE","2025-06-13 00:30:33.811 UTC","2025-06-13 00:30:33.811 UTC"][39m
+2025-06-13 07:30:33:3033 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:30:33:3033 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:30:33:3033 [32minfo[39m: [32mUser c6d9e61a-3cc7-4928-97ae-946b745b9920 registered successfully[39m
+2025-06-13 07:30:33:3033 [32minfo[39m: [32mUser registered with email: user@example.com[39m
+2025-06-13 07:30:33:3033 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:30:33 +0000] "POST /api/auth/register HTTP/1.1" 201 923 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:30:56:3056 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:30:56:3056 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:30:56:3056 [32minfo[39m: [32mUser c6d9e61a-3cc7-4928-97ae-946b745b9920 logged in successfully[39m
+2025-06-13 07:30:56:3056 [32minfo[39m: [32mUser logged in with email: user@example.com[39m
+2025-06-13 07:30:56:3056 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:30:56 +0000] "POST /api/auth/login HTTP/1.1" 200 911 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:32:17:3217 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:32:17:3217 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:32:17:3217 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:32:17:3217 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:32:17 +0000] "GET /api/auth/me HTTP/1.1" 200 402 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:32:32:3232 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:32:32:3232 [31merror[39m: [31mRoute /api/bmi/calculate not found - /api/bmi/calculate - POST - ::1[39m
+2025-06-13 07:32:32:3232 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:32:32 +0000] "POST /api/bmi/calculate HTTP/1.1" 404 144 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:32:53:3253 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:32:53:3253 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:32:53:3253 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",10,0][39m
+2025-06-13 07:32:53:3253 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:32:53 +0000] "GET /api/bmi/history?limit=10&offset=0 HTTP/1.1" 200 141 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:32:55:3255 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:32:55:3255 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",10,0][39m
+2025-06-13 07:32:55:3255 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:32:55 +0000] "GET /api/bmi/history?limit=10&offset=0 HTTP/1.1" 200 141 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:33:20:3320 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:33:20:3320 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:33:20:3320 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:33:20 +0000] "POST /api/meals HTTP/1.1" 422 251 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:33:44:3344 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:33:44:3344 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:33:44:3344 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["c6d9e61a-3cc7-4928-97ae-946b745b9920",1,0][39m
+2025-06-13 07:33:44:3344 [31merror[39m: [31mError creating activity: User weight is required to calculate calories burned[39m
+2025-06-13 07:33:44:3344 [31merror[39m: [31mUser weight is required to calculate calories burned - /api/activities - POST - ::1[39m
+2025-06-13 07:33:44:3344 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:33:44 +0000] "POST /api/activities HTTP/1.1" 400 162 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:35:05:355 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:35:05:355 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:35:05:355 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:35:05:355 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:35:05:355 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:35:05 +0000] "POST /api/auth/register HTTP/1.1" 409 134 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:35:46:3546 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:35:46:3546 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:35:46:3546 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:35:58:3558 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:35:58:3558 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:35:58:3558 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:36:10:3610 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:36:10:3610 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:36:10:3610 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:36:21:3621 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:36:21:3621 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:36:21:3621 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:36:39:3639 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:36:39:3639 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:36:39:3639 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:37:00:370 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:37:00:370 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:37:00:370 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","user@example.com","$2b$10$Q7ivRoFhSH0.nrY9vk9ZeeOSl5ODFGdbsuV6Z46FSwIIYqGeGX5f2","John Doe",30,"MALE","2025-06-13 00:37:36.314 UTC","2025-06-13 00:37:36.314 UTC"][39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-13 07:37:36:3736 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:37:36:3736 [32minfo[39m: [32mUser b82c5366-4025-41d1-a27d-1480fa42c6a6 registered successfully[39m
+2025-06-13 07:37:36:3736 [32minfo[39m: [32mUser registered with email: user@example.com[39m
+2025-06-13 07:37:36:3736 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:37:36 +0000] "POST /api/auth/register HTTP/1.1" 201 923 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:37:40:3740 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:37:40:3740 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:37:40:3740 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:37:40:3740 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:37:40 +0000] "POST /api/auth/register HTTP/1.1" 409 134 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:37:43:3743 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user@example.com",1,0][39m
+2025-06-13 07:37:43:3743 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:37:43:3743 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:37:43:3743 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:37:43 +0000] "POST /api/auth/register HTTP/1.1" 409 134 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:37:47:3747 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user1@example.com",1,0][39m
+2025-06-13 07:37:48:3748 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:37:48:3748 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["e58dcfad-a972-4a11-8880-5ab455956f3a","user1@example.com","$2b$10$FkLsSpvrOpExbbyR/ZeRF..wXiCbpsUIyKqxGxgvfdv.5Hv1svuem","John Doe",30,"MALE","2025-06-13 00:37:48.062 UTC","2025-06-13 00:37:48.062 UTC"][39m
+2025-06-13 07:37:48:3748 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["e58dcfad-a972-4a11-8880-5ab455956f3a",1,0][39m
+2025-06-13 07:37:48:3748 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:37:48:3748 [32minfo[39m: [32mUser e58dcfad-a972-4a11-8880-5ab455956f3a registered successfully[39m
+2025-06-13 07:37:48:3748 [32minfo[39m: [32mUser registered with email: user1@example.com[39m
+2025-06-13 07:37:48:3748 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:37:48 +0000] "POST /api/auth/register HTTP/1.1" 201 926 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:42:33:4233 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:42:33:4233 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:42:33:4233 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:42:36:4236 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:42:36:4236 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:42:36:4236 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:42:40:4240 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:42:40:4240 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:42:40:4240 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:43:02:432 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:43:02:432 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:43:02:432 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:43:04:434 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:43:04:434 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:43:04:434 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:43:50:4350 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:43:50:4350 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["user1@example.com",1,0][39m
+2025-06-13 07:43:50:4350 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:43:50:4350 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:43:50:4350 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:43:50 +0000] "POST /api/auth/register HTTP/1.1" 409 134 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:43:55:4355 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["userdc1@example.com",1,0][39m
+2025-06-13 07:43:55:4355 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:43:55:4355 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["c857aef3-f698-426a-bc7a-df19ed7224fe","userdc1@example.com","$2b$10$pNyq7S.BKeMAxw7GajI0CuZ61yO9soN9EM//1R8ykGIKWaSeaJZVu","John Doe",30,"MALE","2025-06-13 00:43:55.834 UTC","2025-06-13 00:43:55.834 UTC"][39m
+2025-06-13 07:43:55:4355 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["c857aef3-f698-426a-bc7a-df19ed7224fe",1,0][39m
+2025-06-13 07:43:55:4355 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:43:55:4355 [32minfo[39m: [32mUser c857aef3-f698-426a-bc7a-df19ed7224fe registered successfully[39m
+2025-06-13 07:43:55:4355 [32minfo[39m: [32mUser registered with email: userdc1@example.com[39m
+2025-06-13 07:43:55:4355 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:43:55 +0000] "POST /api/auth/register HTTP/1.1" 201 934 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:44:07:447 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:07:447 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:07:447 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:12:4412 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:12:4412 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:12:4412 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:17:4417 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:17:4417 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:17:4417 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:22:4422 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["userdac1@example.com",1,0][39m
+2025-06-13 07:44:22:4422 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:44:22:4422 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["3c6b4b22-24e3-41fa-92df-feeb0ef96166","userdac1@example.com","$2b$10$5vDumm6aOOXmemRVDsXHV.QESoUng1RfWTDKpf5OhGVCLDF9HlFO.","John Doe",30,"MALE","2025-06-13 00:44:22.436 UTC","2025-06-13 00:44:22.436 UTC"][39m
+2025-06-13 07:44:22:4422 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["3c6b4b22-24e3-41fa-92df-feeb0ef96166",1,0][39m
+2025-06-13 07:44:22:4422 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:44:22:4422 [32minfo[39m: [32mUser 3c6b4b22-24e3-41fa-92df-feeb0ef96166 registered successfully[39m
+2025-06-13 07:44:22:4422 [32minfo[39m: [32mUser registered with email: userdac1@example.com[39m
+2025-06-13 07:44:22:4422 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:44:22 +0000] "POST /api/auth/register HTTP/1.1" 201 881 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:44:30:4430 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:30:4430 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:30:4430 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:40:4440 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:40:4440 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:40:4440 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:41:4441 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:44:41:4441 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:44:41:4441 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:44:47:4447 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["userdac1@example.com",1,0][39m
+2025-06-13 07:44:47:4447 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:44:47:4447 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:44:47:4447 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:44:47 +0000] "POST /api/auth/register HTTP/1.1" 409 43 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:44:53:4453 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["sd@example.com",1,0][39m
+2025-06-13 07:44:53:4453 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:44:53:4453 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["168e585a-7c4e-4427-b2be-6de4d086b52d","sd@example.com","$2b$10$abQGlsK3XZuOaW6NwVTdfu1KDde2YZNzlGTppnRWdBzTA312oRbee","John Doe",30,"MALE","2025-06-13 00:44:53.205 UTC","2025-06-13 00:44:53.205 UTC"][39m
+2025-06-13 07:44:53:4453 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["168e585a-7c4e-4427-b2be-6de4d086b52d",1,0][39m
+2025-06-13 07:44:53:4453 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:44:53:4453 [32minfo[39m: [32mUser 168e585a-7c4e-4427-b2be-6de4d086b52d registered successfully[39m
+2025-06-13 07:44:53:4453 [32minfo[39m: [32mUser registered with email: sd@example.com[39m
+2025-06-13 07:44:53:4453 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:44:53 +0000] "POST /api/auth/register HTTP/1.1" 201 821 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:46:24:4624 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:46:24:4624 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:46:24:4624 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:47:23:4723 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:47:23:4723 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:47:23:4723 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:47:52:4752 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:47:52:4752 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:47:52:4752 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:48:36:4836 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:48:36:4836 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:48:36:4836 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:48:38:4838 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:48:38:4838 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:48:38:4838 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:48:51:4851 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["sssd@example.com",1,0][39m
+2025-06-13 07:48:51:4851 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:48:51:4851 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["896a219b-e33b-4fc1-bf6c-6cf07755c34b","sssd@example.com","$2b$10$m1crglw9ejPsBXB42w0yquUZtEG6tYXwSXdR5A0RYm28YL/HWyqi6","John Doe",30,"MALE","2025-06-13 00:48:51.340 UTC","2025-06-13 00:48:51.340 UTC"][39m
+2025-06-13 07:48:51:4851 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["896a219b-e33b-4fc1-bf6c-6cf07755c34b",1,0][39m
+2025-06-13 07:48:51:4851 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:48:51:4851 [32minfo[39m: [32mUser 896a219b-e33b-4fc1-bf6c-6cf07755c34b registered successfully[39m
+2025-06-13 07:48:51:4851 [32minfo[39m: [32mUser registered with email: sssd@example.com[39m
+2025-06-13 07:48:51:4851 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:48:51 +0000] "POST /api/auth/register HTTP/1.1" 201 829 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:48:58:4858 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:48:58:4858 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["sssd@example.com",1,0][39m
+2025-06-13 07:48:58:4858 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:48:58:4858 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:48:58:4858 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:48:58 +0000] "POST /api/auth/register HTTP/1.1" 409 43 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:49:04:494 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["szxzxssd@example.com",1,0][39m
+2025-06-13 07:49:04:494 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:49:04:494 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["164d023f-21b7-48b7-9498-fcea0fe9896d","szxzxssd@example.com","$2b$10$NJdFO1VONSlszmawOLuCtOCP2P2W1Hawgofx7rAj6QPjpol4HrpCG","John Doe",30,"MALE","2025-06-13 00:49:04.658 UTC","2025-06-13 00:49:04.658 UTC"][39m
+2025-06-13 07:49:04:494 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["164d023f-21b7-48b7-9498-fcea0fe9896d",1,0][39m
+2025-06-13 07:49:04:494 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:49:04:494 [32minfo[39m: [32mUser 164d023f-21b7-48b7-9498-fcea0fe9896d registered successfully[39m
+2025-06-13 07:49:04:494 [32minfo[39m: [32mUser registered with email: szxzxssd@example.com[39m
+2025-06-13 07:49:04:494 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:49:04 +0000] "POST /api/auth/register HTTP/1.1" 201 843 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:49:38:4938 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:49:39:4939 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:49:39:4939 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:49:39:4939 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["szxzxssd@example.com",1,0][39m
+2025-06-13 07:49:39:4939 [31merror[39m: [31mRegistration failed Email already registered[39m
+2025-06-13 07:49:39:4939 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 07:49:39:4939 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:49:39 +0000] "POST /api/auth/register HTTP/1.1" 409 65 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:49:49:4949 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["asa@example.com",1,0][39m
+2025-06-13 07:49:49:4949 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:49:49:4949 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["64cea0a5-6667-4fdb-a228-8c06fba1f994","asa@example.com","$2b$10$DX04nK5F197X.p8YizqIgO/coEvP7BbVNmP8qtlpCjoNoTM4rtvce","John Doe",30,"MALE","2025-06-13 00:49:49.176 UTC","2025-06-13 00:49:49.176 UTC"][39m
+2025-06-13 07:49:49:4949 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["64cea0a5-6667-4fdb-a228-8c06fba1f994",1,0][39m
+2025-06-13 07:49:49:4949 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:49:49:4949 [32minfo[39m: [32mUser 64cea0a5-6667-4fdb-a228-8c06fba1f994 registered successfully[39m
+2025-06-13 07:49:49:4949 [32minfo[39m: [32mUser registered with email: asa@example.com[39m
+2025-06-13 07:49:49:4949 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:49:49 +0000] "POST /api/auth/register HTTP/1.1" 201 850 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:50:13:5013 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:13:5013 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:13:5013 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:24:5024 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:24:5024 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:24:5024 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:28:5028 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:28:5028 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:28:5028 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:33:5033 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:33:5033 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:33:5033 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:47:5047 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:47:5047 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:47:5047 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:49:5049 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:49:5049 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:49:5049 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:53:5053 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:53:5053 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:53:5053 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:50:57:5057 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:50:57:5057 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:50:57:5057 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:51:01:511 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:51:01:511 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:51:02:512 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:51:07:517 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:51:07:517 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:51:07:517 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:51:10:5110 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:51:10:5110 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:51:10:5110 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:51:43:5143 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-13 07:51:43:5143 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-13 07:51:43:5143 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`email` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["aassa@example.com",1,0][39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`User` (`id`,`email`,`password`,`name`,`age`,`gender`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?) - Params: ["8149a984-e233-4223-8854-efa3f3b854b2","aassa@example.com","$2b$10$Hht1zQdPLQeaN51uz2GWnuPSFd5oVW0Tue9k8vCPCIEFr5xeTuuQ2","John Doe",30,"MALE","2025-06-13 00:53:30.363 UTC","2025-06-13 00:53:30.363 UTC"][39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["8149a984-e233-4223-8854-efa3f3b854b2",1,0][39m
+2025-06-13 07:53:30:5330 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-13 07:53:30:5330 [32minfo[39m: [32mUser registered with email: aassa@example.com[39m
+2025-06-13 07:53:30:5330 [35mhttp[39m: [35m::1 - - [13/Jun/2025:00:53:30 +0000] "POST /api/auth/register HTTP/1.1" 201 181 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-13 07:54:36:5436 [32minfo[39m: [32mShutting down gracefully...[39m

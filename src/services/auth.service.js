@@ -1,5 +1,6 @@
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const ApiError = require('../libs/http/ApiError');
 const Database = require('../database/prisma');
 const AppConfig = require('../config/app.config');
@@ -13,6 +14,91 @@ class AuthService {
     this.logger = Logger;
   }
 
+  async register(userData) {
+    try {
+      // Check if user already exists
+      const existingUser = await this.prisma.user.findUnique({
+        where: { email: userData.email }
+      });
+
+      if (existingUser) {
+        throw ApiError.conflict('Email already registered');
+      }
+
+      // Hash password
+      const hashedPassword = await bcrypt.hash(userData.password, 10);
+
+      // Create user
+      const user = await this.prisma.user.create({
+        data: {
+          email: userData.email,
+          password: hashedPassword,
+          name: userData.name,
+          age: userData.age,
+          gender: userData.gender
+        }
+      });
+
+      const schema = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        age: user.age,
+        gender: user.gender,
+      }
+
+      return schema
+
+    } catch (error) {
+      this.logger.error('Registration failed', error);
+      throw error;
+    }
+  }
+
+  async login(email, password) {
+    try {
+      // Find user by email
+      const user = await this.prisma.user.findUnique({
+        where: { email }
+      });
+
+      if (!user) {
+        throw ApiError.unauthorized('Invalid credentials');
+      }
+
+      // Check if user has password (might be Google OAuth user)
+      if (!user.password) {
+        throw ApiError.unauthorized('Please login with Google');
+      }
+
+      // Verify password
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        throw ApiError.unauthorized('Invalid credentials');
+      }
+
+      // Generate tokens
+      const tokens = this.generateTokens(user);
+
+      const schema = {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        age: user.age,
+        gender: user.gender,
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+        tokenType: tokens.tokenType,
+      }
+
+      return schema
+    } catch (error) {
+      this.logger.error('Login failed', error);
+      throw error;
+    }
+  }
+
   async googleAuth(idToken, clientType = 'web') {
     try {
       // Verify Google ID token
@@ -20,9 +106,9 @@ class AuthService {
         idToken,
         audience: OAuthConfig.getAudience()
       });
-      
+
       const payload = ticket.getPayload();
-      
+
       if (!payload) {
         throw ApiError.unauthorized('Invalid Google token');
       }
@@ -88,7 +174,7 @@ class AuthService {
   async refreshToken(refreshToken) {
     try {
       const payload = jwt.verify(refreshToken, AppConfig.jwt.secret);
-      
+
       const user = await this.prisma.user.findUnique({
         where: { id: payload.id }
       });
@@ -107,7 +193,7 @@ class AuthService {
   async verifyToken(token) {
     try {
       const payload = jwt.verify(token, AppConfig.jwt.secret);
-      
+
       const user = await this.prisma.user.findUnique({
         where: { id: payload.id }
       });
@@ -128,7 +214,7 @@ class AuthService {
       // 1. Blacklist the token
       // 2. Clear refresh tokens from database
       // 3. Update last logout time
-      
+
       this.logger.info(`User ${userId} logged out`);
       return true;
     } catch (error) {
@@ -168,7 +254,7 @@ class AuthService {
   }
 
   sanitizeUser(user) {
-    const { googleId, ...sanitizedUser } = user;
+    const { googleId, password, ...sanitizedUser } = user;
     return sanitizedUser;
   }
 }

@@ -4,6 +4,28 @@ const { GENDER, ACTIVITYLEVEL, USER_ACTIVITY, BMI } = require('../generated/pris
 
 const schemas = {
     // Auth schemas
+    register: yup.object({
+        body: yup.object({
+            email: yup.string().email('Invalid email format').required('Email is required'),
+            password: yup.string().min(8, 'Password must be at least 8 characters')
+                .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+                .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
+                .matches(/[0-9]/, 'Password must contain at least one number')
+                .matches(/[^a-zA-Z0-9]/, 'Password must contain at least one special character')
+                .required('Password is required'),
+            name: yup.string().trim().min(2, 'Name must be at least 2 characters').max(50, 'Name cannot exceed 50 characters').required('Name is required'),
+            age: yup.number().integer().min(1).max(120),
+            gender: yup.string().oneOf(Object.values(GENDER))
+        })
+    }),
+
+    login: yup.object({
+        body: yup.object({
+            email: yup.string().email('Invalid email format').required('Email is required'),
+            password: yup.string().required('Password is required')
+        })
+    }),
+
     googleAuth: yup.object({
         body: yup.object({
             idToken: yup.string().required('Google ID token is required')

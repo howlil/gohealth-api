@@ -19,16 +19,25 @@ class BaseController {
       });
 
       this.logger.info(`Fetched ${result.data.length} ${this.entityName}s`);
-      
-      res.status(200).json(
-        ApiResponse.pagination(
-          result.data,
-          page,
-          limit,
-          result.total,
-          `${this.entityName}s retrieved successfully`
-        )
+
+      const response = ApiResponse.success(
+        result.data,
+        `${this.entityName}s retrieved successfully`
       );
+
+      // Add pagination meta data
+      response.meta = {
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total: result.total,
+          totalPages: Math.ceil(result.total / parseInt(limit)),
+          hasNextPage: parseInt(page) * parseInt(limit) < result.total,
+          hasPrevPage: parseInt(page) > 1
+        }
+      };
+
+      res.status(200).json(response);
     } catch (error) {
       throw error;
     }
@@ -41,12 +50,12 @@ class BaseController {
 
       if (!data) {
         return res.status(404).json(
-          ApiResponse.error(`${this.entityName} not found`, 404)
+          ApiResponse.error(`${this.entityName} not found`)
         );
       }
 
       this.logger.info(`Fetched ${this.entityName} with id: ${id}`);
-      
+
       res.status(200).json(
         ApiResponse.success(data, `${this.entityName} retrieved successfully`)
       );
@@ -63,7 +72,7 @@ class BaseController {
       });
 
       this.logger.info(`Created new ${this.entityName}`);
-      
+
       res.status(201).json(
         ApiResponse.created(data, `${this.entityName} created successfully`)
       );
@@ -79,12 +88,12 @@ class BaseController {
 
       if (!data) {
         return res.status(404).json(
-          ApiResponse.error(`${this.entityName} not found`, 404)
+          ApiResponse.error(`${this.entityName} not found`)
         );
       }
 
       this.logger.info(`Updated ${this.entityName} with id: ${id}`);
-      
+
       res.status(200).json(
         ApiResponse.updated(data, `${this.entityName} updated successfully`)
       );
@@ -100,12 +109,12 @@ class BaseController {
 
       if (!result) {
         return res.status(404).json(
-          ApiResponse.error(`${this.entityName} not found`, 404)
+          ApiResponse.error(`${this.entityName} not found`)
         );
       }
 
       this.logger.info(`Deleted ${this.entityName} with id: ${id}`);
-      
+
       res.status(200).json(
         ApiResponse.deleted(`${this.entityName} deleted successfully`)
       );
