@@ -17,12 +17,6 @@ class MealRoutes {
         // All routes require authentication
         this.router.use(AuthMiddleware.authenticate());
 
-        // Get meal types
-        this.router.get(
-            '/types',
-            ErrorMiddleware.asyncHandler(this.mealController.getMealTypes.bind(this.mealController))
-        );
-
         // Create meal
         this.router.post(
             '/',
@@ -33,20 +27,20 @@ class MealRoutes {
         // Get user meals
         this.router.get(
             '/',
-            ValidationMiddleware.validate(schemas.dateRange),
+            ValidationMiddleware.validate(schemas.pagination),
             ErrorMiddleware.asyncHandler(this.mealController.getUserMeals.bind(this.mealController))
         );
 
         // Update meal
         this.router.put(
-            '/:mealTypeId',
+            '/:mealType/:date',
             ValidationMiddleware.validate(schemas.updateMeal),
             ErrorMiddleware.asyncHandler(this.mealController.updateMeal.bind(this.mealController))
         );
 
         // Delete meal
         this.router.delete(
-            '/:mealTypeId',
+            '/:mealType/:date',
             ErrorMiddleware.asyncHandler(this.mealController.deleteMeal.bind(this.mealController))
         );
 

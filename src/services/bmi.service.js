@@ -14,11 +14,36 @@ class BMIService extends BaseService {
     try {
       this.logger.info(`Calculating BMI for user ${userId} with weight ${weight}kg and height ${height}cm`);
 
+      // Ambil profil user
+      const user = await this.prisma.user.findUnique({ where: { id: userId } });
+      if (!user) throw ApiError.notFound('User not found');
+      if (!user.age || !user.gender || !user.activityLevel) throw ApiError.badRequest('User profile incomplete (age, gender, activity level required)');
+
       // Calculate BMI
       this.logger.debug('Calculating BMI value...');
       const bmi = this.calorieUtil.calculateBMI(weight, height);
       const status = this.calorieUtil.getBMIStatus(bmi);
       this.logger.debug(`Calculated BMI: ${bmi}, Status: ${status}`);
+
+      // Hitung BMR & TDEE
+      const bmr = this.calorieUtil.calculateBMR(weight, height, user.age, user.gender);
+      const tdee = this.calorieUtil.calculateTDEE(bmr, user.activityLevel);
+
+      // Hitung ringkasan gizi
+      const caloriesMin = Math.round(tdee * 0.9);
+      const caloriesMax = Math.round(tdee * 1.1);
+      const proteinMin = Math.round((caloriesMin * 0.15) / 4);
+      const proteinMax = Math.round((caloriesMax * 0.20) / 4);
+      const carbMin = Math.round((caloriesMin * 0.50) / 4);
+      const carbMax = Math.round((caloriesMax * 0.60) / 4);
+      const fatMin = Math.round((caloriesMin * 0.20) / 9);
+      const fatMax = Math.round((caloriesMax * 0.30) / 9);
+      const nutritionSummary = {
+        calories: { min: caloriesMin, max: caloriesMax },
+        protein: { min: proteinMin, max: proteinMax, unit: 'gram' },
+        carbohydrate: { min: carbMin, max: carbMax, unit: 'gram' },
+        fat: { min: fatMin, max: fatMax, unit: 'gram' }
+      };
 
       // Save BMI record
       this.logger.debug('Saving BMI record to database...');
@@ -28,7 +53,8 @@ class BMIService extends BaseService {
           height,
           weight,
           bmi,
-          status
+          status,
+          nutritionSummary
         }
       });
 
@@ -47,8 +73,9 @@ class BMIService extends BaseService {
         weight: bmiRecord.weight,
         bmi: bmiRecord.bmi,
         status: bmiRecord.status,
-        recordedAt: bmiRecord.recordedAt
-      }
+        recordedAt: bmiRecord.recordedAt,
+        nutritionSummary: bmiRecord.nutritionSummary
+      };
 
       return schema;
     } catch (error) {
@@ -82,7 +109,8 @@ class BMIService extends BaseService {
         weight: record.weight,
         bmi: record.bmi,
         status: record.status,
-        recordedAt: record.recordedAt
+        recordedAt: record.recordedAt,
+        nutritionSummary: record.nutritionSummary
       }));
 
       this.logger.info(`BMI history retrieved successfully for user ${userId}`);

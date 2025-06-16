@@ -3,6 +3,7 @@ const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const FatSecretUtil = require('../libs/utils/fatsecret.util');
 const AppConfig = require('../config/app.config');
+const { parseDate } = require('../libs/utils/date');
 
 class MealService extends BaseService {
   constructor() {
@@ -17,22 +18,12 @@ class MealService extends BaseService {
     try {
       this.logger.info(`Creating meal for user ${data.userId}`);
 
-      const { userId, fatSecretFoodId, servingId, quantity, unit, nutritionData, mealTypeId, ...mealData } = data;
-      this.logger.debug('Meal data:', { fatSecretFoodId, servingId, quantity, unit, mealTypeId, ...mealData });
+      const { userId, fatSecretFoodId, servingId, quantity, unit, nutritionData, mealType, ...mealData } = data;
+      this.logger.debug('Meal data:', { fatSecretFoodId, servingId, quantity, unit, mealType, ...mealData });
 
-      if (!mealTypeId) {
-        this.logger.warn('Meal type ID is required');
-        throw ApiError.badRequest('Meal type ID is required. Please provide a valid meal type ID from /api/meals/types');
-      }
-
-      // Verify meal type exists
-      const mealType = await this.prisma.mealType.findUnique({
-        where: { id: mealTypeId }
-      });
-
-      if (!mealType) {
-        this.logger.warn(`Invalid meal type ID: ${mealTypeId}`);
-        throw ApiError.badRequest('Invalid meal type ID. Please provide a valid meal type ID from /api/meals/types');
+      if (!mealType || !['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'].includes(mealType)) {
+        this.logger.warn('Meal type is required and must be one of BREAKFAST, LUNCH, DINNER, SNACK');
+        throw ApiError.badRequest('Meal type is required and must be one of BREAKFAST, LUNCH, DINNER, SNACK');
       }
 
       let finalNutritionData = nutritionData;
@@ -69,16 +60,8 @@ class MealService extends BaseService {
           foodName: mealData.foodName,
           brandName: mealData.brandName,
           date: new Date(mealData.date),
-          user: {
-            connect: { id: userId }
-          },
-          mealType: {
-            connect: { id: mealTypeId }
-          }
-        },
-        include: {
-          mealType: true,
-          user: true
+          userId,
+          mealType
         }
       });
 
@@ -95,26 +78,30 @@ class MealService extends BaseService {
     }
   }
 
-  async getUserMeals(userId, startDate, endDate) {
+  async getUserMeals(userId, category, search, limit = 10, offset = 0) {
     try {
-      this.logger.info(`Fetching meals for user ${userId} from ${startDate} to ${endDate}`);
+      this.logger.info(`Fetching meals for user ${userId}`);
+
+      const where = { userId };
+      if (category) {
+        where.category = category;
+      }
+      if (search) {
+        where.OR = [
+          { foodName: { contains: search, mode: 'insensitive' } },
+          { brandName: { contains: search, mode: 'insensitive' } }
+        ];
+      }
 
       this.logger.debug('Querying meals from database...');
       const meals = await this.prisma.userMeal.findMany({
-        where: {
-          userId,
-          date: {
-            gte: new Date(startDate),
-            lte: new Date(endDate)
-          }
-        },
-        include: {
-          mealType: true
-        },
+        where,
         orderBy: [
           { date: 'desc' },
-          { mealType: { orderIndex: 'asc' } }
-        ]
+          { mealType: 'asc' }
+        ],
+        skip: Number(offset),
+        take: Number(limit)
       });
 
       this.logger.debug(`Found ${meals.length} meals`);
@@ -124,29 +111,27 @@ class MealService extends BaseService {
       this.logger.error('Error getting user meals', {
         error: error.message,
         stack: error.stack,
-        userId,
-        startDate,
-        endDate
+        userId
       });
       throw error;
     }
   }
 
-  async updateMeal(userId, mealTypeId, data) {
+  async updateMeal(userId, mealType, data) {
     try {
-      this.logger.info(`Updating meal for user ${userId}, meal type ${mealTypeId}`);
+      this.logger.info(`Updating meal for user ${userId}, meal type ${mealType}`);
 
       this.logger.debug('Finding existing meal...');
       const existingMeal = await this.prisma.userMeal.findFirst({
         where: {
           userId,
-          mealTypeId,
+          mealType,
           date: data.date
         }
       });
 
       if (!existingMeal) {
-        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealTypeId}`);
+        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealType}`);
         throw ApiError.notFound('Meal not found');
       }
 
@@ -170,19 +155,15 @@ class MealService extends BaseService {
       this.logger.debug('Updating meal record...');
       const updatedMeal = await this.prisma.userMeal.update({
         where: {
-          userId_mealTypeId_date: {
+          userId_mealType_date: {
             userId,
-            mealTypeId,
+            mealType,
             date: existingMeal.date
           }
         },
         data: {
           ...data,
           nutritionData
-        },
-        include: {
-          mealType: true,
-          user: true
         }
       });
 
@@ -193,38 +174,38 @@ class MealService extends BaseService {
         error: error.message,
         stack: error.stack,
         userId,
-        mealTypeId,
-        updateData: data
+        mealType
       });
       throw error;
     }
   }
 
-  async deleteMeal(userId, mealTypeId) {
+  async deleteMeal(userId, mealType, date) {
     try {
-      this.logger.info(`Deleting meal for user ${userId}, meal type ${mealTypeId}`);
+      this.logger.info(`Deleting meal for user ${userId}, meal type ${mealType}, date ${date}`);
 
-      this.logger.debug('Finding meal to delete...');
       const meal = await this.prisma.userMeal.findUnique({
         where: {
-          userId_mealTypeId: {
+          userId_mealType_date: {
             userId,
-            mealTypeId
+            mealType,
+            date
           }
         }
       });
 
       if (!meal) {
-        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealTypeId}`);
+        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealType}, date ${date}`);
         throw ApiError.notFound('Meal not found');
       }
 
       this.logger.debug('Deleting meal record...');
       await this.prisma.userMeal.delete({
         where: {
-          userId_mealTypeId: {
+          userId_mealType_date: {
             userId,
-            mealTypeId
+            mealType,
+            date
           }
         }
       });
@@ -236,7 +217,8 @@ class MealService extends BaseService {
         error: error.message,
         stack: error.stack,
         userId,
-        mealTypeId
+        mealType,
+        date
       });
       throw error;
     }
@@ -357,23 +339,11 @@ class MealService extends BaseService {
     }
   }
 
-  async getMealTypes() {
-    try {
-      this.logger.info('Fetching meal types');
-      const mealTypes = await this.prisma.mealType.findMany({
-        orderBy: {
-          orderIndex: 'asc'
-        }
-      });
-      this.logger.info(`Found ${mealTypes.length} meal types`);
-      return mealTypes;
-    } catch (error) {
-      this.logger.error('Error fetching meal types', {
-        error: error.message,
-        stack: error.stack
-      });
-      throw error;
-    }
+  async getAllMeals({ page = 0, limit = 10 }) {
+    this.logger.info(`Fetching all foods from FatSecret: page=${page}, limit=${limit}`);
+    const foods = await this.fatSecret.searchFoods('', page, limit);
+    this.logger.info(`Found ${foods.length} foods from FatSecret`);
+    return { source: 'fatsecret', foods };
   }
 }
 

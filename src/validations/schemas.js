@@ -59,10 +59,10 @@ const schemas = {
 
     // Meal schemas
     createMeal: yup.object().shape({
-        mealTypeId: yup
+        mealType: yup
             .string()
-            .uuid('Invalid meal type ID format')
-            .required('Meal type ID is required. Please provide a valid meal type ID from /api/meals/types'),
+            .oneOf(['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'], 'Invalid meal type')
+            .required('Meal type is required'),
         fatSecretFoodId: yup
             .string()
             .nullable()
@@ -107,7 +107,7 @@ const schemas = {
 
     updateMeal: yup.object({
         params: yup.object({
-            mealTypeId: yup.string().uuid().required()
+            mealType: yup.string().oneOf(['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK']).required()
         }),
         body: yup.object({
             quantity: yup.number().positive(),
@@ -173,8 +173,12 @@ const schemas = {
     // Common schemas
     pagination: yup.object({
         query: yup.object({
-            page: yup.number().integer().min(1).default(1),
-            limit: yup.number().integer().min(1).max(100).default(10)
+            startDate: dateSchema.required(),
+            endDate: dateSchema.min(yup.ref('startDate')).required(),
+            category: yup.string().nullable(),
+            search: yup.string().nullable(),
+            limit: yup.number().integer().min(1).max(100).default(10),
+            offset: yup.number().integer().min(0).default(0)
         })
     }),
 

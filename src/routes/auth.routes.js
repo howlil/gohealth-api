@@ -48,13 +48,6 @@ class AuthRoutes {
             AuthMiddleware.authenticate(),
             ErrorMiddleware.asyncHandler(this.authController.logout.bind(this.authController))
         );
-
-        // Get current user
-        this.router.get(
-            '/me',
-            AuthMiddleware.authenticate(),
-            ErrorMiddleware.asyncHandler(this.authController.getCurrentUser.bind(this.authController))
-        );
     }
 
     getRouter() {

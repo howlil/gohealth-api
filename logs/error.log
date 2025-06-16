@@ -691,3 +691,65 @@
 2025-06-16 19:05:51:551 [31merror[39m: [31mInvalid meal type ID. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
 2025-06-16 19:05:53:553 [31merror[39m: [31mError creating meal[39m
 2025-06-16 19:05:53:553 [31merror[39m: [31mInvalid meal type ID. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 19:52:47:5247 [31merror[39m: [31mRoute /api/meals/types not found - /api/meals/types - GET - ::1[39m
+2025-06-16 20:04:25:425 [31merror[39m: [31mRoute /api/meals/types not found - /api/meals/types - GET - ::1[39m
+2025-06-16 20:04:39:439 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:04:39:439 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    date: {[39m
+[31m      gte: new Date("Invalid Date"),[39m
+[31m           ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m      lte: new Date("Invalid Date")[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  },[39m
+[31m  orderBy: [[39m
+[31m    {[39m
+[31m      date: "desc"[39m
+[31m    },[39m
+[31m    {[39m
+[31m      mealType: {[39m
+[31m        orderIndex: "asc"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  ][39m
+[31m}[39m
+
+[31mInvalid value for argument `gte`: Provided Date object is invalid. Expected Date. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:05:51:551 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:05:51:551 [31merror[39m: [31mInvalid date range. Dates must be in DD-MM-YYYY format. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:10:34:1034 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:10:34:1034 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    ~~~~~~~~[39m
+[31m?   user?: true[39m
+[31m  },[39m
+[31m  orderBy: [[39m
+[31m    {[39m
+[31m      date: "desc"[39m
+[31m    },[39m
+[31m    {[39m
+[31m      mealType: {[39m
+[31m        orderIndex: "asc"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  ],[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid scalar field `mealType` for include statement on model UserMeal. Available options are marked with ?.[39m
+[31mNote that include statements only accept relation fields. - /api/meals?limit=10&offset=0 - GET - ::1[39m

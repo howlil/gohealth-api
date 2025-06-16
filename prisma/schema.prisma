@@ -64,19 +64,16 @@ model FavoriteFood {
   @@index([userId])
 }
 
-model MealType {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  orderIndex Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  userMeals UserMeal[]
+enum MEAL_TYPE {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
 }
 
 model UserMeal {
   userId          String
-  mealTypeId      String
+  mealType        MEAL_TYPE
   fatSecretFoodId String
   foodName        String
   brandName       String?
@@ -89,12 +86,11 @@ model UserMeal {
   updatedAt       DateTime @updatedAt
 
   user     User     @relation(fields: [userId], references: [id])
-  mealType MealType @relation(fields: [mealTypeId], references: [id])
 
-  @@id([userId, mealTypeId, date])
+  @@id([userId, mealType, date])
   @@index([userId, date])
   @@index([fatSecretFoodId])
-  @@index([mealTypeId])
+  @@index([mealType])
 }
 
 model ActivityType {
@@ -190,6 +186,7 @@ model BMIRecord {
   recordedAt DateTime @default(now())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  nutritionSummary Json? // Ringkasan gizi per histori BMI
 
   user User @relation(fields: [userId], references: [id])
 

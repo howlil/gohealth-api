@@ -5122,3 +5122,438 @@
 2025-06-16 19:07:15:715 [32minfo[39m: [32mDashboard data retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
 2025-06-16 19:07:15:715 [32minfo[39m: [32mUser b82c5366-4025-41d1-a27d-1480fa42c6a6 accessed dashboard for date: 2025-06-16, range: month, month: null[39m
 2025-06-16 19:07:15:715 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:07:15 +0000] "GET /api/users/dashboard?range=month HTTP/1.1" 200 1224 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:07:37:737 [32minfo[39m: [32mFetching dashboard data for user b82c5366-4025-41d1-a27d-1480fa42c6a6 on date 2025-06-16 with range week and month null[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mGetting user profile...[39m
+2025-06-16 19:07:37:737 [32minfo[39m: [32mFetching profile for user ID: b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFinding user in database...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mCalculating BMR and TDEE...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mCalculated BMR: 1654, TDEE: 2564[39m
+2025-06-16 19:07:37:737 [32minfo[39m: [32mProfile retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-15 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-17 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-18 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-19 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-20 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-21 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFetching today's meals...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFound 0 meals[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFetching today's activities...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserActivity`.`userId`, `db_gohealth`.`UserActivity`.`activityTypeId`, `db_gohealth`.`UserActivity`.`date`, `db_gohealth`.`UserActivity`.`duration`, `db_gohealth`.`UserActivity`.`caloriesBurned`, `db_gohealth`.`UserActivity`.`intensity`, `db_gohealth`.`UserActivity`.`notes`, `db_gohealth`.`UserActivity`.`startTime`, `db_gohealth`.`UserActivity`.`endTime`, `db_gohealth`.`UserActivity`.`createdAt`, `db_gohealth`.`UserActivity`.`updatedAt` FROM `db_gohealth`.`UserActivity` WHERE (`db_gohealth`.`UserActivity`.`userId` = ? AND `db_gohealth`.`UserActivity`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFound 0 activities[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mCalculating calories consumed...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mTotal calories consumed: 0[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mCalculating calories burned from activities...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mTotal calories burned: 0[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFetching nutrition targets...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`DailyNutritionTarget`.`id`, `db_gohealth`.`DailyNutritionTarget`.`userId`, `db_gohealth`.`DailyNutritionTarget`.`calories`, `db_gohealth`.`DailyNutritionTarget`.`protein`, `db_gohealth`.`DailyNutritionTarget`.`carbohydrates`, `db_gohealth`.`DailyNutritionTarget`.`fat`, `db_gohealth`.`DailyNutritionTarget`.`fiber`, `db_gohealth`.`DailyNutritionTarget`.`effectiveDate`, `db_gohealth`.`DailyNutritionTarget`.`isActive`, `db_gohealth`.`DailyNutritionTarget`.`createdAt`, `db_gohealth`.`DailyNutritionTarget`.`updatedAt` FROM `db_gohealth`.`DailyNutritionTarget` WHERE (`db_gohealth`.`DailyNutritionTarget`.`userId` = ? AND `db_gohealth`.`DailyNutritionTarget`.`isActive` = ? AND `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` <= ?) ORDER BY `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,"2025-06-16 00:00:00 UTC",1,0][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFetching active weight goal...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`WeightGoal`.`id`, `db_gohealth`.`WeightGoal`.`userId`, `db_gohealth`.`WeightGoal`.`startWeight`, `db_gohealth`.`WeightGoal`.`targetWeight`, `db_gohealth`.`WeightGoal`.`startDate`, `db_gohealth`.`WeightGoal`.`targetDate`, `db_gohealth`.`WeightGoal`.`isActive`, `db_gohealth`.`WeightGoal`.`createdAt`, `db_gohealth`.`WeightGoal`.`updatedAt` FROM `db_gohealth`.`WeightGoal` WHERE (`db_gohealth`.`WeightGoal`.`userId` = ? AND `db_gohealth`.`WeightGoal`.`isActive` = ?) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,1,0][39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mFetching latest BMI record...[39m
+2025-06-16 19:07:37:737 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:07:37:737 [32minfo[39m: [32mDashboard data retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:07:37:737 [32minfo[39m: [32mUser b82c5366-4025-41d1-a27d-1480fa42c6a6 accessed dashboard for date: 2025-06-16, range: week, month: null[39m
+2025-06-16 19:07:37:737 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:07:37 +0000] "GET /api/users/dashboard?range=week HTTP/1.1" 200 1207 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:07:50:750 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:07:50:750 [32minfo[39m: [32mFetching BMI history for user b82c5366-4025-41d1-a27d-1480fa42c6a6 with limit 10[39m
+2025-06-16 19:07:50:750 [34mdebug[39m: [34mQuerying BMI records from database...[39m
+2025-06-16 19:07:50:750 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",10,0][39m
+2025-06-16 19:07:50:750 [34mdebug[39m: [34mFound 10 BMI records[39m
+2025-06-16 19:07:50:750 [32minfo[39m: [32mBMI history retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:07:50:750 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:07:50 +0000] "GET /api/bmi/history?limit=10&offset=0 HTTP/1.1" 200 1349 "-" "Dart/3.7 (dart:io)"[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:15:07:157 [32minfo[39m: [32mFetching dashboard data for user b82c5366-4025-41d1-a27d-1480fa42c6a6 on date 2025-06-16 with range week and month null[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mGetting user profile...[39m
+2025-06-16 19:15:07:157 [32minfo[39m: [32mFetching profile for user ID: b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFinding user in database...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mCalculating BMR and TDEE...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mCalculated BMR: 1654, TDEE: 2564[39m
+2025-06-16 19:15:07:157 [32minfo[39m: [32mProfile retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-15 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-17 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-18 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-19 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-20 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-21 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFetching today's meals...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFound 0 meals[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFetching today's activities...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserActivity`.`userId`, `db_gohealth`.`UserActivity`.`activityTypeId`, `db_gohealth`.`UserActivity`.`date`, `db_gohealth`.`UserActivity`.`duration`, `db_gohealth`.`UserActivity`.`caloriesBurned`, `db_gohealth`.`UserActivity`.`intensity`, `db_gohealth`.`UserActivity`.`notes`, `db_gohealth`.`UserActivity`.`startTime`, `db_gohealth`.`UserActivity`.`endTime`, `db_gohealth`.`UserActivity`.`createdAt`, `db_gohealth`.`UserActivity`.`updatedAt` FROM `db_gohealth`.`UserActivity` WHERE (`db_gohealth`.`UserActivity`.`userId` = ? AND `db_gohealth`.`UserActivity`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFound 0 activities[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mCalculating calories consumed...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mTotal calories consumed: 0[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mCalculating calories burned from activities...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mTotal calories burned: 0[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFetching nutrition targets...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`DailyNutritionTarget`.`id`, `db_gohealth`.`DailyNutritionTarget`.`userId`, `db_gohealth`.`DailyNutritionTarget`.`calories`, `db_gohealth`.`DailyNutritionTarget`.`protein`, `db_gohealth`.`DailyNutritionTarget`.`carbohydrates`, `db_gohealth`.`DailyNutritionTarget`.`fat`, `db_gohealth`.`DailyNutritionTarget`.`fiber`, `db_gohealth`.`DailyNutritionTarget`.`effectiveDate`, `db_gohealth`.`DailyNutritionTarget`.`isActive`, `db_gohealth`.`DailyNutritionTarget`.`createdAt`, `db_gohealth`.`DailyNutritionTarget`.`updatedAt` FROM `db_gohealth`.`DailyNutritionTarget` WHERE (`db_gohealth`.`DailyNutritionTarget`.`userId` = ? AND `db_gohealth`.`DailyNutritionTarget`.`isActive` = ? AND `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` <= ?) ORDER BY `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,"2025-06-16 00:00:00 UTC",1,0][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFetching active weight goal...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`WeightGoal`.`id`, `db_gohealth`.`WeightGoal`.`userId`, `db_gohealth`.`WeightGoal`.`startWeight`, `db_gohealth`.`WeightGoal`.`targetWeight`, `db_gohealth`.`WeightGoal`.`startDate`, `db_gohealth`.`WeightGoal`.`targetDate`, `db_gohealth`.`WeightGoal`.`isActive`, `db_gohealth`.`WeightGoal`.`createdAt`, `db_gohealth`.`WeightGoal`.`updatedAt` FROM `db_gohealth`.`WeightGoal` WHERE (`db_gohealth`.`WeightGoal`.`userId` = ? AND `db_gohealth`.`WeightGoal`.`isActive` = ?) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,1,0][39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mFetching latest BMI record...[39m
+2025-06-16 19:15:07:157 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:15:07:157 [32minfo[39m: [32mDashboard data retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:15:07:157 [32minfo[39m: [32mUser b82c5366-4025-41d1-a27d-1480fa42c6a6 accessed dashboard for date: 2025-06-16, range: week, month: null[39m
+2025-06-16 19:15:07:157 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:15:07 +0000] "GET /api/users/dashboard HTTP/1.1" 200 1207 "-" "Dart/3.7 (dart:io)"[39m
+2025-06-16 19:16:13:1613 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:13 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:13:1613 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:13 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:13:1613 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:13 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:13:1613 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:13 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:13:1613 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:13 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:28:1628 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:16:28:1628 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:16:28:1628 [32minfo[39m: [32mSearching foods with query: "chiken", page: 0[39m
+2025-06-16 19:16:28:1628 [34mdebug[39m: [34mCalling FatSecret API...[39m
+2025-06-16 19:16:32:1632 [34mdebug[39m: [34mFound 0 results[39m
+2025-06-16 19:16:32:1632 [32minfo[39m: [32mFood search completed successfully[39m
+2025-06-16 19:16:32:1632 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:32 +0000] "GET /api/meals/foods/search?query=chiken&limit=10&offset=0 HTTP/1.1" 200 67 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:16:41:1641 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:16:41:1641 [32minfo[39m: [32mSearching foods with query: "ch", page: 0[39m
+2025-06-16 19:16:41:1641 [34mdebug[39m: [34mCalling FatSecret API...[39m
+2025-06-16 19:16:43:1643 [34mdebug[39m: [34mFound 0 results[39m
+2025-06-16 19:16:43:1643 [32minfo[39m: [32mFood search completed successfully[39m
+2025-06-16 19:16:43:1643 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:16:43 +0000] "GET /api/meals/foods/search?query=ch&limit=10&offset=0 HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:18:21:1821 [32minfo[39m: [32mFetching dashboard data for user b82c5366-4025-41d1-a27d-1480fa42c6a6 on date 2025-06-16 with range week and month null[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mGetting user profile...[39m
+2025-06-16 19:18:21:1821 [32minfo[39m: [32mFetching profile for user ID: b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mFinding user in database...[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mCalculating BMR and TDEE...[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mCalculated BMR: 1654, TDEE: 2564[39m
+2025-06-16 19:18:21:1821 [32minfo[39m: [32mProfile retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-15 00:00:00 UTC"][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-17 00:00:00 UTC"][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-18 00:00:00 UTC"][39m
+2025-06-16 19:18:21:1821 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-19 00:00:00 UTC"][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-20 00:00:00 UTC"][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-21 00:00:00 UTC"][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFetching today's meals...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealTypeId`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE (`db_gohealth`.`UserMeal`.`userId` = ? AND `db_gohealth`.`UserMeal`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFound 0 meals[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFetching today's activities...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserActivity`.`userId`, `db_gohealth`.`UserActivity`.`activityTypeId`, `db_gohealth`.`UserActivity`.`date`, `db_gohealth`.`UserActivity`.`duration`, `db_gohealth`.`UserActivity`.`caloriesBurned`, `db_gohealth`.`UserActivity`.`intensity`, `db_gohealth`.`UserActivity`.`notes`, `db_gohealth`.`UserActivity`.`startTime`, `db_gohealth`.`UserActivity`.`endTime`, `db_gohealth`.`UserActivity`.`createdAt`, `db_gohealth`.`UserActivity`.`updatedAt` FROM `db_gohealth`.`UserActivity` WHERE (`db_gohealth`.`UserActivity`.`userId` = ? AND `db_gohealth`.`UserActivity`.`date` = ?) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6","2025-06-16 00:00:00 UTC"][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFound 0 activities[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mCalculating calories consumed...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mTotal calories consumed: 0[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mCalculating calories burned from activities...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mTotal calories burned: 0[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFetching nutrition targets...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`DailyNutritionTarget`.`id`, `db_gohealth`.`DailyNutritionTarget`.`userId`, `db_gohealth`.`DailyNutritionTarget`.`calories`, `db_gohealth`.`DailyNutritionTarget`.`protein`, `db_gohealth`.`DailyNutritionTarget`.`carbohydrates`, `db_gohealth`.`DailyNutritionTarget`.`fat`, `db_gohealth`.`DailyNutritionTarget`.`fiber`, `db_gohealth`.`DailyNutritionTarget`.`effectiveDate`, `db_gohealth`.`DailyNutritionTarget`.`isActive`, `db_gohealth`.`DailyNutritionTarget`.`createdAt`, `db_gohealth`.`DailyNutritionTarget`.`updatedAt` FROM `db_gohealth`.`DailyNutritionTarget` WHERE (`db_gohealth`.`DailyNutritionTarget`.`userId` = ? AND `db_gohealth`.`DailyNutritionTarget`.`isActive` = ? AND `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` <= ?) ORDER BY `db_gohealth`.`DailyNutritionTarget`.`effectiveDate` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,"2025-06-16 00:00:00 UTC",1,0][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFetching active weight goal...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`WeightGoal`.`id`, `db_gohealth`.`WeightGoal`.`userId`, `db_gohealth`.`WeightGoal`.`startWeight`, `db_gohealth`.`WeightGoal`.`targetWeight`, `db_gohealth`.`WeightGoal`.`startDate`, `db_gohealth`.`WeightGoal`.`targetDate`, `db_gohealth`.`WeightGoal`.`isActive`, `db_gohealth`.`WeightGoal`.`createdAt`, `db_gohealth`.`WeightGoal`.`updatedAt` FROM `db_gohealth`.`WeightGoal` WHERE (`db_gohealth`.`WeightGoal`.`userId` = ? AND `db_gohealth`.`WeightGoal`.`isActive` = ?) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",true,1,0][39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mFetching latest BMI record...[39m
+2025-06-16 19:18:22:1822 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` DESC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:18:22:1822 [32minfo[39m: [32mDashboard data retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:18:22:1822 [32minfo[39m: [32mUser b82c5366-4025-41d1-a27d-1480fa42c6a6 accessed dashboard for date: 2025-06-16, range: week, month: null[39m
+2025-06-16 19:18:22:1822 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:18:22 +0000] "GET /api/users/dashboard HTTP/1.1" 200 1207 "-" "Dart/3.7 (dart:io)"[39m
+2025-06-16 19:18:41:1841 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:18:41:1841 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:18:41:1841 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:19:21:1921 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:19:21:1921 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:19:21:1921 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:19:23:1923 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:19:23:1923 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:19:23:1923 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:21:37:2137 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:21:37:2137 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:21:37:2137 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:24:22:2422 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:24:22:2422 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:24:22:2422 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:24:27:2427 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:24:27:2427 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:24:27:2427 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:24:41:2441 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:24:41:2441 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:24:41:2441 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:24:49:2449 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:24:49:2449 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:24:49:2449 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:27:00:270 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:27:00:270 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:27:00:270 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:27:18:2718 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:27:18:2718 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:27:18:2718 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:27:31:2731 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 19:28:04:284 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:28:04:284 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:28:04:284 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:29:27:2927 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:29:27:2927 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:29:27:2927 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:36:13:3613 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:36:13:3613 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:36:13:3613 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:36:29:3629 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 19:36:34:3634 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:36:34:3634 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:36:34:3634 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:36:39:3639 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:36:39 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:36:39:3639 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:36:39 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:36:39:3639 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:36:39 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:36:39:3639 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:36:39 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 98847 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:36:39:3639 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:36:39 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:37:10:3710 [32minfo[39m: [32mCalculating BMI for user b82c5366-4025-41d1-a27d-1480fa42c6a6 with weight 70.2kg and height 175.5cm[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mCalculating BMI value...[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mCalculated BMI: 22.8, Status: NORMAL[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mSaving BMI record to database...[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: INSERT INTO `db_gohealth`.`BMIRecord` (`id`,`userId`,`height`,`weight`,`bmi`,`status`,`recordedAt`,`createdAt`,`updatedAt`,`nutritionSummary`) VALUES (?,?,?,?,?,?,?,?,?,?) - Params: ["d28af778-53c0-4544-9610-5c340bd8912c","b82c5366-4025-41d1-a27d-1480fa42c6a6",175.5,70.2,22.8,"NORMAL","2025-06-16 12:37:10.274 UTC","2025-06-16 12:37:10.274 UTC","2025-06-16 12:37:10.274 UTC",{"calories":{"min":2308,"max":2820},"protein":{"min":87,"max":141,"unit":"gram"},"carbohydrate":{"min":289,"max":423,"unit":"gram"},"fat":{"min":51,"max":94,"unit":"gram"}}][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt`, `db_gohealth`.`BMIRecord`.`nutritionSummary` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`id` = ? LIMIT ? OFFSET ? - Params: ["d28af778-53c0-4544-9610-5c340bd8912c",1,0][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mUpdating user's current weight and height...[39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: BEGIN - Params: [][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6"][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: UPDATE `db_gohealth`.`User` SET `height` = ?, `weight` = ?, `updatedAt` = ? WHERE (`db_gohealth`.`User`.`id` IN (?) AND (`db_gohealth`.`User`.`id` = ? AND 1=1)) - Params: [175.5,70.2,"2025-06-16 12:37:10.289 UTC","b82c5366-4025-41d1-a27d-1480fa42c6a6","b82c5366-4025-41d1-a27d-1480fa42c6a6"][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`googleId`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`password`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage`, `db_gohealth`.`User`.`createdAt`, `db_gohealth`.`User`.`updatedAt` FROM `db_gohealth`.`User` WHERE `db_gohealth`.`User`.`id` = ? LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:37:10:3710 [34mdebug[39m: [34mQuery: COMMIT - Params: [][39m
+2025-06-16 19:37:10:3710 [32minfo[39m: [32mBMI calculated and saved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:37:10:3710 [32minfo[39m: [32mBMI calculated for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:37:10:3710 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:37:10 +0000] "POST /api/bmi/calculate HTTP/1.1" 201 385 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:37:25:3725 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:37:25:3725 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:37:25:3725 [32minfo[39m: [32mFetching BMI analysis for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:37:25:3725 [34mdebug[39m: [34mQuerying BMI records for analysis...[39m
+2025-06-16 19:37:26:3726 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`BMIRecord`.`id`, `db_gohealth`.`BMIRecord`.`userId`, `db_gohealth`.`BMIRecord`.`height`, `db_gohealth`.`BMIRecord`.`weight`, `db_gohealth`.`BMIRecord`.`bmi`, `db_gohealth`.`BMIRecord`.`status`, `db_gohealth`.`BMIRecord`.`recordedAt`, `db_gohealth`.`BMIRecord`.`createdAt`, `db_gohealth`.`BMIRecord`.`updatedAt`, `db_gohealth`.`BMIRecord`.`nutritionSummary` FROM `db_gohealth`.`BMIRecord` WHERE `db_gohealth`.`BMIRecord`.`userId` = ? ORDER BY `db_gohealth`.`BMIRecord`.`recordedAt` ASC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",30,0][39m
+2025-06-16 19:37:26:3726 [34mdebug[39m: [34mFound 23 records for analysis[39m
+2025-06-16 19:37:26:3726 [34mdebug[39m: [34mAnalysis results - Trend: stable, Change: 0, Average BMI: 20.313043478260873[39m
+2025-06-16 19:37:26:3726 [32minfo[39m: [32mBMI analysis completed successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 19:37:26:3726 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:37:26 +0000] "GET /api/bmi/analysis HTTP/1.1" 200 6477 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:49:12:4912 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:49:12 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:49:12:4912 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:49:12 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:49:12:4912 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:49:12 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:49:12:4912 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:49:12 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:49:12:4912 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:49:12 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:22:5222 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 19:52:28:5228 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 19:52:29:5229 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 19:52:29:5229 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 19:52:31:5231 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:31 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:31:5231 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:31 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:31:5231 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:31 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:31:5231 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:31 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 99444 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:31:5231 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:31 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:52:47:5247 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 19:52:47:5247 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 19:52:47:5247 [31merror[39m: [31mRoute /api/meals/types not found - /api/meals/types - GET - ::1[39m
+2025-06-16 19:52:47:5247 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:52:47 +0000] "GET /api/meals/types HTTP/1.1" 404 73 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:53:07:537 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:53:07 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:53:07:537 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:53:07 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:53:07:537 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:53:07 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:53:07:537 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:53:07 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 19:53:07:537 [35mhttp[39m: [35m::1 - - [16/Jun/2025:12:53:07 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:03:53:353 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:03:53 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:03:53:353 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:03:53 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:03:53:353 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:03:53 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:03:53:353 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:03:53 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:03:53:353 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:03:53 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:05:45 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 20:04:10:410 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:04:10:410 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:04:10:410 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:04:13:413 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:13 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:13:413 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:13 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 102903 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:13:413 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:13 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:13:413 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:13 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:13:413 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:13 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:25:425 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 20:04:25:425 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:04:25:425 [31merror[39m: [31mRoute /api/meals/types not found - /api/meals/types - GET - ::1[39m
+2025-06-16 20:04:25:425 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:25 +0000] "GET /api/meals/types HTTP/1.1" 404 73 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:04:39:439 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:04:39:439 [32minfo[39m: [32mFetching meals for user b82c5366-4025-41d1-a27d-1480fa42c6a6 from undefined to undefined[39m
+2025-06-16 20:04:39:439 [34mdebug[39m: [34mQuerying meals from database...[39m
+2025-06-16 20:04:39:439 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:04:39:439 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    date: {[39m
+[31m      gte: new Date("Invalid Date"),[39m
+[31m           ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m      lte: new Date("Invalid Date")[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  },[39m
+[31m  orderBy: [[39m
+[31m    {[39m
+[31m      date: "desc"[39m
+[31m    },[39m
+[31m    {[39m
+[31m      mealType: {[39m
+[31m        orderIndex: "asc"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  ][39m
+[31m}[39m
+
+[31mInvalid value for argument `gte`: Provided Date object is invalid. Expected Date. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:04:39:439 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:04:39 +0000] "GET /api/meals?limit=10&offset=0 HTTP/1.1" 500 560 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:05:31:531 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:05:31:531 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:05:31:531 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:05:45:545 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:05:45:545 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:05:45:545 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:05:51:551 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:05:51:551 [32minfo[39m: [32mFetching meals for user b82c5366-4025-41d1-a27d-1480fa42c6a6 from undefined to undefined[39m
+2025-06-16 20:05:51:551 [33mwarn[39m: [33mInvalid date range provided[39m
+2025-06-16 20:05:51:551 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:05:51:551 [31merror[39m: [31mInvalid date range. Dates must be in DD-MM-YYYY format. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:05:51:551 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:05:51 +0000] "GET /api/meals?limit=10&offset=0 HTTP/1.1" 400 96 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:07:04:74 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:07:04:74 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:07:04:74 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:07:08:78 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:07:08:78 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:07:08:78 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:07:16:716 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:07:16:716 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:07:16:716 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:07:22:722 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:07:22:722 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:07:22:722 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:07:30:730 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:07:30 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:07:30:730 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:07:30 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:07:30:730 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:07:30 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:07:30:730 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:07:30 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:07:30:730 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:07:30 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:08:14:814 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:08:14:814 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:08:14:814 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:08:27:827 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:08:27:827 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:08:27:827 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:09:15:915 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:09:15:915 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:09:15:915 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:09:31:931 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:09:31:931 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:09:31:931 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:09:32:932 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:09:32 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:09:32:932 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:09:32 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:09:32:932 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:09:32 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 103265 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:09:32:932 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:09:32 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:09:32:932 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:09:32 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:09:42:942 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:09:42:942 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:09:42:942 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:09:48:948 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:09:48:948 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:09:48:948 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:10:02:102 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:02 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:02:102 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:02 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:02:102 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:02 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:02:102 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:02 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:02:102 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:02 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:16:1016 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 20:10:22:1022 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:10:22:1022 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:10:22:1022 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:10:24:1024 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:24 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:24:1024 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:24 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:24:1024 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:24 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 102590 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:24:1024 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:24 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:24:1024 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:24 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:10:34:1034 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:10:34:1034 [32minfo[39m: [32mFetching meals for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 20:10:34:1034 [34mdebug[39m: [34mQuerying meals from database...[39m
+2025-06-16 20:10:34:1034 [31merror[39m: [31mError getting user meals[39m
+2025-06-16 20:10:34:1034 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    ~~~~~~~~[39m
+[31m?   user?: true[39m
+[31m  },[39m
+[31m  orderBy: [[39m
+[31m    {[39m
+[31m      date: "desc"[39m
+[31m    },[39m
+[31m    {[39m
+[31m      mealType: {[39m
+[31m        orderIndex: "asc"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  ],[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid scalar field `mealType` for include statement on model UserMeal. Available options are marked with ?.[39m
+[31mNote that include statements only accept relation fields. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:10:34:1034 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:10:34 +0000] "GET /api/meals?limit=10&offset=0 HTTP/1.1" 500 567 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:11:34:1134 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:11:34:1134 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:11:34:1134 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:11:40:1140 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:11:40:1140 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:11:40:1140 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:13:01:131 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 20:13:01:131 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:13:01:131 [32minfo[39m: [32mFetching meals for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 20:13:01:131 [34mdebug[39m: [34mQuerying meals from database...[39m
+2025-06-16 20:13:01:131 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`UserMeal`.`userId`, `db_gohealth`.`UserMeal`.`mealType`, `db_gohealth`.`UserMeal`.`date`, `db_gohealth`.`UserMeal`.`fatSecretFoodId`, `db_gohealth`.`UserMeal`.`foodName`, `db_gohealth`.`UserMeal`.`brandName`, `db_gohealth`.`UserMeal`.`quantity`, `db_gohealth`.`UserMeal`.`unit`, `db_gohealth`.`UserMeal`.`servingId`, `db_gohealth`.`UserMeal`.`nutritionData`, `db_gohealth`.`UserMeal`.`createdAt`, `db_gohealth`.`UserMeal`.`updatedAt` FROM `db_gohealth`.`UserMeal` WHERE `db_gohealth`.`UserMeal`.`userId` = ? ORDER BY `db_gohealth`.`UserMeal`.`date` DESC, `db_gohealth`.`UserMeal`.`mealType` ASC LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",10,0][39m
+2025-06-16 20:13:01:131 [34mdebug[39m: [34mFound 0 meals[39m
+2025-06-16 20:13:01:131 [32minfo[39m: [32mMeals retrieved successfully for user b82c5366-4025-41d1-a27d-1480fa42c6a6[39m
+2025-06-16 20:13:01:131 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:13:01 +0000] "GET /api/meals?limit=10&offset=0 HTTP/1.1" 200 67 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:13:15:1315 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:13:15:1315 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:13:15:1315 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:13:19:1319 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:13:19:1319 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:13:19:1319 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:13:28:1328 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:13:28:1328 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:13:28:1328 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:13:30:1330 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:13:30:1330 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:13:30:1330 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:15:11:1511 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 20:15:11:1511 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:15:11:1511 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:15:11 +0000] "GET /api/meals?limit=10&offset=0 HTTP/1.1" 400 66 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:10:1610 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:16:10:1610 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:16:10:1610 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:16:19:1619 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:16:19:1619 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:16:19:1619 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:16:24:1624 [32minfo[39m: [32mShutting down gracefully...[39m
+2025-06-16 20:16:27:1627 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:16:27:1627 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:16:27:1627 [32minfo[39m: [32mServer running on port 3000 in production mode[39m
+2025-06-16 20:16:29:1629 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:29 +0000] "GET /api-docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:29:1629 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:29 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:30:1630 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:30 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:30:1630 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:30 +0000] "GET /api-docs/swagger-ui-init.js HTTP/1.1" 200 103866 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:30:1630 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:30 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:16:43:1643 [34mdebug[39m: [34mQuery: SELECT 1 - Params: [][39m
+2025-06-16 20:16:43:1643 [34mdebug[39m: [34mQuery: SELECT `db_gohealth`.`User`.`id`, `db_gohealth`.`User`.`email`, `db_gohealth`.`User`.`name`, `db_gohealth`.`User`.`age`, `db_gohealth`.`User`.`gender`, `db_gohealth`.`User`.`height`, `db_gohealth`.`User`.`weight`, `db_gohealth`.`User`.`activityLevel`, `db_gohealth`.`User`.`profileImage` FROM `db_gohealth`.`User` WHERE (`db_gohealth`.`User`.`id` = ? AND 1=1) LIMIT ? OFFSET ? - Params: ["b82c5366-4025-41d1-a27d-1480fa42c6a6",1,0][39m
+2025-06-16 20:16:43:1643 [32minfo[39m: [32mSearching FatSecret foods: query='a', limit=10[39m
+2025-06-16 20:16:48:1648 [32minfo[39m: [32mFound 0 foods from FatSecret[39m
+2025-06-16 20:16:48:1648 [35mhttp[39m: [35m::1 - - [16/Jun/2025:13:16:48 +0000] "GET /api/meals?search=a&page=0&limit=10 HTTP/1.1" 200 82 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"[39m
+2025-06-16 20:18:08:188 [32minfo[39m: [32mPrisma Info: Starting a mysql pool with 17 connections.[39m
+2025-06-16 20:18:08:188 [32minfo[39m: [32mDatabase connected successfully[39m
+2025-06-16 20:18:08:188 [32minfo[39m: [32mServer running on port 3000 in production mode[39m

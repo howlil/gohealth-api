@@ -358,10 +358,10 @@ const options = {
                             format: 'uuid',
                             example: '550e8400-e29b-41d4-a716-446655440000'
                         },
-                        mealTypeId: {
+                        mealType: {
                             type: 'string',
-                            format: 'uuid',
-                            example: '550e8400-e29b-41d4-a716-446655440001'
+                            enum: ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'],
+                            example: 'BREAKFAST'
                         },
                         fatSecretFoodId: {
                             type: 'string',

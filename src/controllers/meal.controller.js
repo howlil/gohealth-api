@@ -29,15 +29,10 @@ class MealController extends BaseController {
 
   async getUserMeals(req, res) {
     try {
-      const { startDate, endDate } = req.query;
-      const meals = await this.mealService.getUserMeals(
-        req.user.id,
-        startDate,
-        endDate
-      );
-
+      const { page = 0, limit = 10 } = req.query;
+      const result = await this.mealService.getAllMeals({ page, limit });
       res.status(200).json(
-        ApiResponse.success(meals, 'Meals retrieved successfully')
+        ApiResponse.success(result.foods, 'Foods retrieved successfully from FatSecret')
       );
     } catch (error) {
       throw error;
@@ -46,10 +41,10 @@ class MealController extends BaseController {
 
   async updateMeal(req, res) {
     try {
-      const { mealTypeId } = req.params;
+      const { mealType } = req.params;
       const meal = await this.mealService.updateMeal(
         req.user.id,
-        mealTypeId,
+        mealType,
         req.body
       );
 
@@ -63,8 +58,8 @@ class MealController extends BaseController {
 
   async deleteMeal(req, res) {
     try {
-      const { mealTypeId } = req.params;
-      await this.mealService.deleteMeal(req.user.id, mealTypeId);
+      const { mealType, date } = req.params;
+      await this.mealService.deleteMeal(req.user.id, mealType, date);
 
       res.status(200).json(
         ApiResponse.deleted('Meal deleted successfully')
@@ -123,17 +118,6 @@ class MealController extends BaseController {
 
       res.status(200).json(
         ApiResponse.success(food, 'Food details retrieved successfully')
-      );
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async getMealTypes(req, res) {
-    try {
-      const mealTypes = await this.mealService.getMealTypes();
-      res.status(200).json(
-        ApiResponse.success(mealTypes, 'Meal types retrieved successfully')
       );
     } catch (error) {
       throw error;
