@@ -1,6 +1,13 @@
 // src/validations/schemas.js
 const yup = require('yup');
 const { GENDER, ACTIVITYLEVEL, USER_ACTIVITY, BMI } = require('../generated/prisma');
+const { parseDate } = require('../libs/utils/date');
+
+const dateSchema = yup.string().test('is-valid-date', 'Invalid date format. Use DD-MM-YYYY', function (value) {
+    if (!value) return true;
+    const date = parseDate(value);
+    return date !== null;
+});
 
 const schemas = {
     // Auth schemas
@@ -51,17 +58,51 @@ const schemas = {
     }),
 
     // Meal schemas
-    createMeal: yup.object({
-        body: yup.object({
-            fatSecretFoodId: yup.string().required(),
-            foodName: yup.string().required(),
-            brandName: yup.string().nullable(),
-            mealTypeId: yup.string().uuid().required(),
-            quantity: yup.number().positive().required(),
-            unit: yup.string().required(),
-            servingId: yup.string().nullable(),
-            date: yup.date().required()
-        })
+    createMeal: yup.object().shape({
+        mealTypeId: yup
+            .string()
+            .uuid('Invalid meal type ID format')
+            .required('Meal type ID is required. Please provide a valid meal type ID from /api/meals/types'),
+        fatSecretFoodId: yup
+            .string()
+            .nullable()
+            .test('fatSecretOrNutrition', 'Either fatSecretFoodId or nutritionData must be provided', function (value) {
+                const { nutritionData } = this.parent;
+                return value || nutritionData;
+            }),
+        servingId: yup
+            .string()
+            .nullable()
+            .when('fatSecretFoodId', {
+                is: (val) => val != null,
+                then: (schema) => schema.required('Serving ID is required when using FatSecret food')
+            }),
+        foodName: yup
+            .string()
+            .required('Food name is required'),
+        brandName: yup
+            .string()
+            .nullable(),
+        date: dateSchema.required('Date is required'),
+        quantity: yup
+            .number()
+            .positive('Quantity must be positive')
+            .required('Quantity is required'),
+        unit: yup
+            .string()
+            .required('Unit is required'),
+        nutritionData: yup
+            .object()
+            .when('fatSecretFoodId', {
+                is: (val) => !val,
+                then: (schema) => schema.shape({
+                    calories: yup.number().required('Calories are required'),
+                    protein: yup.number().required('Protein is required'),
+                    carbohydrates: yup.number().required('Carbohydrates are required'),
+                    fat: yup.number().required('Fat is required'),
+                    fiber: yup.number().required('Fiber is required')
+                }).required('Nutrition data is required when not using FatSecret food')
+            })
     }),
 
     updateMeal: yup.object({
@@ -79,7 +120,7 @@ const schemas = {
     createActivity: yup.object({
         body: yup.object({
             activityTypeId: yup.string().uuid().required(),
-            date: yup.date().required(),
+            date: dateSchema.required(),
             duration: yup.number().positive().required('Duration in minutes is required'),
             intensity: yup.string().oneOf(Object.values(USER_ACTIVITY)).nullable(),
             notes: yup.string().max(500).nullable(),
@@ -112,8 +153,8 @@ const schemas = {
         body: yup.object({
             startWeight: yup.number().min(20).max(500).required(),
             targetWeight: yup.number().min(20).max(500).required(),
-            startDate: yup.date().required(),
-            targetDate: yup.date().min(yup.ref('startDate')).nullable()
+            startDate: dateSchema.required(),
+            targetDate: dateSchema.min(yup.ref('startDate')).nullable()
         })
     }),
 
@@ -125,7 +166,7 @@ const schemas = {
             carbohydrates: yup.number().min(0).required(),
             fat: yup.number().min(0).required(),
             fiber: yup.number().min(0).required(),
-            effectiveDate: yup.date().required()
+            effectiveDate: dateSchema.required()
         })
     }),
 
@@ -139,14 +180,14 @@ const schemas = {
 
     dateRange: yup.object({
         query: yup.object({
-            startDate: yup.date().required(),
-            endDate: yup.date().min(yup.ref('startDate')).required()
+            startDate: dateSchema.required(),
+            endDate: dateSchema.min(yup.ref('startDate')).required()
         })
     }),
 
     date: yup.object({
         query: yup.object({
-            date: yup.date().default(() => new Date())
+            date: dateSchema.default(() => parseDate(new Date().toISOString().split('T')[0]))
         })
     })
 };

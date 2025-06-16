@@ -1,9 +1,10 @@
 // src/middleware/validation.middleware.js
 const ApiResponse = require('../libs/http/ApiResponse');
+const { validationResult } = require('express-validator');
 
 class ValidationMiddleware {
-  validate(schema) {
-    return async (req, res, next) => {
+  validate() {
+    return (req, res, next) => {
       try {
         console.log('Validating request data:', {
           body: req.body,
@@ -11,55 +12,47 @@ class ValidationMiddleware {
           params: req.params
         });
 
-        const validatedData = await schema.validate({
-          body: req.body,
-          query: req.query,
-          params: req.params
-        }, {
-          abortEarly: false,
-          stripUnknown: true
-        });
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          const formattedErrors = this.formatExpressValidatorErrors(errors);
+          console.log('Formatted errors:', formattedErrors);
 
-        // Only replace req.body as it's writable
-        // Don't attempt to modify req.query or req.params
-        if (validatedData.body) {
-          req.body = validatedData.body;
+          return res.status(422).json(
+            ApiResponse.error(
+              'Validation failed',
+              422,
+              { errors: formattedErrors }
+            )
+          );
         }
 
         next();
       } catch (error) {
         console.error('Validation error:', error);
 
-        const errors = this.formatYupErrors(error);
-        console.log('Formatted errors:', errors);
-
         return res.status(422).json(
           ApiResponse.error(
             'Validation failed',
             422,
-            { errors }
+            { errors: { general: [error.message] } }
           )
         );
       }
     };
   }
 
-  formatYupErrors(error) {
-    const errors = {};
+  formatExpressValidatorErrors(errors) {
+    const formattedErrors = {};
 
-    if (error.inner && error.inner.length > 0) {
-      error.inner.forEach((err) => {
-        const path = err.path.split('.').slice(1).join('.');
-        if (!errors[path]) {
-          errors[path] = [];
-        }
-        errors[path].push(err.message);
-      });
-    } else if (error.message) {
-      errors.general = [error.message];
-    }
+    errors.array().forEach((error) => {
+      const field = error.path;
+      if (!formattedErrors[field]) {
+        formattedErrors[field] = [];
+      }
+      formattedErrors[field].push(error.msg);
+    });
 
-    return errors;
+    return formattedErrors;
   }
 }
 

@@ -13,13 +13,13 @@ class UserController extends BaseController {
   async getProfile(req, res) {
     try {
       const user = await this.userService.getProfile(req.user.id);
-      
+
       if (!user) {
         throw ApiError.notFound('User profile not found');
       }
 
       this.logger.info(`User ${req.user.id} retrieved profile`);
-      
+
       res.status(200).json(
         ApiResponse.success(user, 'Profile retrieved successfully')
       );
@@ -31,9 +31,9 @@ class UserController extends BaseController {
   async updateProfile(req, res) {
     try {
       const updatedUser = await this.userService.updateProfile(req.user.id, req.body);
-      
+
       this.logger.info(`User ${req.user.id} updated profile`);
-      
+
       res.status(200).json(
         ApiResponse.updated(updatedUser, 'Profile updated successfully')
       );
@@ -54,7 +54,7 @@ class UserController extends BaseController {
       );
 
       this.logger.info(`User ${req.user.id} uploaded profile image`);
-      
+
       res.status(200).json(
         ApiResponse.updated(
           { profileImage: updatedUser.profileImage },
@@ -68,11 +68,11 @@ class UserController extends BaseController {
 
   async getDashboard(req, res) {
     try {
-      const { date = new Date().toISOString().split('T')[0] } = req.query;
-      const dashboard = await this.userService.getDashboardData(req.user.id, date);
-      
-      this.logger.info(`User ${req.user.id} accessed dashboard for date: ${date}`);
-      
+      const { date = new Date().toISOString().split('T')[0], range = 'week', month = null } = req.query;
+      const dashboard = await this.userService.getDashboardData(req.user.id, date, range, month);
+
+      this.logger.info(`User ${req.user.id} accessed dashboard for date: ${date}, range: ${range}, month: ${month}`);
+
       res.status(200).json(
         ApiResponse.success(dashboard, 'Dashboard data retrieved successfully')
       );

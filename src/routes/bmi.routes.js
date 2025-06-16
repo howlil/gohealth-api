@@ -19,7 +19,7 @@ class BMIRoutes {
 
     // Calculate and save BMI
     this.router.post(
-      '/',
+      '/calculate',
       ValidationMiddleware.validate(schemas.calculateBMI),
       ErrorMiddleware.asyncHandler(this.bmiController.calculateBMI.bind(this.bmiController))
     );
@@ -56,10 +56,6 @@ class BMIRoutes {
       ErrorMiddleware.asyncHandler(this.bmiController.getActiveWeightGoal.bind(this.bmiController))
     );
   }
-
-  getRouter() {
-    return this.router;
-  }
 }
 
-module.exports = new BMIRoutes().getRouter();
+module.exports = new BMIRoutes().router;

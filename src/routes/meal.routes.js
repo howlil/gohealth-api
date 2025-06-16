@@ -17,6 +17,12 @@ class MealRoutes {
         // All routes require authentication
         this.router.use(AuthMiddleware.authenticate());
 
+        // Get meal types
+        this.router.get(
+            '/types',
+            ErrorMiddleware.asyncHandler(this.mealController.getMealTypes.bind(this.mealController))
+        );
+
         // Create meal
         this.router.post(
             '/',

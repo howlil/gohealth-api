@@ -91,7 +91,7 @@ model UserMeal {
   user     User     @relation(fields: [userId], references: [id])
   mealType MealType @relation(fields: [mealTypeId], references: [id])
 
-  @@id([userId, mealTypeId])
+  @@id([userId, mealTypeId, date])
   @@index([userId, date])
   @@index([fatSecretFoodId])
   @@index([mealTypeId])

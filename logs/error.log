@@ -171,3 +171,523 @@
 2025-06-13 07:48:58:4858 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
 2025-06-13 07:49:39:4939 [31merror[39m: [31mRegistration failed Email already registered[39m
 2025-06-13 07:49:39:4939 [31merror[39m: [31mEmail already registered - /api/auth/register - POST - ::1[39m
+2025-06-13 08:21:26:2126 [31merror[39m: [31mLogin failed Invalid credentials[39m
+2025-06-13 08:21:26:2126 [31merror[39m: [31mInvalid credentials - /api/auth/login - POST - ::1[39m
+2025-06-13 08:31:44:3144 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:31:44:3144 [31merror[39m: [31mRoute /users/profile not found - /users/profile - GET - ::1[39m
+2025-06-13 08:31:50:3150 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:31:50:3150 [31merror[39m: [31mRoute /users/profile not found - /users/profile - GET - ::1[39m
+2025-06-13 08:35:58:3558 [31merror[39m: [31mRoute /users/profile not found - /users/profile - GET - ::1[39m
+2025-06-13 08:35:59:3559 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:36:06:366 [31merror[39m: [31mRoute /users/profile not found - /users/profile - GET - ::1[39m
+2025-06-13 08:36:06:366 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:36:20:3620 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:36:20:3620 [31merror[39m: [31mRoute /users/profile not found - /users/profile - GET - ::1[39m
+2025-06-13 08:37:08:378 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:37:55:3755 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:40:26:4026 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:44:14:4414 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:44:35:4435 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:48:55:4855 [31merror[39m: [31mRoute /api/bmi/calculate not found - /api/bmi/calculate - POST - ::1[39m
+2025-06-13 08:56:57:5657 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:57:24:5724 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:58:39:5839 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:59:23:5923 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 08:59:38:5938 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:00:36:036 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:02:14:214 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:02:18:218 [31merror[39m: [31mRoute /bmi not found - /bmi - GET - ::1[39m
+2025-06-13 09:02:24:224 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:25:225 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:27:227 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:27:227 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:27:227 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:27:227 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:28:228 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:28:228 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:30:230 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:30:230 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:30:230 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:02:30:230 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:04:19:419 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:04:39:439 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:07:02:72 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:07:05:75 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 09:08:02:82 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:09:22:922 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:10:02:102 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:11:12:1112 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:11:26:1126 [31merror[39m: [31mError creating activity: Activity type not found[39m
+2025-06-13 09:11:26:1126 [31merror[39m: [31mActivity type not found - /api/activities - POST - ::1[39m
+2025-06-13 09:11:30:1130 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:11:39:1139 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:11:56:1156 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 09:13:31:1331 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-13 10:08:04:84 [31merror[39m: [31mLogin failed Invalid credentials[39m
+2025-06-13 10:08:04:84 [31merror[39m: [31mInvalid credentials - /api/auth/login - POST - ::1[39m
+2025-06-13 10:24:22:2422 [31merror[39m: [31mError creating activity: Activity type not found[39m
+2025-06-13 10:24:22:2422 [31merror[39m: [31mActivity type not found - /api/activities - POST - ::1[39m
+2025-06-13 10:32:46:3246 [31merror[39m: [31mLogin failed[39m
+2025-06-13 10:32:46:3246 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-13 10:49:02:492 [31merror[39m: [31mLogin failed[39m
+2025-06-13 10:49:02:492 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-13 10:50:17:5017 [31merror[39m: [31mRoute /profile/me not found - /profile/me - GET - ::1[39m
+2025-06-13 10:50:17:5017 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:50:19:5019 [31merror[39m: [31mRoute /profile/me not found - /profile/me - GET - ::1[39m
+2025-06-13 10:50:29:5029 [31merror[39m: [31mRoute /profile/me not found - /profile/me - GET - ::1[39m
+2025-06-13 10:50:29:5029 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:52:39:5239 [31merror[39m: [31mRoute /profile/me not found - /profile/me - GET - ::1[39m
+2025-06-13 10:54:13:5413 [31merror[39m: [31mRoute /auth/me not found - /auth/me - GET - ::1[39m
+2025-06-13 10:54:13:5413 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:54:43:5443 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:54:49:5449 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:55:25:5525 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:56:36:5636 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:56:45:5645 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:57:33:5733 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:57:42:5742 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:58:15:5815 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 10:58:19:5819 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:03:30:330 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:03:41:341 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:05:55:555 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:06:35:635 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:06:50:650 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:07:20:720 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:07:25:725 [31merror[39m: [31mRoute /bmi/history?limit=10&offset=0 not found - /bmi/history?limit=10&offset=0 - GET - ::1[39m
+2025-06-13 11:07:33:733 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 11:07:34:734 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 11:07:35:735 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 11:07:41:741 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 11:08:29:829 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:08:43:843 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:08:50:850 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:08:57:857 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:09:10:910 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-13 11:09:12:912 [31merror[39m: [31mRoute /bmi/history?limit=10&offset=0 not found - /bmi/history?limit=10&offset=0 - GET - ::1[39m
+2025-06-13 11:09:18:918 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-13 11:09:23:923 [31merror[39m: [31mRoute /bmi/calculate not found - /bmi/calculate - POST - ::1[39m
+2025-06-15 21:49:07:497 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 02:30:36:3036 [31merror[39m: [31mLogin failed[39m
+2025-06-16 02:30:36:3036 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-16 02:31:26:3126 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:31:41:3141 [31merror[39m: [31mRoute /bmi/history?limit=10&offset=0 not found - /bmi/history?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 02:36:29:3629 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:36:35:3635 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:36:43:3643 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:38:45:3845 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:38:55:3855 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:40:10:4010 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:41:02:412 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 02:42:47:4247 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:43:00:430 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:43:50:4350 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:44:02:442 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:44:31:4431 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:44:46:4446 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:51:10:5110 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:55:59:5559 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:56:45:5645 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:57:28:5728 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:58:40:5840 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:59:14:5914 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:59:30:5930 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 02:59:43:5943 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 03:01:40:140 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 03:03:24:324 [31merror[39m: [31mRoute /api/users/me not found - /api/users/me - GET - ::1[39m
+2025-06-16 03:05:09:59 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 03:05:17:517 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 03:05:57:557 [31merror[39m: [31mRoute /dashboard not found - /dashboard - GET - ::1[39m
+2025-06-16 03:06:32:632 [31merror[39m: [31mRoute /api/dashboard not found - /api/dashboard - GET - ::1[39m
+2025-06-16 03:08:53:853 [31merror[39m: [31mRoute /api/dashboard not found - /api/dashboard - GET - ::1[39m
+2025-06-16 03:09:52:952 [31merror[39m: [31mRoute /api/dashboard not found - /api/dashboard - GET - ::1[39m
+2025-06-16 03:12:46:1246 [31merror[39m: [31mRoute /api/dashboard not found - /api/dashboard - GET - ::1[39m
+2025-06-16 03:12:59:1259 [31merror[39m: [31mRoute /api/user/dashboard not found - /api/user/dashboard - GET - ::1[39m
+2025-06-16 03:17:33:1733 [31merror[39m: [31mRoute //uploads/profile/b82c5366-4025-41d1-a27d-1480fa42c6a6/1750018626095-860331107.jpg not found - //uploads/profile/b82c5366-4025-41d1-a27d-1480fa42c6a6/1750018626095-860331107.jpg - GET - ::1[39m
+2025-06-16 03:20:15:2015 [31merror[39m: [31mRoute /api/profile/update not found - /api/profile/update - POST - ::1[39m
+2025-06-16 03:20:20:2020 [31merror[39m: [31mRoute /api/profile/update not found - /api/profile/update - POST - ::1[39m
+2025-06-16 03:23:48:2348 [31merror[39m: [31mRoute /api/users/me not found - /api/users/me - GET - ::1[39m
+2025-06-16 03:45:25:4525 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-16 03:45:42:4542 [31merror[39m: [31mRoute /users/dashboard not found - /users/dashboard - GET - ::1[39m
+2025-06-16 03:46:14:4614 [31merror[39m: [31mRoute /users/profile not found - /users/profile - PUT - ::1[39m
+2025-06-16 04:08:03:83 [31merror[39m: [31mLogin failed[39m
+2025-06-16 04:08:03:83 [31merror[39m: [31mEmail tidak ditemukan - /api/auth/login - POST - ::1[39m
+2025-06-16 04:41:46:4146 [31merror[39m: [31mError creating meal[39m
+2025-06-16 04:41:46:4146 [31merror[39m: [31mFood not found - /api/meals - POST - ::1[39m
+2025-06-16 04:44:41:4441 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m+   user: {[39m
+[31m+     create: UserCreateWithoutMealsInput | UserUncheckedCreateWithoutMealsInput,[39m
+[31m+     connectOrCreate: UserCreateOrConnectWithoutMealsInput,[39m
+[31m+     connect: UserWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `user` is missing.[39m
+2025-06-16 04:44:41:4441 [31merror[39m: [31mError creating meal[39m
+2025-06-16 04:44:41:4441 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m+   user: {[39m
+[31m+     create: UserCreateWithoutMealsInput | UserUncheckedCreateWithoutMealsInput,[39m
+[31m+     connectOrCreate: UserCreateOrConnectWithoutMealsInput,[39m
+[31m+     connect: UserWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `user` is missing. - /api/meals - POST - ::1[39m
+2025-06-16 11:51:50:5150 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 11:59:06:596 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 12:06:35:635 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 14:08:29:829 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m+   user: {[39m
+[31m+     create: UserCreateWithoutMealsInput | UserUncheckedCreateWithoutMealsInput,[39m
+[31m+     connectOrCreate: UserCreateOrConnectWithoutMealsInput,[39m
+[31m+     connect: UserWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `user` is missing.[39m
+2025-06-16 14:08:29:829 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:08:29:829 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m+   user: {[39m
+[31m+     create: UserCreateWithoutMealsInput | UserUncheckedCreateWithoutMealsInput,[39m
+[31m+     connectOrCreate: UserCreateOrConnectWithoutMealsInput,[39m
+[31m+     connect: UserWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `user` is missing. - /api/meals - POST - ::1[39m
+2025-06-16 14:08:59:859 [31merror[39m: [31mError updating meal[39m
+2025-06-16 14:08:59:859 [31merror[39m: [31mMeal not found - /api/meals/550e8400-e29b-41d4-a716-446655440001 - PUT - ::1[39m
+2025-06-16 14:12:05:125 [31merror[39m: [31mError updating meal[39m
+2025-06-16 14:12:05:125 [31merror[39m: [31mMeal not found - /api/meals/550e8400-e29b-41d4-a716-446655440001 - PUT - ::1[39m
+2025-06-16 14:12:10:1210 [31merror[39m: [31mError updating meal[39m
+2025-06-16 14:12:10:1210 [31merror[39m: [31mMeal not found - /api/meals/550e8400-e29b-41d4-a716-446655440001 - PUT - ::1[39m
+2025-06-16 14:12:18:1218 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m    user: {[39m
+[31m      connect: {[39m
+[31m        id: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m      }[39m
+[31m    },[39m
+[31m+   mealType: {[39m
+[31m+     create: MealTypeCreateWithoutUserMealsInput | MealTypeUncheckedCreateWithoutUserMealsInput,[39m
+[31m+     connectOrCreate: MealTypeCreateOrConnectWithoutUserMealsInput,[39m
+[31m+     connect: MealTypeWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    user: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `mealType` is missing.[39m
+2025-06-16 14:12:18:1218 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:12:18:1218 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m    user: {[39m
+[31m      connect: {[39m
+[31m        id: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m      }[39m
+[31m    },[39m
+[31m+   mealType: {[39m
+[31m+     create: MealTypeCreateWithoutUserMealsInput | MealTypeUncheckedCreateWithoutUserMealsInput,[39m
+[31m+     connectOrCreate: MealTypeCreateOrConnectWithoutUserMealsInput,[39m
+[31m+     connect: MealTypeWhereUniqueInput[39m
+[31m+   }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    user: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `mealType` is missing. - /api/meals - POST - ::1[39m
+2025-06-16 14:15:51:1551 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    ~~~~~~[39m
+[31m    mealTypeId: undefined,[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m    user: {[39m
+[31m      connect: {[39m
+[31m        id: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m      }[39m
+[31m    },[39m
+[31m    mealType: {[39m
+[31m      connect: {[39m
+[31m        id: undefined[39m
+[31m      }[39m
+[31m    },[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    user: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `userId`. Did you mean `user`? Available options are marked with ?.[39m
+2025-06-16 14:15:51:1551 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:15:51:1551 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    ~~~~~~[39m
+[31m    mealTypeId: undefined,[39m
+[31m    fatSecretFoodId: null,[39m
+[31m    servingId: null,[39m
+[31m    quantity: 100,[39m
+[31m    unit: "g",[39m
+[31m    nutritionData: {[39m
+[31m      calories: 165,[39m
+[31m      protein: 31,[39m
+[31m      carbohydrates: 0,[39m
+[31m      fat: 3.6,[39m
+[31m      fiber: 0[39m
+[31m    },[39m
+[31m    foodName: "Chicken Breast",[39m
+[31m    brandName: "Tyson",[39m
+[31m    date: "2023-01-01T00:00:00.000Z",[39m
+[31m    user: {[39m
+[31m      connect: {[39m
+[31m        id: "b82c5366-4025-41d1-a27d-1480fa42c6a6"[39m
+[31m      }[39m
+[31m    },[39m
+[31m    mealType: {[39m
+[31m      connect: {[39m
+[31m        id: undefined[39m
+[31m      }[39m
+[31m    },[39m
+[31m?   createdAt?: DateTime,[39m
+[31m?   updatedAt?: DateTime[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    mealType: true,[39m
+[31m    user: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mUnknown argument `userId`. Did you mean `user`? Available options are marked with ?. - /api/meals - POST - ::1[39m
+2025-06-16 14:20:36:2036 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:20:36:2036 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:20:41:2041 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:20:41:2041 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:21:30:2130 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:21:30:2130 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:21:32:2132 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:21:32:2132 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:21:32:2132 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:21:32:2132 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:21:33:2133 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:21:33:2133 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:25:20:2520 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:25:20:2520 [31merror[39m: [31mMeal type ID is required - /api/meals - POST - ::1[39m
+2025-06-16 14:26:12:2612 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:26:12:2612 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 14:27:10:2710 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:27:10:2710 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 14:27:12:2712 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:27:12:2712 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 14:27:37:2737 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:27:37:2737 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 14:28:00:280 [31merror[39m: [31mError creating meal[39m
+2025-06-16 14:28:00:280 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:00:49:049 [31merror[39m: [31mRoute /api/v1/callback not found - /api/v1/callback - POST - ::1[39m
+2025-06-16 18:32:02:322 [31merror[39m: [31mError creating meal[39m
+2025-06-16 18:32:02:322 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:34:24:3424 [31merror[39m: [31mError creating meal[39m
+2025-06-16 18:34:24:3424 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:34:37:3437 [31merror[39m: [31mError creating meal[39m
+2025-06-16 18:34:37:3437 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:34:47:3447 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 18:35:12:3512 [31merror[39m: [31mError creating meal[39m
+2025-06-16 18:35:12:3512 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:35:14:3514 [31merror[39m: [31mError creating meal[39m
+2025-06-16 18:35:14:3514 [31merror[39m: [31mMeal type ID is required. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 18:46:23:4623 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 18:55:09:559 [31merror[39m: [31mError creating weight goal[39m
+2025-06-16 18:55:09:559 [31merror[39m: [31m[39m
+[31mInvalid `prisma.weightGoal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    startWeight: undefined,[39m
+[31m    targetWeight: 70,[39m
+[31m    startDate: new Date("Invalid Date"),[39m
+[31m               ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    targetDate: new Date("2023-12-31T00:00:00.000Z"),[39m
+[31m    isActive: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `startDate`: Provided Date object is invalid. Expected Date. - /api/bmi/goals - POST - ::1[39m
+2025-06-16 19:00:52:052 [31merror[39m: [31mRoute /api/v1/callback not found - /api/v1/callback - POST - ::1[39m
+2025-06-16 19:04:13:413 [31merror[39m: [31mError creating weight goal[39m
+2025-06-16 19:04:13:413 [31merror[39m: [31m[39m
+[31mInvalid `prisma.weightGoal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "b82c5366-4025-41d1-a27d-1480fa42c6a6",[39m
+[31m    startWeight: undefined,[39m
+[31m    targetWeight: 70,[39m
+[31m    startDate: new Date("Invalid Date"),[39m
+[31m               ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    targetDate: new Date("Invalid Date"),[39m
+[31m    isActive: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `startDate`: Provided Date object is invalid. Expected Date. - /api/bmi/goals - POST - ::1[39m
+2025-06-16 19:05:51:551 [31merror[39m: [31mError creating meal[39m
+2025-06-16 19:05:51:551 [31merror[39m: [31mInvalid meal type ID. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m
+2025-06-16 19:05:53:553 [31merror[39m: [31mError creating meal[39m
+2025-06-16 19:05:53:553 [31merror[39m: [31mInvalid meal type ID. Please provide a valid meal type ID from /api/meals/types - /api/meals - POST - ::1[39m

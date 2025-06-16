@@ -11,6 +11,9 @@ class UserService extends BaseService {
 
   async getProfile(userId) {
     try {
+      this.logger.info(`Fetching profile for user ID: ${userId}`);
+
+      this.logger.debug('Finding user in database...');
       const user = await this.prisma.user.findUnique({
         where: { id: userId },
         select: {
@@ -29,11 +32,13 @@ class UserService extends BaseService {
       });
 
       if (!user) {
+        this.logger.warn(`Profile not found for user ID: ${userId}`);
         throw ApiError.notFound('User not found');
       }
 
       // Add calculated fields
       if (user.weight && user.height && user.age && user.gender) {
+        this.logger.debug('Calculating BMR and TDEE...');
         user.bmr = this.calorieUtil.calculateBMR(
           user.weight,
           user.height,
@@ -45,17 +50,25 @@ class UserService extends BaseService {
           user.bmr,
           user.activityLevel
         );
+        this.logger.debug(`Calculated BMR: ${user.bmr}, TDEE: ${user.tdee}`);
       }
 
+      this.logger.info(`Profile retrieved successfully for user ${userId}`);
       return user;
     } catch (error) {
-      this.logger.error(`Error getting user profile: ${error.message}`);
+      this.logger.error('Error getting user profile', {
+        error: error.message,
+        stack: error.stack,
+        userId
+      });
       throw error;
     }
   }
 
   async updateProfile(userId, data) {
     try {
+      this.logger.info(`Updating profile for user ID: ${userId}`);
+
       // Validate allowed fields for update
       const allowedFields = ['name', 'age', 'gender', 'height', 'weight', 'activityLevel'];
       const updateData = Object.keys(data)
@@ -65,71 +78,173 @@ class UserService extends BaseService {
           return obj;
         }, {});
 
+      this.logger.debug('Updating user record with data:', updateData);
       const updatedUser = await this.prisma.user.update({
         where: { id: userId },
         data: updateData
       });
 
+      this.logger.info(`Profile updated successfully for user ${userId}`);
       return this.getProfile(userId);
     } catch (error) {
-      this.logger.error(`Error updating user profile: ${error.message}`);
+      this.logger.error('Error updating user profile', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        updateData: data
+      });
       throw error;
     }
   }
 
   async updateProfileImage(userId, imageFile) {
     try {
-      // Here you would typically:
-      // 1. Upload to cloud storage (S3, Cloudinary, etc.)
-      // 2. Get the URL
-      // 3. Update user record with the URL
-      
-      // For now, we'll just update with a placeholder
-      const imageUrl = `/uploads/profile/${userId}/${imageFile.filename}`;
+      this.logger.info(`Updating profile image for user ID: ${userId}`);
 
+      if (!imageFile) {
+        this.logger.warn('No image file provided for profile update');
+        throw ApiError.badRequest('No image file provided');
+      }
+
+      // Generate relative URL for the image
+      const imageUrl = `/uploads/profile/${userId}/${imageFile.filename}`;
+      this.logger.debug(`Generated image URL: ${imageUrl}`);
+
+      // Update user record with new image URL
+      this.logger.debug('Updating user record with new image URL...');
       const updatedUser = await this.prisma.user.update({
         where: { id: userId },
         data: { profileImage: imageUrl }
       });
 
+      this.logger.info(`Profile image updated successfully for user ${userId}`);
       return updatedUser;
     } catch (error) {
-      this.logger.error(`Error updating profile image: ${error.message}`);
+      this.logger.error('Error updating profile image', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        imageFile: imageFile?.filename
+      });
       throw error;
     }
   }
 
-  async getDashboardData(userId, date) {
+  async getDashboardData(userId, date, range = 'week', month = null) {
     try {
+      this.logger.info(`Fetching dashboard data for user ${userId} on date ${date} with range ${range} and month ${month}`);
+
+      this.logger.debug('Getting user profile...');
       const user = await this.getProfile(userId);
-      
+
+      let caloriesTracker = [];
+      if (range === 'month') {
+        // Determine month boundaries
+        let targetMonth;
+        if (month) {
+          targetMonth = new Date(`${month}-01T00:00:00.000Z`);
+        } else {
+          targetMonth = new Date(date);
+          targetMonth.setUTCDate(1);
+        }
+        const year = targetMonth.getUTCFullYear();
+        const monthIdx = targetMonth.getUTCMonth();
+        // Get all days in month
+        const daysInMonth = new Date(year, monthIdx + 1, 0).getUTCDate();
+        // Find first Sunday on/after the 1st
+        let firstDay = new Date(Date.UTC(year, monthIdx, 1));
+        let firstSunday = new Date(firstDay);
+        while (firstSunday.getUTCDay() !== 0) {
+          firstSunday.setUTCDate(firstSunday.getUTCDate() + 1);
+        }
+        // Build week ranges (Sun-Sat)
+        let weekStart = new Date(firstDay);
+        let weekNum = 1;
+        while (weekStart.getUTCMonth() === monthIdx) {
+          let weekEnd = new Date(weekStart);
+          weekEnd.setUTCDate(weekEnd.getUTCDate() + 6);
+          if (weekEnd.getUTCMonth() !== monthIdx) {
+            weekEnd = new Date(Date.UTC(year, monthIdx, daysInMonth));
+          }
+          // Query all meals in this week
+          const meals = await this.prisma.userMeal.findMany({
+            where: {
+              userId,
+              date: {
+                gte: weekStart,
+                lte: weekEnd
+              }
+            }
+          });
+          const calories = meals.reduce((sum, meal) => sum + (meal.nutritionData?.calories || 0), 0);
+          caloriesTracker.push({
+            label: `Week ${weekNum}`,
+            start: weekStart.toISOString().split('T')[0],
+            end: weekEnd.toISOString().split('T')[0],
+            calories
+          });
+          weekNum++;
+          weekStart.setUTCDate(weekStart.getUTCDate() + 7);
+        }
+      } else {
+        // Default: week (7 days, Sun-Sat containing 'date')
+        const refDate = new Date(date);
+        refDate.setUTCHours(0, 0, 0, 0);
+        // Find Sunday of the week
+        const dayOfWeek = refDate.getUTCDay();
+        const sunday = new Date(refDate);
+        sunday.setUTCDate(refDate.getUTCDate() - dayOfWeek);
+        for (let i = 0; i < 7; i++) {
+          const d = new Date(sunday);
+          d.setUTCDate(sunday.getUTCDate() + i);
+          const label = d.toLocaleDateString('en-US', { weekday: 'short' });
+          const meals = await this.prisma.userMeal.findMany({
+            where: {
+              userId,
+              date: d
+            }
+          });
+          const calories = meals.reduce((sum, meal) => sum + (meal.nutritionData?.calories || 0), 0);
+          caloriesTracker.push({ label, date: d.toISOString().split('T')[0], calories });
+        }
+      }
+
       // Get today's meals
+      this.logger.debug('Fetching today\'s meals...');
       const meals = await this.prisma.userMeal.findMany({
         where: {
           userId,
           date: new Date(date)
         }
       });
+      this.logger.debug(`Found ${meals.length} meals`);
 
       // Get today's activities
+      this.logger.debug('Fetching today\'s activities...');
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
           date: new Date(date)
         }
       });
+      this.logger.debug(`Found ${activities.length} activities`);
 
       // Calculate calories consumed
+      this.logger.debug('Calculating calories consumed...');
       const caloriesConsumed = meals.reduce((sum, meal) => {
         return sum + (meal.nutritionData?.calories || 0);
       }, 0);
+      this.logger.debug(`Total calories consumed: ${caloriesConsumed}`);
 
       // Calculate calories burned from activities
+      this.logger.debug('Calculating calories burned from activities...');
       const caloriesBurnedFromActivities = activities.reduce((sum, activity) => {
         return sum + activity.caloriesBurned;
       }, 0);
+      this.logger.debug(`Total calories burned: ${caloriesBurnedFromActivities}`);
 
       // Get nutrition targets
+      this.logger.debug('Fetching nutrition targets...');
       const nutritionTargets = await this.prisma.dailyNutritionTarget.findFirst({
         where: {
           userId,
@@ -144,6 +259,7 @@ class UserService extends BaseService {
       });
 
       // Get active weight goal
+      this.logger.debug('Fetching active weight goal...');
       const weightGoal = await this.prisma.weightGoal.findFirst({
         where: {
           userId,
@@ -152,12 +268,13 @@ class UserService extends BaseService {
       });
 
       // Get latest BMI record
+      this.logger.debug('Fetching latest BMI record...');
       const latestBMI = await this.prisma.bMIRecord.findFirst({
         where: { userId },
         orderBy: { recordedAt: 'desc' }
       });
 
-      return {
+      const dashboardData = {
         user: {
           name: user.name,
           weight: user.weight,
@@ -180,10 +297,19 @@ class UserService extends BaseService {
         },
         weightGoal,
         latestBMI,
-        date
+        date,
+        caloriesTracker
       };
+
+      this.logger.info(`Dashboard data retrieved successfully for user ${userId}`);
+      return dashboardData;
     } catch (error) {
-      this.logger.error(`Error getting dashboard data: ${error.message}`);
+      this.logger.error('Error getting dashboard data', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        date
+      });
       throw error;
     }
   }

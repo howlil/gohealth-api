@@ -26,6 +26,7 @@ class MealController extends BaseController {
     }
   }
 
+
   async getUserMeals(req, res) {
     try {
       const { startDate, endDate } = req.query;
@@ -122,6 +123,17 @@ class MealController extends BaseController {
 
       res.status(200).json(
         ApiResponse.success(food, 'Food details retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getMealTypes(req, res) {
+    try {
+      const mealTypes = await this.mealService.getMealTypes();
+      res.status(200).json(
+        ApiResponse.success(mealTypes, 'Meal types retrieved successfully')
       );
     } catch (error) {
       throw error;

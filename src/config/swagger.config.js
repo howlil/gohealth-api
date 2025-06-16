@@ -76,13 +76,13 @@ const options = {
                         },
                         createdAt: {
                             type: 'string',
-                            format: 'date-time',
-                            example: '2023-01-01T00:00:00.000Z'
+                            format: 'date',
+                            example: '01-01-2023'
                         },
                         updatedAt: {
                             type: 'string',
-                            format: 'date-time',
-                            example: '2023-01-01T00:00:00.000Z'
+                            format: 'date',
+                            example: '01-01-2023'
                         }
                     }
                 },
@@ -249,8 +249,8 @@ const options = {
                         },
                         recordedAt: {
                             type: 'string',
-                            format: 'date-time',
-                            example: '2023-01-01T00:00:00.000Z'
+                            format: 'date',
+                            example: '01-01-2023'
                         }
                     }
                 },
@@ -293,12 +293,12 @@ const options = {
                         startDate: {
                             type: 'string',
                             format: 'date',
-                            example: '2023-01-01'
+                            example: '01-01-2023'
                         },
                         targetDate: {
                             type: 'string',
                             format: 'date',
-                            example: '2023-03-01'
+                            example: '31-12-2023'
                         },
                         isActive: {
                             type: 'boolean',
@@ -342,7 +342,7 @@ const options = {
                         effectiveDate: {
                             type: 'string',
                             format: 'date',
-                            example: '2023-01-01'
+                            example: '01-01-2023'
                         },
                         isActive: {
                             type: 'boolean',
@@ -379,7 +379,7 @@ const options = {
                         date: {
                             type: 'string',
                             format: 'date',
-                            example: '2023-01-01'
+                            example: '01-01-2023'
                         },
                         quantity: {
                             type: 'number',
@@ -418,7 +418,7 @@ const options = {
                         date: {
                             type: 'string',
                             format: 'date',
-                            example: '2023-01-01'
+                            example: '01-01-2023'
                         },
                         duration: {
                             type: 'number',

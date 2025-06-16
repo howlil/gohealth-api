@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const passport = require('passport');
+const path = require('path');
 
 const AppConfig = require('./config/app.config');
 const Database = require('./database/prisma');
@@ -12,6 +13,7 @@ const Routes = require('./routes');
 const ErrorMiddleware = require('./middleware/error.middleware');
 const Logger = require('./libs/logger/Logger');
 const SwaggerMiddleware = require('./middleware/swagger.middleware');
+const dateFormatter = require('./middleware/dateFormatter');
 
 class App {
   constructor() {
@@ -44,9 +46,15 @@ class App {
     this.app.use(express.json({ limit: '10mb' }));
     this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+    // Static file serving
+    this.app.use('/uploads', express.static(path.join(process.cwd(), this.config.upload.uploadDir)));
+
     // Passport
     this.app.use(passport.initialize());
     require('./config/passport.config')(passport);
+
+    // Date formatter
+    this.app.use(dateFormatter);
   }
 
   setupRoutes() {

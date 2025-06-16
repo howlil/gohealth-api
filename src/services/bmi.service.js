@@ -2,6 +2,7 @@
 const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
+const { parseDate } = require('../libs/utils/date');
 
 class BMIService extends BaseService {
   constructor() {
@@ -11,11 +12,16 @@ class BMIService extends BaseService {
 
   async calculateAndSaveBMI(userId, weight, height) {
     try {
+      this.logger.info(`Calculating BMI for user ${userId} with weight ${weight}kg and height ${height}cm`);
+
       // Calculate BMI
+      this.logger.debug('Calculating BMI value...');
       const bmi = this.calorieUtil.calculateBMI(weight, height);
       const status = this.calorieUtil.getBMIStatus(bmi);
+      this.logger.debug(`Calculated BMI: ${bmi}, Status: ${status}`);
 
       // Save BMI record
+      this.logger.debug('Saving BMI record to database...');
       const bmiRecord = await this.prisma.bMIRecord.create({
         data: {
           userId,
@@ -27,53 +33,103 @@ class BMIService extends BaseService {
       });
 
       // Update user's current weight and height
+      this.logger.debug('Updating user\'s current weight and height...');
       await this.prisma.user.update({
         where: { id: userId },
         data: { height, weight }
       });
 
-      this.logger.info(`BMI calculated for user ${userId}: ${bmi} (${status})`);
+      this.logger.info(`BMI calculated and saved successfully for user ${userId}`);
 
-      return bmiRecord;
+      const schema = {
+        id: bmiRecord.id,
+        height: bmiRecord.height,
+        weight: bmiRecord.weight,
+        bmi: bmiRecord.bmi,
+        status: bmiRecord.status,
+        recordedAt: bmiRecord.recordedAt
+      }
+
+      return schema;
     } catch (error) {
-      this.logger.error(`Error calculating BMI: ${error.message}`);
+      this.logger.error('Error calculating BMI', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        weight,
+        height
+      });
       throw error;
     }
   }
 
   async getBMIHistory(userId, limit = 10) {
     try {
-      return await this.prisma.bMIRecord.findMany({
+      this.logger.info(`Fetching BMI history for user ${userId} with limit ${limit}`);
+
+      this.logger.debug('Querying BMI records from database...');
+      const bmiRecords = await this.prisma.bMIRecord.findMany({
         where: { userId },
         orderBy: { recordedAt: 'desc' },
         take: limit
       });
+
+      this.logger.debug(`Found ${bmiRecords.length} BMI records`);
+
+      const schema = bmiRecords.map(record => ({
+        id: record.id,
+        height: record.height,
+        weight: record.weight,
+        bmi: record.bmi,
+        status: record.status,
+        recordedAt: record.recordedAt
+      }));
+
+      this.logger.info(`BMI history retrieved successfully for user ${userId}`);
+      return schema;
     } catch (error) {
-      this.logger.error(`Error getting BMI history: ${error.message}`);
+      this.logger.error('Error getting BMI history', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        limit
+      });
       throw error;
     }
   }
 
   async getLatestBMI(userId) {
     try {
+      this.logger.info(`Fetching latest BMI for user ${userId}`);
+
+      this.logger.debug('Querying latest BMI record from database...');
       const latestBMI = await this.prisma.bMIRecord.findFirst({
         where: { userId },
         orderBy: { recordedAt: 'desc' }
       });
 
       if (!latestBMI) {
+        this.logger.warn(`No BMI records found for user ${userId}`);
         throw ApiError.notFound('No BMI records found');
       }
 
+      this.logger.info(`Latest BMI retrieved successfully for user ${userId}`);
       return latestBMI;
     } catch (error) {
-      this.logger.error(`Error getting latest BMI: ${error.message}`);
+      this.logger.error('Error getting latest BMI', {
+        error: error.message,
+        stack: error.stack,
+        userId
+      });
       throw error;
     }
   }
 
   async getBMIAnalysis(userId) {
     try {
+      this.logger.info(`Fetching BMI analysis for user ${userId}`);
+
+      this.logger.debug('Querying BMI records for analysis...');
       const records = await this.prisma.bMIRecord.findMany({
         where: { userId },
         orderBy: { recordedAt: 'asc' },
@@ -81,8 +137,11 @@ class BMIService extends BaseService {
       });
 
       if (records.length === 0) {
+        this.logger.warn(`No BMI records found for analysis for user ${userId}`);
         throw ApiError.notFound('No BMI records found');
       }
+
+      this.logger.debug(`Found ${records.length} records for analysis`);
 
       const latest = records[records.length - 1];
       const oldest = records[0];
@@ -92,7 +151,9 @@ class BMIService extends BaseService {
       // Calculate average BMI
       const averageBMI = records.reduce((sum, record) => sum + record.bmi, 0) / records.length;
 
-      return {
+      this.logger.debug(`Analysis results - Trend: ${trend}, Change: ${change}, Average BMI: ${averageBMI}`);
+
+      const analysis = {
         latest: latest,
         trend: {
           direction: trend,
@@ -102,17 +163,46 @@ class BMIService extends BaseService {
         average: averageBMI,
         history: records
       };
+
+      this.logger.info(`BMI analysis completed successfully for user ${userId}`);
+      return analysis;
     } catch (error) {
-      this.logger.error(`Error getting BMI analysis: ${error.message}`);
+      this.logger.error('Error getting BMI analysis', {
+        error: error.message,
+        stack: error.stack,
+        userId
+      });
       throw error;
     }
   }
 
   async createWeightGoal(userId, data) {
     try {
-      const { startWeight, targetWeight, startDate, targetDate } = data;
+      this.logger.info(`Creating weight goal for user ${userId}`);
+
+      const { targetWeight, targetDate } = data;
+      this.logger.debug('Weight goal parameters:', { targetWeight, targetDate });
+
+      // Get current weight from latest BMI record
+      const latestBMI = await this.prisma.bMIRecord.findFirst({
+        where: { userId },
+        orderBy: { recordedAt: 'desc' }
+      });
+
+      if (!latestBMI) {
+        throw ApiError.badRequest('No BMI record found. Please calculate your BMI first.');
+      }
+
+      const startWeight = latestBMI.weight;
+      const parsedStartDate = new Date();
+      const parsedTargetDate = parseDate(targetDate);
+
+      if (!parsedTargetDate) {
+        throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+      }
 
       // Deactivate existing active goals
+      this.logger.debug('Deactivating existing active goals...');
       await this.prisma.weightGoal.updateMany({
         where: {
           userId,
@@ -124,28 +214,36 @@ class BMIService extends BaseService {
       });
 
       // Create new weight goal
+      this.logger.debug('Creating new weight goal...');
       const weightGoal = await this.prisma.weightGoal.create({
         data: {
           userId,
           startWeight,
           targetWeight,
-          startDate: new Date(startDate),
-          targetDate: targetDate ? new Date(targetDate) : null,
+          startDate: parsedStartDate,
+          targetDate: parsedTargetDate,
           isActive: true
         }
       });
 
-      this.logger.info(`Weight goal created for user ${userId}`);
-
+      this.logger.info(`Weight goal created successfully for user ${userId}`);
       return weightGoal;
     } catch (error) {
-      this.logger.error(`Error creating weight goal: ${error.message}`);
+      this.logger.error('Error creating weight goal', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        goalData: data
+      });
       throw error;
     }
   }
 
   async getActiveWeightGoal(userId) {
     try {
+      this.logger.info(`Fetching active weight goal for user ${userId}`);
+
+      this.logger.debug('Querying active weight goal...');
       const goal = await this.prisma.weightGoal.findFirst({
         where: {
           userId,
@@ -154,10 +252,12 @@ class BMIService extends BaseService {
       });
 
       if (!goal) {
+        this.logger.debug(`No active weight goal found for user ${userId}`);
         return null;
       }
 
       // Get current weight from latest BMI record
+      this.logger.debug('Getting current weight from latest BMI record...');
       const latestBMI = await this.prisma.bMIRecord.findFirst({
         where: { userId },
         orderBy: { recordedAt: 'desc' }
@@ -166,15 +266,24 @@ class BMIService extends BaseService {
       const currentWeight = latestBMI ? latestBMI.weight : goal.startWeight;
       const progress = ((goal.startWeight - currentWeight) / (goal.startWeight - goal.targetWeight)) * 100;
 
-      return {
+      this.logger.debug(`Goal progress - Current weight: ${currentWeight}, Progress: ${progress}%`);
+
+      const goalData = {
         ...goal,
         currentWeight,
         progress: Math.min(Math.max(progress, 0), 100), // Clamp between 0-100
         weightLost: goal.startWeight - currentWeight,
         weightRemaining: currentWeight - goal.targetWeight
       };
+
+      this.logger.info(`Active weight goal retrieved successfully for user ${userId}`);
+      return goalData;
     } catch (error) {
-      this.logger.error(`Error getting active weight goal: ${error.message}`);
+      this.logger.error('Error getting active weight goal', {
+        error: error.message,
+        stack: error.stack,
+        userId
+      });
       throw error;
     }
   }

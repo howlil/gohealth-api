@@ -2,10 +2,19 @@ openapi: 3.0.0
 info:
   title: GoHealth API Documentation
   version: 1.0.0
-  description: Complete API documentation for GoHealth application. A comprehensive health and fitness tracking API that provides endpoints for managing user profiles, BMI calculations, meal tracking, and activity tracking.
+  description: |
+    Complete API documentation for GoHealth application. A comprehensive health and fitness tracking API that provides endpoints for:
+    - User authentication and profile management
+    - BMI tracking and weight goals
+    - Meal tracking with nutrition data
+    - Activity tracking with calories burned
+    - Health metrics and progress tracking
   contact:
     name: GoHealth Team
     email: support@gohealth.example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
 
 servers:
   - url: http://localhost:3000/api
@@ -17,17 +26,17 @@ servers:
 
 tags:
   - name: System
-    description: System endpoints
+    description: System endpoints for health checks and API information
   - name: Auth
-    description: Authentication operations
+    description: Authentication and authorization operations
   - name: Users
-    description: User management operations
+    description: User profile management and dashboard operations
   - name: BMI
-    description: BMI tracking and calculation
+    description: BMI tracking, calculation, and weight goals
   - name: Meals
-    description: Meal tracking operations
+    description: Meal tracking and nutrition data management
   - name: Activities
-    description: Activity tracking operations
+    description: Activity tracking and calories burned management
 
 components:
   securitySchemes:
@@ -77,12 +86,12 @@ components:
           example: https://example.com/profile.jpg
         createdAt:
           type: string
-          format: date-time
-          example: 2023-01-01T00:00:00.000Z
+          format: date
+          example: 01-01-2023
         updatedAt:
           type: string
-          format: date-time
-          example: 2023-01-01T00:00:00.000Z
+          format: date
+          example: 01-01-2023
     
     AuthResponse:
       type: object
@@ -219,8 +228,8 @@ components:
           example: NORMAL
         recordedAt:
           type: string
-          format: date-time
-          example: 2023-01-01T00:00:00.000Z
+          format: date
+          example: 01-01-2023
     
     CalculateBMIRequest:
       type: object
@@ -257,11 +266,11 @@ components:
         startDate:
           type: string
           format: date
-          example: 2023-01-01
+          example: 01-01-2023
         targetDate:
           type: string
           format: date
-          example: 2023-03-01
+          example: 31-12-2023
         isActive:
           type: boolean
           example: true
@@ -296,7 +305,7 @@ components:
         effectiveDate:
           type: string
           format: date
-          example: 2023-01-01
+          example: 01-01-2023
         isActive:
           type: boolean
           example: true
@@ -325,7 +334,7 @@ components:
         date:
           type: string
           format: date
-          example: 2023-01-01
+          example: 01-01-2023
         quantity:
           type: number
           format: float
@@ -356,7 +365,7 @@ components:
         date:
           type: string
           format: date
-          example: 2023-01-01
+          example: 01-01-2023
         duration:
           type: number
           format: float
@@ -373,6 +382,139 @@ components:
           type: string
           nullable: true
           example: Morning run
+
+    MealType:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        name:
+          type: string
+          example: "Breakfast"
+        orderIndex:
+          type: integer
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - orderIndex
+
+    CreateMealRequest:
+      type: object
+      required:
+        - mealTypeId
+        - foodName
+        - date
+        - quantity
+        - unit
+      properties:
+        mealTypeId:
+          type: string
+          format: uuid
+          description: "ID of the meal type (breakfast, lunch, dinner, snack). Get available meal types from /api/meals/types"
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        fatSecretFoodId:
+          type: string
+          description: "ID from FatSecret API. Required if nutritionData is not provided"
+          example: "12345"
+        servingId:
+          type: string
+          description: "ID of the serving from FatSecret API. Required if fatSecretFoodId is provided"
+          example: "67890"
+        foodName:
+          type: string
+          description: "Name of the food"
+          example: "Chicken Breast"
+        brandName:
+          type: string
+          description: "Brand name of the food (optional)"
+          example: "Tyson"
+        date:
+          type: string
+          format: date-time
+          description: "Date and time of the meal"
+          example: "2023-01-01T00:00:00.000Z"
+        quantity:
+          type: number
+          format: float
+          minimum: 0
+          description: "Quantity of the food (must be positive)"
+          example: 100
+        unit:
+          type: string
+          description: "Unit of measurement"
+          example: "g"
+        nutritionData:
+          type: object
+          description: "Nutrition data. Required if fatSecretFoodId is not provided"
+          required:
+            - calories
+            - protein
+            - carbohydrates
+            - fat
+            - fiber
+          properties:
+            calories:
+              type: number
+              format: float
+              minimum: 0
+              description: "Calories in kcal"
+              example: 165
+            protein:
+              type: number
+              format: float
+              minimum: 0
+              description: "Protein in grams"
+              example: 31
+            carbohydrates:
+              type: number
+              format: float
+              minimum: 0
+              description: "Carbohydrates in grams"
+              example: 0
+            fat:
+              type: number
+              format: float
+              minimum: 0
+              description: "Fat in grams"
+              example: 3.6
+            fiber:
+              type: number
+              format: float
+              minimum: 0
+              description: "Fiber in grams"
+              example: 0
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X 'POST' \
+              'http://localhost:3000/api/meals' \
+              -H 'accept: application/json' \
+              -H 'Authorization: Bearer your-token' \
+              -H 'Content-Type: application/json' \
+              -d '{
+              "mealTypeId": "550e8400-e29b-41d4-a716-446655440001",
+              "foodName": "Chicken Breast",
+              "brandName": "Tyson",
+              "date": "2023-01-01T00:00:00.000Z",
+              "quantity": 100,
+              "unit": "g",
+              "nutritionData": {
+                "calories": 165,
+                "protein": 31,
+                "carbohydrates": 0,
+                "fat": 3.6,
+                "fiber": 0
+              }
+            }'
 
 paths:
   /health:
@@ -747,7 +889,79 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  
+
+  /users/profile:
+    put:
+      summary: Update user profile
+      description: Updates the profile of the authenticated user with validation
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                  example: John Doe
+                age:
+                  type: integer
+                  minimum: 1
+                  maximum: 120
+                  example: 30
+                gender:
+                  type: string
+                  enum: [MALE, FEMALE]
+                  example: MALE
+                height:
+                  type: number
+                  minimum: 50
+                  maximum: 300
+                  example: 175.5
+                weight:
+                  type: number
+                  minimum: 20
+                  maximum: 500
+                  example: 70.2
+                activityLevel:
+                  type: string
+                  enum: [SEDENTARY, LIGHTLY, MODERATELY_ACTIVE, VERY_ACTIVE, EXTRA_ACTIVE]
+                  example: MODERATELY_ACTIVE
+      responses:
+        "200":
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User profile updated successfully
+                  data:
+                    $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /bmi/calculate:
     post:
       summary: Calculate BMI
@@ -839,10 +1053,10 @@ paths:
   
   /meals:
     post:
-      summary: Add a meal
-      description: Adds a new meal record
       tags:
-        - Meals
+        - Meal Tracking
+      summary: Create a new meal
+      description: Create a new meal entry for the authenticated user
       security:
         - bearerAuth: []
       requestBody:
@@ -850,40 +1064,23 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - foodName
-                - date
-                - quantity
-                - unit
-              properties:
-                foodName:
-                  type: string
-                  example: Chicken Breast
-                brandName:
-                  type: string
-                  example: Tyson
-                date:
-                  type: string
-                  format: date
-                  example: 2023-01-01
-                quantity:
-                  type: number
-                  example: 100
-                unit:
-                  type: string
-                  example: g
-                nutritionData:
-                  type: object
-                  example:
-                    calories: 165
-                    protein: 31
-                    carbohydrates: 0
-                    fat: 3.6
-                    fiber: 0
+              $ref: '#/components/schemas/CreateMealRequest'
+            example:
+              mealTypeId: "550e8400-e29b-41d4-a716-446655440001"
+              foodName: "Chicken Breast"
+              brandName: "Tyson"
+              date: "2023-01-01T00:00:00.000Z"
+              quantity: 100
+              unit: "g"
+              nutritionData:
+                calories: 165
+                protein: 31
+                carbohydrates: 0
+                fat: 3.6
+                fiber: 0
       responses:
-        "201":
-          description: Meal added successfully
+        '201':
+          description: Meal created successfully
           content:
             application/json:
               schema:
@@ -894,21 +1091,15 @@ paths:
                     example: true
                   message:
                     type: string
-                    example: Meal added successfully
+                    example: "Meal created successfully"
                   data:
                     $ref: '#/components/schemas/Meal'
-        "400":
-          description: Invalid input data
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   
   /meals:
     get:
@@ -924,7 +1115,7 @@ paths:
           schema:
             type: string
             format: date
-          description: Filter by date (YYYY-MM-DD)
+          description: Filter by date (DD-MM-YYYY)
         - in: query
           name: limit
           schema:
@@ -988,7 +1179,7 @@ paths:
                 date:
                   type: string
                   format: date
-                  example: 2023-01-01
+                  example: 01-01-2023
                 duration:
                   type: number
                   example: 30
@@ -1045,7 +1236,7 @@ paths:
           schema:
             type: string
             format: date
-          description: Filter by date (YYYY-MM-DD)
+          description: Filter by date (DD-MM-YYYY)
         - in: query
           name: limit
           schema:
@@ -1082,6 +1273,945 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+
+  /users/profile/image:
+    post:
+      summary: Upload profile image
+      description: Uploads a profile image for the authenticated user
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Profile image file (max 5MB)
+      responses:
+        "200":
+          description: Profile image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Profile image uploaded successfully
+                  data:
+                    type: object
+                    properties:
+                      profileImage:
+                        type: string
+                        example: https://storage.example.com/profile/123.jpg
+        "400":
+          description: Invalid file or file too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/dashboard:
+    get:
+      summary: Get user dashboard
+      description: Returns dashboard data including recent activities, meals, health metrics, and calories tracker (weekly/monthly)
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: range
+          schema:
+            type: string
+            enum: [week, month]
+            default: week
+          description: Range for calories tracker (week or month)
+      responses:
+        "200":
+          description: Dashboard data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Dashboard data retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      recentActivities:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Activity'
+                      recentMeals:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Meal'
+                      currentBMI:
+                        $ref: '#/components/schemas/BMIRecord'
+                      nutritionSummary:
+                        type: object
+                        properties:
+                          calories:
+                            type: number
+                            example: 2000
+                          protein:
+                            type: number
+                            example: 150
+                          carbohydrates:
+                            type: number
+                            example: 200
+                          fat:
+                            type: number
+                            example: 65
+                      activitySummary:
+                        type: object
+                        properties:
+                          totalCaloriesBurned:
+                            type: number
+                            example: 500
+                          totalDuration:
+                            type: number
+                            example: 120
+                      caloriesTracker:
+                        type: array
+                        description: Daily calories for the selected range (week/month)
+                        items:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              example: Sun
+                            date:
+                              type: string
+                              format: date
+                              example: 2025-06-09
+                            calories:
+                              type: number
+                              example: 1500
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /bmi/analysis:
+    get:
+      summary: Get BMI analysis
+      description: Returns detailed BMI analysis including trends and recommendations
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: BMI analysis retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: BMI analysis retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      currentBMI:
+                        $ref: '#/components/schemas/BMIRecord'
+                      bmiTrend:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/BMIRecord'
+                      recommendations:
+                        type: array
+                        items:
+                          type: string
+                          example: "Consider increasing protein intake"
+                      healthStatus:
+                        type: string
+                        enum: [UNDERWEIGHT, NORMAL, OVERWEIGHT, OBESE]
+                        example: NORMAL
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /bmi/goals:
+    post:
+      summary: Create weight goal
+      description: Creates a new weight goal for the user. The start weight will be taken from the user's latest BMI record.
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - targetWeight
+                - targetDate
+              properties:
+                targetWeight:
+                  type: number
+                  minimum: 20
+                  maximum: 500
+                  description: Target weight in kg
+                  example: 70.0
+                targetDate:
+                  type: string
+                  format: date
+                  description: Target date in DD-MM-YYYY format
+                  example: 31-12-2023
+      responses:
+        "201":
+          description: Weight goal created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Weight goal created successfully
+                  data:
+                    $ref: '#/components/schemas/WeightGoal'
+        "400":
+          description: Invalid input data or no BMI record found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /bmi/goals/active:
+    get:
+      summary: Get active weight goal
+      description: Returns the currently active weight goal for the user
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Active weight goal retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Active weight goal retrieved successfully
+                  data:
+                    $ref: '#/components/schemas/WeightGoal'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: No active weight goal found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /bmi/latest:
+    get:
+      summary: Get latest BMI
+      description: Returns the most recent BMI record for the user
+      tags:
+        - BMI
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Latest BMI retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Latest BMI retrieved successfully
+                  data:
+                    $ref: '#/components/schemas/BMIRecord'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: No BMI records found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /meals/{mealTypeId}:
+    put:
+      summary: Update meal
+      description: Updates an existing meal record
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: mealTypeId
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the meal to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                foodName:
+                  type: string
+                  example: Chicken Breast
+                brandName:
+                  type: string
+                  example: Tyson
+                date:
+                  type: string
+                  format: date
+                  example: 01-01-2023
+                quantity:
+                  type: number
+                  example: 100
+                unit:
+                  type: string
+                  example: g
+                nutritionData:
+                  type: object
+                  example:
+                    calories: 165
+                    protein: 31
+                    carbohydrates: 0
+                    fat: 3.6
+                    fiber: 0
+      responses:
+        "200":
+          description: Meal updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Meal updated successfully
+                  data:
+                    $ref: '#/components/schemas/Meal'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Delete meal
+      description: Deletes an existing meal record
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: mealTypeId
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the meal to delete
+      responses:
+        "200":
+          description: Meal deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Meal deleted successfully
+                  data:
+                    type: null
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /meals/summary:
+    get:
+      summary: Get daily meal summary
+      description: Returns a summary of meals for a specific date
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Date to get summary for (DD-MM-YYYY)
+      responses:
+        "200":
+          description: Daily meal summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Daily meal summary retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      totalCalories:
+                        type: number
+                        example: 2000
+                      totalProtein:
+                        type: number
+                        example: 150
+                      totalCarbohydrates:
+                        type: number
+                        example: 200
+                      totalFat:
+                        type: number
+                        example: 65
+                      meals:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Meal'
+        "400":
+          description: Invalid date format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /meals/foods/search:
+    get:
+      summary: Search foods
+      description: Searches for foods in the database
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema:
+            type: string
+          description: Search query
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Number of results to return
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            default: 0
+          description: Number of results to skip
+      responses:
+        "200":
+          description: Food search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Food search results retrieved successfully
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "33691"
+                        name:
+                          type: string
+                          example: "Chicken Breast"
+                        brand:
+                          type: string
+                          example: "Tyson"
+                        nutritionData:
+                          type: object
+                          properties:
+                            calories:
+                              type: number
+                              example: 165
+                            protein:
+                              type: number
+                              example: 31
+                            carbohydrates:
+                              type: number
+                              example: 0
+                            fat:
+                              type: number
+                              example: 3.6
+                            fiber:
+                              type: number
+                              example: 0
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /meals/foods/{foodId}:
+    get:
+      summary: Get food details
+      description: Returns detailed information about a specific food
+      tags:
+        - Meals
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: foodId
+          required: true
+          schema:
+            type: string
+          description: ID of the food
+      responses:
+        "200":
+          description: Food details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Food details retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "33691"
+                      name:
+                        type: string
+                        example: "Chicken Breast"
+                      brand:
+                        type: string
+                        example: "Tyson"
+                      nutritionData:
+                        type: object
+                        properties:
+                          calories:
+                            type: number
+                            example: 165
+                          protein:
+                            type: number
+                            example: 31
+                          carbohydrates:
+                            type: number
+                            example: 0
+                          fat:
+                            type: number
+                            example: 3.6
+                          fiber:
+                            type: number
+                            example: 0
+                      servingSize:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                            example: 100
+                          unit:
+                            type: string
+                            example: "g"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Food not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /activities/types:
+    get:
+      summary: Get activity types
+      description: Returns a list of available activity types
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Activity types retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Activity types retrieved successfully
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          example: 550e8400-e29b-41d4-a716-446655440001
+                        name:
+                          type: string
+                          example: Running
+                        description:
+                          type: string
+                          example: Outdoor or treadmill running
+                        caloriesPerHour:
+                          type: number
+                          example: 600
+                        category:
+                          type: string
+                          enum: [CARDIO, STRENGTH, FLEXIBILITY, SPORTS]
+                          example: CARDIO
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /activities/{activityTypeId}:
+    put:
+      summary: Update activity
+      description: Updates an existing activity record
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: activityTypeId
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the activity to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  example: 01-01-2023
+                duration:
+                  type: number
+                  example: 30
+                caloriesBurned:
+                  type: number
+                  example: 150
+                intensity:
+                  type: string
+                  enum: [LOW, MODERATE, HIGH]
+                  example: MODERATE
+                notes:
+                  type: string
+                  example: Morning run
+      responses:
+        "200":
+          description: Activity updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Activity updated successfully
+                  data:
+                    $ref: '#/components/schemas/Activity'
+        "400":
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Delete activity
+      description: Deletes an existing activity record
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: activityTypeId
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the activity to delete
+      responses:
+        "200":
+          description: Activity deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Activity deleted successfully
+                  data:
+                    type: null
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "404":
+          description: Activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /activities/summary:
+    get:
+      summary: Get daily activity summary
+      description: Returns a summary of activities for a specific date
+      tags:
+        - Activities
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Date to get summary for (DD-MM-YYYY)
+      responses:
+        "200":
+          description: Daily activity summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Daily activity summary retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      totalCaloriesBurned:
+                        type: number
+                        example: 500
+                      totalDuration:
+                        type: number
+                        example: 120
+                      activities:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Activity'
+                      intensityBreakdown:
+                        type: object
+                        properties:
+                          LOW:
+                            type: number
+                            example: 30
+                          MODERATE:
+                            type: number
+                            example: 60
+                          HIGH:
+                            type: number
+                            example: 30
+        "400":
+          description: Invalid date format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /meals/types:
+    get:
+      tags:
+        - Meal Tracking
+      summary: Get all meal types
+      description: Retrieve all available meal types (breakfast, lunch, dinner, snack)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of meal types retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Meal types retrieved successfully"
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MealType'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
 
 security:
   - bearerAuth: [] 
