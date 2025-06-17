@@ -1,0 +1,1179 @@
+{
+  "data": [
+    {
+      "category": "Daging",
+      "product": [
+        {
+          "id": "DAGING-001",
+          "meal": "Ayam",
+          "nutrients": {
+            "protein": 20,
+            "fat": 10,
+            "carbohydrate": 0,
+            "calory": 150
+          }
+        },
+        {
+          "id": "DAGING-002",
+          "meal": "Ayam Goreng",
+          "nutrients": {
+            "protein": 15,
+            "fat": 12,
+            "carbohydrate": 0,
+            "calory": 200
+          }
+        },
+        {
+          "id": "DAGING-003",
+          "meal": "Ayam Panggang",
+          "nutrients": {
+            "protein": 25,
+            "fat": 8,
+            "carbohydrate": 0,
+            "calory": 180
+          }
+        },
+        {
+          "id": "DAGING-004",
+          "meal": "Babi Panggang",
+          "nutrients": {
+            "protein": 30,
+            "fat": 15,
+            "carbohydrate": 0,
+            "calory": 250
+          }
+        },
+        {
+          "id": "DAGING-005",
+          "meal": "Bakso",
+          "nutrients": {
+            "protein": 18,
+            "fat": 10,
+            "carbohydrate": 12,
+            "calory": 220
+          }
+        },
+        {
+          "id": "DAGING-006",
+          "meal": "Bebek",
+          "nutrients": {
+            "protein": 20,
+            "fat": 14,
+            "carbohydrate": 0,
+            "calory": 240
+          }
+        },
+        {
+          "id": "DAGING-007",
+          "meal": "Dada Ayam",
+          "nutrients": {
+            "protein": 25,
+            "fat": 7,
+            "carbohydrate": 0,
+            "calory": 170
+          }
+        },
+        {
+          "id": "DAGING-008",
+          "meal": "Dada Kalkun",
+          "nutrients": {
+            "protein": 24,
+            "fat": 5,
+            "carbohydrate": 0,
+            "calory": 140
+          }
+        },
+        {
+          "id": "DAGING-009",
+          "meal": "Daging Babi",
+          "nutrients": {
+            "protein": 22,
+            "fat": 14,
+            "carbohydrate": 0,
+            "calory": 210
+          }
+        },
+        {
+          "id": "DAGING-010",
+          "meal": "Daging Domba",
+          "nutrients": {
+            "protein": 23,
+            "fat": 16,
+            "carbohydrate": 0,
+            "calory": 230
+          }
+        },
+        {
+          "id": "DAGING-011",
+          "meal": "Daging Sapi",
+          "nutrients": {
+            "protein": 26,
+            "fat": 9,
+            "carbohydrate": 0,
+            "calory": 220
+          }
+        },
+        {
+          "id": "DAGING-012",
+          "meal": "Daging Sapi Giling",
+          "nutrients": {
+            "protein": 22,
+            "fat": 14,
+            "carbohydrate": 0,
+            "calory": 230
+          }
+        },
+        {
+          "id": "DAGING-013",
+          "meal": "Daging Sapi Panggang",
+          "nutrients": {
+            "protein": 28,
+            "fat": 8,
+            "carbohydrate": 0,
+            "calory": 210
+          }
+        },
+        {
+          "id": "DAGING-014",
+          "meal": "Domba",
+          "nutrients": {
+            "protein": 24,
+            "fat": 15,
+            "carbohydrate": 0,
+            "calory": 240
+          }
+        },
+        {
+          "id": "DAGING-015",
+          "meal": "Iga",
+          "nutrients": {
+            "protein": 25,
+            "fat": 20,
+            "carbohydrate": 0,
+            "calory": 290
+          }
+        },
+        {
+          "id": "DAGING-016",
+          "meal": "Kalkun",
+          "nutrients": {
+            "protein": 24,
+            "fat": 6,
+            "carbohydrate": 0,
+            "calory": 150
+          }
+        },
+        {
+          "id": "DAGING-017",
+          "meal": "Paha Ayam",
+          "nutrients": {
+            "protein": 23,
+            "fat": 10,
+            "carbohydrate": 0,
+            "calory": 180
+          }
+        },
+        {
+          "id": "DAGING-018",
+          "meal": "Punggung",
+          "nutrients": {
+            "protein": 27,
+            "fat": 11,
+            "carbohydrate": 0,
+            "calory": 200
+          }
+        },
+        {
+          "id": "DAGING-019",
+          "meal": "Sayap Ayam",
+          "nutrients": {
+            "protein": 20,
+            "fat": 12,
+            "carbohydrate": 0,
+            "calory": 200
+          }
+        },
+        {
+          "id": "DAGING-020",
+          "meal": "Sosis",
+          "nutrients": {
+            "protein": 15,
+            "fat": 10,
+            "carbohydrate": 2,
+            "calory": 180
+          }
+        }
+      ]
+    },
+    {
+      "category": "Buah",
+      "product": [
+        {
+          "id": "BUAH-001",
+          "meal": "Alpukat",
+          "nutrients": {
+            "protein": 2.0,
+            "fat": 14.66,
+            "carbohydrate": 8.53,
+            "calory": 160
+          }
+        },
+        {
+          "id": "BUAH-002",
+          "meal": "Anggur",
+          "nutrients": {
+            "protein": 0.72,
+            "fat": 0.16,
+            "carbohydrate": 18.1,
+            "calory": 69
+          }
+        },
+        {
+          "id": "BUAH-003",
+          "meal": "Apel",
+          "nutrients": {
+            "protein": 0.36,
+            "fat": 0.23,
+            "carbohydrate": 19.06,
+            "calory": 72
+          }
+        },
+        {
+          "id": "BUAH-004",
+          "meal": "Blewah Melon",
+          "nutrients": {
+            "protein": 0.84,
+            "fat": 0.19,
+            "carbohydrate": 8.16,
+            "calory": 34
+          }
+        },
+        {
+          "id": "BUAH-005",
+          "meal": "Blueberi",
+          "nutrients": {
+            "protein": 0.74,
+            "fat": 0.33,
+            "carbohydrate": 14.49,
+            "calory": 57
+          }
+        },
+        {
+          "id": "BUAH-006",
+          "meal": "Beri",
+          "nutrients": {
+            "protein": 0.68,
+            "fat": 0.3,
+            "carbohydrate": 7.98,
+            "calory": 33
+          }
+        },
+        {
+          "id": "BUAH-007",
+          "meal": "Buah Kering",
+          "nutrients": {
+            "protein": 2.19,
+            "fat": 0.44,
+            "carbohydrate": 64.81,
+            "calory": 244
+          }
+        },
+        {
+          "id": "BUAH-008",
+          "meal": "Buah Pir",
+          "nutrients": {
+            "protein": 0.38,
+            "fat": 0.12,
+            "carbohydrate": 15.46,
+            "calory": 58
+          }
+        },
+        {
+          "id": "BUAH-009",
+          "meal": "Ceri",
+          "nutrients": {
+            "protein": 0.5,
+            "fat": 0.2,
+            "carbohydrate": 12.0,
+            "calory": 50
+          }
+        },
+        {
+          "id": "BUAH-010",
+          "meal": "Jeruk",
+          "nutrients": {
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbohydrate": 11.8,
+            "calory": 47
+          }
+        },
+        {
+          "id": "BUAH-011",
+          "meal": "Jeruk Bali",
+          "nutrients": {
+            "protein": 1.0,
+            "fat": 0.1,
+            "carbohydrate": 11.0,
+            "calory": 43
+          }
+        },
+        {
+          "id": "BUAH-012",
+          "meal": "Jeruk Mandarin",
+          "nutrients": {
+            "protein": 0.8,
+            "fat": 0.2,
+            "carbohydrate": 10.5,
+            "calory": 42
+          }
+        },
+        {
+          "id": "BUAH-013",
+          "meal": "Kelapa",
+          "nutrients": {
+            "protein": 3.3,
+            "fat": 33.5,
+            "carbohydrate": 15.2,
+            "calory": 354
+          }
+        },
+        {
+          "id": "BUAH-014",
+          "meal": "Kismis",
+          "nutrients": {
+            "protein": 1.0,
+            "fat": 0.1,
+            "carbohydrate": 79.0,
+            "calory": 299
+          }
+        },
+        {
+          "id": "BUAH-015",
+          "meal": "Kurma",
+          "nutrients": {
+            "protein": 2.5,
+            "fat": 0.2,
+            "carbohydrate": 75.0,
+            "calory": 277
+          }
+        },
+        {
+          "id": "BUAH-016",
+          "meal": "Mangga",
+          "nutrients": {
+            "protein": 0.8,
+            "fat": 0.4,
+            "carbohydrate": 15.0,
+            "calory": 60
+          }
+        },
+        {
+          "id": "BUAH-017",
+          "meal": "Melon",
+          "nutrients": {
+            "protein": 0.6,
+            "fat": 0.2,
+            "carbohydrate": 15.0,
+            "calory": 50
+          }
+        },
+        {
+          "id": "BUAH-018",
+          "meal": "Nanas",
+          "nutrients": {
+            "protein": 0.5,
+            "fat": 0.1,
+            "carbohydrate": 13.0,
+            "calory": 50
+          }
+        },
+        {
+          "id": "BUAH-019",
+          "meal": "Pepaya",
+          "nutrients": {
+            "protein": 0.6,
+            "fat": 0.1,
+            "carbohydrate": 11.0,
+            "calory": 43
+          }
+        },
+        {
+          "id": "BUAH-020",
+          "meal": "Pisang",
+          "nutrients": {
+            "protein": 1.1,
+            "fat": 0.3,
+            "carbohydrate": 23.0,
+            "calory": 89
+          }
+        },
+        {
+          "id": "BUAH-021",
+          "meal": "Raspberi",
+          "nutrients": {
+            "protein": 1.5,
+            "fat": 0.3,
+            "carbohydrate": 12.0,
+            "calory": 52
+          }
+        },
+        {
+          "id": "BUAH-022",
+          "meal": "Salad Buah",
+          "nutrients": {
+            "protein": 0.5,
+            "fat": 0.2,
+            "carbohydrate": 13.0,
+            "calory": 50
+          }
+        },
+        {
+          "id": "BUAH-023",
+          "meal": "Semangka",
+          "nutrients": {
+            "protein": 0.6,
+            "fat": 0.2,
+            "carbohydrate": 8.0,
+            "calory": 30
+          }
+        },
+        {
+          "id": "BUAH-024",
+          "meal": "Stroberi",
+          "nutrients": {
+            "protein": 0.8,
+            "fat": 0.3,
+            "carbohydrate": 7.5,
+            "calory": 32
+          }
+        }
+      ]
+    },
+    {
+      "category": "Ikan & Seafood",
+      "product": [
+        {
+          "id": "IKAN-001",
+          "meal": "Cumi-cumi",
+          "nutrients": {
+            "protein": 15.58,
+            "fat": 1.38,
+            "carbohydrate": 3.08,
+            "calory": 92
+          }
+        },
+        {
+          "id": "IKAN-002",
+          "meal": "Gurita",
+          "nutrients": {
+            "protein": 14.91,
+            "fat": 1.04,
+            "carbohydrate": 2.2,
+            "calory": 82
+          }
+        },
+        {
+          "id": "IKAN-003",
+          "meal": "Ikan Salmon",
+          "nutrients": {
+            "protein": 21.62,
+            "fat": 5.93,
+            "carbohydrate": 0,
+            "calory": 146
+          }
+        },
+        {
+          "id": "IKAN-004",
+          "meal": "Udang",
+          "nutrients": {
+            "protein": 27.59,
+            "fat": 2.35,
+            "carbohydrate": 1.24,
+            "calory": 144
+          }
+        },
+        {
+          "id": "IKAN-005",
+          "meal": "Ikan Tuna",
+          "nutrients": {
+            "protein": 23.38,
+            "fat": 0.95,
+            "carbohydrate": 0,
+            "calory": 108
+          }
+        },
+        {
+          "id": "IKAN-006",
+          "meal": "Cumi Goreng",
+          "nutrients": {
+            "protein": 15.13,
+            "fat": 2.17,
+            "carbohydrate": 9.9,
+            "calory": 125
+          }
+        },
+        {
+          "id": "IKAN-007",
+          "meal": "Cumi Kukus/Rebus",
+          "nutrients": {
+            "protein": 15.58,
+            "fat": 1.38,
+            "carbohydrate": 3.08,
+            "calory": 92
+          }
+        },
+        {
+          "id": "IKAN-008",
+          "meal": "Gurita Kukus/Rebus",
+          "nutrients": {
+            "protein": 14.91,
+            "fat": 1.04,
+            "carbohydrate": 2.2,
+            "calory": 82
+          }
+        },
+        {
+          "id": "IKAN-009",
+          "meal": "Ikan Salmon Panggang",
+          "nutrients": {
+            "protein": 21.62,
+            "fat": 5.93,
+            "carbohydrate": 0,
+            "calory": 146
+          }
+        },
+        {
+          "id": "IKAN-010",
+          "meal": "Udang Kukus/Rebus",
+          "nutrients": {
+            "protein": 26.5,
+            "fat": 2.26,
+            "carbohydrate": 1.19,
+            "calory": 138
+          }
+        },
+        {
+          "id": "IKAN-011",
+          "meal": "Ikan Tuna Panggang",
+          "nutrients": {
+            "protein": 27.3,
+            "fat": 3.96,
+            "carbohydrate": 0.41,
+            "calory": 153
+          }
+        }
+      ]
+    },
+    {
+      "category": "Sayuran",
+      "product": [
+        {
+          "id": "SAYUR-001",
+          "meal": "Acar",
+          "nutrients": {
+            "protein": 0.5,
+            "fat": 0.1,
+            "carbohydrate": 3.5,
+            "calory": 15
+          }
+        },
+        {
+          "id": "SAYUR-002",
+          "meal": "Bawang",
+          "nutrients": {
+            "protein": 1.1,
+            "fat": 0.1,
+            "carbohydrate": 9.3,
+            "calory": 40
+          }
+        },
+        {
+          "id": "SAYUR-003",
+          "meal": "Bawang Putih",
+          "nutrients": {
+            "protein": 6.4,
+            "fat": 0.5,
+            "carbohydrate": 33.1,
+            "calory": 149
+          }
+        },
+        {
+          "id": "SAYUR-004",
+          "meal": "Bayam",
+          "nutrients": {
+            "protein": 2.9,
+            "fat": 0.4,
+            "carbohydrate": 3.6,
+            "calory": 23
+          }
+        },
+        {
+          "id": "SAYUR-005",
+          "meal": "Brokoli",
+          "nutrients": {
+            "protein": 2.8,
+            "fat": 0.4,
+            "carbohydrate": 6.6,
+            "calory": 34
+          }
+        },
+        {
+          "id": "SAYUR-006",
+          "meal": "Daun Bawang",
+          "nutrients": {
+            "protein": 1.3,
+            "fat": 0.2,
+            "carbohydrate": 7.3,
+            "calory": 32
+          }
+        },
+        {
+          "id": "SAYUR-007",
+          "meal": "Jagung",
+          "nutrients": {
+            "protein": 3.2,
+            "fat": 1.2,
+            "carbohydrate": 19.0,
+            "calory": 96
+          }
+        },
+        {
+          "id": "SAYUR-008",
+          "meal": "Jamur",
+          "nutrients": {
+            "protein": 3.1,
+            "fat": 0.3,
+            "carbohydrate": 6.3,
+            "calory": 22
+          }
+        },
+        {
+          "id": "SAYUR-009",
+          "meal": "Kacang Polong",
+          "nutrients": {
+            "protein": 5.4,
+            "fat": 0.4,
+            "carbohydrate": 14.5,
+            "calory": 81
+          }
+        },
+        {
+          "id": "SAYUR-010",
+          "meal": "Kembang Kol",
+          "nutrients": {
+            "protein": 1.9,
+            "fat": 0.3,
+            "carbohydrate": 4.9,
+            "calory": 25
+          }
+        },
+        {
+          "id": "SAYUR-011",
+          "meal": "Kentang",
+          "nutrients": {
+            "protein": 2.0,
+            "fat": 0.1,
+            "carbohydrate": 17.5,
+            "calory": 77
+          }
+        },
+        {
+          "id": "SAYUR-012",
+          "meal": "Kentang Panggang",
+          "nutrients": {
+            "protein": 2.5,
+            "fat": 0.2,
+            "carbohydrate": 21.0,
+            "calory": 93
+          }
+        },
+        {
+          "id": "SAYUR-013",
+          "meal": "Kentang Tumbuk",
+          "nutrients": {
+            "protein": 1.8,
+            "fat": 0.3,
+            "carbohydrate": 18.0,
+            "calory": 83
+          }
+        },
+        {
+          "id": "SAYUR-014",
+          "meal": "Ketimun",
+          "nutrients": {
+            "protein": 0.8,
+            "fat": 0.1,
+            "carbohydrate": 3.6,
+            "calory": 16
+          }
+        },
+        {
+          "id": "SAYUR-015",
+          "meal": "Kubis",
+          "nutrients": {
+            "protein": 1.3,
+            "fat": 0.1,
+            "carbohydrate": 5.8,
+            "calory": 25
+          }
+        },
+        {
+          "id": "SAYUR-016",
+          "meal": "Labu",
+          "nutrients": {
+            "protein": 1.0,
+            "fat": 0.1,
+            "carbohydrate": 6.5,
+            "calory": 26
+          }
+        },
+        {
+          "id": "SAYUR-017",
+          "meal": "Lobak",
+          "nutrients": {
+            "protein": 0.6,
+            "fat": 0.1,
+            "carbohydrate": 4.0,
+            "calory": 19
+          }
+        },
+        {
+          "id": "SAYUR-018",
+          "meal": "Merica",
+          "nutrients": {
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbohydrate": 6.0,
+            "calory": 40
+          }
+        },
+        {
+          "id": "SAYUR-019",
+          "meal": "Sayur Campuran",
+          "nutrients": {
+            "protein": 2.0,
+            "fat": 0.5,
+            "carbohydrate": 8.0,
+            "calory": 40
+          }
+        },
+        {
+          "id": "SAYUR-020",
+          "meal": "Selada",
+          "nutrients": {
+            "protein": 1.0,
+            "fat": 0.1,
+            "carbohydrate": 3.0,
+            "calory": 15
+          }
+        },
+        {
+          "id": "SAYUR-021",
+          "meal": "Seledri",
+          "nutrients": {
+            "protein": 0.7,
+            "fat": 0.1,
+            "carbohydrate": 3.0,
+            "calory": 16
+          }
+        },
+        {
+          "id": "SAYUR-022",
+          "meal": "Terung",
+          "nutrients": {
+            "protein": 1.0,
+            "fat": 0.2,
+            "carbohydrate": 5.9,
+            "calory": 25
+          }
+        },
+        {
+          "id": "SAYUR-023",
+          "meal": "Tomat",
+          "nutrients": {
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbohydrate": 3.9,
+            "calory": 18
+          }
+        },
+        {
+          "id": "SAYUR-024",
+          "meal": "Ubi Manis",
+          "nutrients": {
+            "protein": 1.6,
+            "fat": 0.1,
+            "carbohydrate": 20.0,
+            "calory": 86
+          }
+        },
+        {
+          "id": "SAYUR-025",
+          "meal": "Ubi Rambat",
+          "nutrients": {
+            "protein": 1.6,
+            "fat": 0.1,
+            "carbohydrate": 20.0,
+            "calory": 86
+          }
+        },
+        {
+          "id": "SAYUR-026",
+          "meal": "Wortel",
+          "nutrients": {
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbohydrate": 9.6,
+            "calory": 41
+          }
+        }
+      ]
+    },
+    {
+      "category": "Roti & Sereal",
+      "product": [
+        {
+          "id": "ROTI-001",
+          "meal": "Biskuit Tawar atau Mentega",
+          "nutrients": {
+            "protein": 4.2,
+            "fat": 9.78,
+            "carbohydrate": 26.76,
+            "calory": 212
+          }
+        },
+        {
+          "id": "ROTI-002",
+          "meal": "Biskuit Tawar atau Mentega (Campuran Kering, Siap)",
+          "nutrients": {
+            "protein": 7.3,
+            "fat": 12.1,
+            "carbohydrate": 48.4,
+            "calory": 335
+          }
+        },
+        {
+          "id": "ROTI-003",
+          "meal": "Biskuit Tawar atau dengan Mentega (Rendah Lemak)",
+          "nutrients": {
+            "protein": 6.7,
+            "fat": 4.5,
+            "carbohydrate": 47.6,
+            "calory": 257
+          }
+        },
+        {
+          "id": "ROTI-004",
+          "meal": "Tepung Tortilla",
+          "nutrients": {
+            "protein": 1.08,
+            "fat": 1.01,
+            "carbohydrate": 6.68,
+            "calory": 41
+          }
+        },
+        {
+          "id": "ROTI-005",
+          "meal": "Tortilla",
+          "nutrients": {
+            "protein": 2.66,
+            "fat": 2.01,
+            "carbohydrate": 18.24,
+            "calory": 101
+          }
+        },
+        {
+          "id": "ROTI-006",
+          "meal": "Gandum Tortilla",
+          "nutrients": {
+            "protein": 3.36,
+            "fat": 0.45,
+            "carbohydrate": 19.54,
+            "calory": 92
+          }
+        },
+        {
+          "id": "ROTI-007",
+          "meal": "Oatmeal",
+          "nutrients": {
+            "protein": 2.59,
+            "fat": 1.02,
+            "carbohydrate": 10.84,
+            "calory": 62
+          }
+        },
+        {
+          "id": "ROTI-008",
+          "meal": "Oatmeal dengan Buah",
+          "nutrients": {
+            "protein": 6.18,
+            "fat": 2.29,
+            "carbohydrate": 37.81,
+            "calory": 190
+          }
+        },
+        {
+          "id": "ROTI-009",
+          "meal": "Roti Gandum",
+          "nutrients": {
+            "protein": 2.37,
+            "fat": 1.07,
+            "carbohydrate": 12.26,
+            "calory": 67
+          }
+        },
+        {
+          "id": "ROTI-010",
+          "meal": "Roti Gandum (Sari Roti)",
+          "nutrients": {
+            "protein": 6.00,
+            "fat": 3.50,
+            "carbohydrate": 33.00,
+            "calory": 190
+          }
+        },
+        {
+          "id": "ROTI-011",
+          "meal": "Roti Bagel",
+          "nutrients": {
+            "protein": 10.02,
+            "fat": 1.62,
+            "carbohydrate": 50.5,
+            "calory": 257
+          }
+        },
+        {
+          "id": "ROTI-012",
+          "meal": "Roti Kismis",
+          "nutrients": {
+            "protein": 2.05,
+            "fat": 1.14,
+            "carbohydrate": 13.6,
+            "calory": 71
+          }
+        },
+        {
+          "id": "ROTI-013",
+          "meal": "Roti Panggang",
+          "nutrients": {
+            "protein": 2.16,
+            "fat": 0.96,
+            "carbohydrate": 13.06,
+            "calory": 70
+          }
+        },
+        {
+          "id": "ROTI-014",
+          "meal": "Roti Pita",
+          "nutrients": {
+            "protein": 4.10,
+            "fat": 0.54,
+            "carbohydrate": 25.06,
+            "calory": 124
+          }
+        }
+      ]
+    },
+    {
+      "category": "Keju & Susu",
+      "product": [
+        {
+          "id": "KEJU-001",
+          "meal": "Keju Cheddar",
+          "nutrients": {
+            "protein": 24.9,
+            "fat": 33.14,
+            "carbohydrate": 1.28,
+            "calory": 403
+          }
+        },
+        {
+          "id": "KEJU-002",
+          "meal": "Keju Colby Jack",
+          "nutrients": {
+            "protein": 24.35,
+            "fat": 7.0,
+            "carbohydrate": 1.91,
+            "calory": 173
+          }
+        },
+        {
+          "id": "KEJU-003",
+          "meal": "Keju Amerika",
+          "nutrients": {
+            "protein": 19.66,
+            "fat": 24.46,
+            "carbohydrate": 8.32,
+            "calory": 331
+          }
+        },
+        {
+          "id": "KEJU-004",
+          "meal": "Keju Provolone",
+          "nutrients": {
+            "protein": 7.16,
+            "fat": 7.45,
+            "carbohydrate": 0.6,
+            "calory": 98
+          }
+        },
+        {
+          "id": "KEJU-005",
+          "meal": "Keju Parmesan (Parut)",
+          "nutrients": {
+            "protein": 35.75,
+            "fat": 25.83,
+            "carbohydrate": 3.22,
+            "calory": 431
+          }
+        },
+        {
+          "id": "KEJU-006",
+          "meal": "Krim",
+          "nutrients": {
+            "protein": 2.05,
+            "fat": 37.0,
+            "carbohydrate": 2.79,
+            "calory": 345
+          }
+        },
+        {
+          "id": "KEJU-007",
+          "meal": "Keju Krim",
+          "nutrients": {
+            "protein": 7.55,
+            "fat": 34.87,
+            "carbohydrate": 2.66,
+            "calory": 349
+          }
+        },
+        {
+          "id": "KEJU-008",
+          "meal": "Margarin",
+          "nutrients": {
+            "protein": 0.6,
+            "fat": 59.17,
+            "carbohydrate": 0.0,
+            "calory": 526
+          }
+        },
+        {
+          "id": "KEJU-009",
+          "meal": "Mentega",
+          "nutrients": {
+            "protein": 0.85,
+            "fat": 81.11,
+            "carbohydrate": 0.06,
+            "calory": 717
+          }
+        },
+        {
+          "id": "KEJU-010",
+          "meal": "Susu",
+          "nutrients": {
+            "protein": 3.4,
+            "fat": 3.7,
+            "carbohydrate": 4.8,
+            "calory": 61
+          }
+        },
+        {
+          "id": "KEJU-011",
+          "meal": "Susu Skim",
+          "nutrients": {
+            "protein": 3.4,
+            "fat": 0.1,
+            "carbohydrate": 4.8,
+            "calory": 34
+          }
+        },
+        {
+          "id": "KEJU-012",
+          "meal": "Yogurt",
+          "nutrients": {
+            "protein": 3.5,
+            "fat": 3.0,
+            "carbohydrate": 4.0,
+            "calory": 59
+          }
+        }
+      ]
+    },
+    {
+      "category": "Telur",
+      "product": [
+        {
+          "id": "TELUR-001",
+          "meal": "Kuning Telur",
+          "nutrients": {
+            "protein": 15.86,
+            "fat": 26.54,
+            "carbohydrate": 3.59,
+            "calory": 322
+          }
+        },
+        {
+          "id": "TELUR-002",
+          "meal": "Orak-Arik Telur",
+          "nutrients": {
+            "protein": 10.98,
+            "fat": 11.52,
+            "carbohydrate": 1.86,
+            "calory": 158
+          }
+        },
+        {
+          "id": "TELUR-003",
+          "meal": "Putih Telur",
+          "nutrients": {
+            "protein": 10.9,
+            "fat": 0.17,
+            "carbohydrate": 0.73,
+            "calory": 52
+          }
+        },
+        {
+          "id": "TELUR-004",
+          "meal": "Telur Utuh",
+          "nutrients": {
+            "protein": 12.58,
+            "fat": 9.94,
+            "carbohydrate": 0.77,
+            "calory": 147
+          }
+        },
+        {
+          "id": "TELUR-005",
+          "meal": "Telur Dadar",
+          "nutrients": {
+            "protein": 10.62,
+            "fat": 12.02,
+            "carbohydrate": 0.69,
+            "calory": 153
+          }
+        },
+        {
+          "id": "TELUR-006",
+          "meal": "Telur Goreng",
+          "nutrients": {
+            "protein": 14.18,
+            "fat": 11.21,
+            "carbohydrate": 0.87,
+            "calory": 166
+          }
+        },
+        {
+          "id": "TELUR-007",
+          "meal": "Telur Rebus",
+          "nutrients": {
+            "protein": 12.53,
+            "fat": 10.57,
+            "carbohydrate": 1.12,
+            "calory": 154
+          }
+        }
+      ]
+    }
+  ]
+}

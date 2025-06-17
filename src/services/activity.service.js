@@ -2,6 +2,7 @@
 const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
+const { parseDate } = require('../libs/utils/date');
 
 class ActivityService extends BaseService {
   constructor() {
@@ -79,13 +80,21 @@ class ActivityService extends BaseService {
     try {
       this.logger.info(`Fetching activities for user ${userId} from ${startDate} to ${endDate}`);
 
+      // Parse dates
+      const parsedStartDate = parseDate(startDate);
+      const parsedEndDate = parseDate(endDate);
+
+      if (!parsedStartDate || !parsedEndDate) {
+        throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+      }
+
       this.logger.debug('Querying activities from database...');
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
           date: {
-            gte: new Date(startDate),
-            lte: new Date(endDate)
+            gte: parsedStartDate,
+            lte: parsedEndDate
           }
         },
         include: {
@@ -226,11 +235,17 @@ class ActivityService extends BaseService {
     try {
       this.logger.info(`Fetching daily activity summary for user ${userId} on ${date}`);
 
+      // Parse date
+      const parsedDate = parseDate(date);
+      if (!parsedDate) {
+        throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+      }
+
       this.logger.debug('Querying activities for the day...');
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
-          date: new Date(date)
+          date: parsedDate
         },
         include: {
           activityType: true

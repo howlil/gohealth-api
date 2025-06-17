@@ -1,21 +1,22 @@
 // src/middleware/validation.middleware.js
 const ApiResponse = require('../libs/http/ApiResponse');
-const { validationResult } = require('express-validator');
 
 class ValidationMiddleware {
-  validate() {
+  validate(schema) {
     return (req, res, next) => {
       try {
-        console.log('Validating request data:', {
+        const { error, value } = schema.validate({
           body: req.body,
           query: req.query,
           params: req.params
+        }, {
+          abortEarly: false,
+          stripUnknown: true,
+          convert: true
         });
 
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-          const formattedErrors = this.formatExpressValidatorErrors(errors);
-          console.log('Formatted errors:', formattedErrors);
+        if (error) {
+          const formattedErrors = this.formatJoiErrors(error);
 
           return res.status(422).json(
             ApiResponse.error(
@@ -26,10 +27,12 @@ class ValidationMiddleware {
           );
         }
 
+        req.body = value.body || req.body;
+        req.query = value.query || req.query;
+        req.params = value.params || req.params;
+
         next();
       } catch (error) {
-        console.error('Validation error:', error);
-
         return res.status(422).json(
           ApiResponse.error(
             'Validation failed',
@@ -41,15 +44,15 @@ class ValidationMiddleware {
     };
   }
 
-  formatExpressValidatorErrors(errors) {
+  formatJoiErrors(error) {
     const formattedErrors = {};
 
-    errors.array().forEach((error) => {
-      const field = error.path;
-      if (!formattedErrors[field]) {
-        formattedErrors[field] = [];
+    error.details.forEach((detail) => {
+      const path = detail.path.join('.');
+      if (!formattedErrors[path]) {
+        formattedErrors[path] = [];
       }
-      formattedErrors[field].push(error.msg);
+      formattedErrors[path].push(detail.message);
     });
 
     return formattedErrors;

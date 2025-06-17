@@ -25,7 +25,7 @@ class BMIController extends BaseController {
       );
 
       this.logger.info(`BMI calculated for user ${req.user.id}`);
-      
+
       res.status(201).json(
         ApiResponse.created(bmiRecord, 'BMI calculated successfully')
       );
@@ -37,7 +37,7 @@ class BMIController extends BaseController {
   async getBMIHistory(req, res) {
     try {
       const { limit = 10 } = req.query;
-      
+
       const history = await this.bmiService.getBMIHistory(
         req.user.id,
         parseInt(limit)
@@ -51,24 +51,38 @@ class BMIController extends BaseController {
     }
   }
 
-  async getLatestBMI(req, res) {
+  async updateBMI(req, res) {
     try {
-      const latestBMI = await this.bmiService.getLatestBMI(req.user.id);
+      const { bmiId } = req.params;
+      const { height, weight } = req.body;
+
+      const updatedBMI = await this.bmiService.updateBMI(
+        req.user.id,
+        bmiId,
+        height,
+        weight
+      );
+
+      this.logger.info(`BMI updated for user ${req.user.id}, record ID: ${bmiId}`);
 
       res.status(200).json(
-        ApiResponse.success(latestBMI, 'Latest BMI retrieved successfully')
+        ApiResponse.success(updatedBMI, 'BMI updated successfully')
       );
     } catch (error) {
       throw error;
     }
   }
 
-  async getBMIAnalysis(req, res) {
+  async deleteBMI(req, res) {
     try {
-      const analysis = await this.bmiService.getBMIAnalysis(req.user.id);
+      const { bmiId } = req.params;
+
+      await this.bmiService.deleteBMI(req.user.id, bmiId);
+
+      this.logger.info(`BMI deleted for user ${req.user.id}, record ID: ${bmiId}`);
 
       res.status(200).json(
-        ApiResponse.success(analysis, 'BMI analysis retrieved successfully')
+        ApiResponse.success(null, 'BMI deleted successfully')
       );
     } catch (error) {
       throw error;
@@ -83,7 +97,7 @@ class BMIController extends BaseController {
       );
 
       this.logger.info(`Weight goal created for user ${req.user.id}`);
-      
+
       res.status(201).json(
         ApiResponse.created(weightGoal, 'Weight goal created successfully')
       );
@@ -104,6 +118,40 @@ class BMIController extends BaseController {
 
       res.status(200).json(
         ApiResponse.success(goal, 'Active weight goal retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateWeightGoal(req, res) {
+    try {
+      const { goalId } = req.params;
+      const updatedGoal = await this.bmiService.updateWeightGoal(
+        req.user.id,
+        goalId,
+        req.body
+      );
+
+      this.logger.info(`Weight goal updated for user ${req.user.id}, goal ID: ${goalId}`);
+
+      res.status(200).json(
+        ApiResponse.success(updatedGoal, 'Weight goal updated successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteWeightGoal(req, res) {
+    try {
+      const { goalId } = req.params;
+      await this.bmiService.deleteWeightGoal(req.user.id, goalId);
+
+      this.logger.info(`Weight goal deleted for user ${req.user.id}, goal ID: ${goalId}`);
+
+      res.status(200).json(
+        ApiResponse.success(null, 'Weight goal deleted successfully')
       );
     } catch (error) {
       throw error;

@@ -31,16 +31,17 @@ class BMIRoutes {
       ErrorMiddleware.asyncHandler(this.bmiController.getBMIHistory.bind(this.bmiController))
     );
 
-    // Get latest BMI
-    this.router.get(
-      '/latest',
-      ErrorMiddleware.asyncHandler(this.bmiController.getLatestBMI.bind(this.bmiController))
+    // Delete BMI record
+    this.router.delete(
+      '/:bmiId',
+      ErrorMiddleware.asyncHandler(this.bmiController.deleteBMI.bind(this.bmiController))
     );
 
-    // Get BMI analysis
-    this.router.get(
-      '/analysis',
-      ErrorMiddleware.asyncHandler(this.bmiController.getBMIAnalysis.bind(this.bmiController))
+    // Update BMI record
+    this.router.put(
+      '/:bmiId',
+      ValidationMiddleware.validate(schemas.updateBMI),
+      ErrorMiddleware.asyncHandler(this.bmiController.updateBMI.bind(this.bmiController))
     );
 
     // Create weight goal
@@ -54,6 +55,19 @@ class BMIRoutes {
     this.router.get(
       '/goals/active',
       ErrorMiddleware.asyncHandler(this.bmiController.getActiveWeightGoal.bind(this.bmiController))
+    );
+
+    // Update weight goal
+    this.router.put(
+      '/goals/:goalId',
+      ValidationMiddleware.validate(schemas.updateWeightGoal),
+      ErrorMiddleware.asyncHandler(this.bmiController.updateWeightGoal.bind(this.bmiController))
+    );
+
+    // Delete weight goal
+    this.router.delete(
+      '/goals/:goalId',
+      ErrorMiddleware.asyncHandler(this.bmiController.deleteWeightGoal.bind(this.bmiController))
     );
   }
 }

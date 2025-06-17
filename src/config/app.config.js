@@ -6,7 +6,7 @@ class AppConfig {
     this.env = process.env.NODE_ENV || 'development';
     this.port = parseInt(process.env.PORT || '3000', 10);
     this.apiPrefix = '/api';
-    
+
     this.cors = {
       origin: process.env.CORS_ORIGIN === '*' ? '*' : process.env.CORS_ORIGIN?.split(','),
       credentials: true,
@@ -16,7 +16,13 @@ class AppConfig {
     this.rateLimit = {
       windowMs: 15 * 60 * 1000, // 15 minutes
       max: parseInt(process.env.RATE_LIMIT_MAX || '100', 10),
-      message: 'Too many requests from this IP, please try again later.'
+      message: 'Too many requests from this IP, please try again later.',
+      standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+      legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+      // Skip successful requests from rate limiting
+      skipSuccessfulRequests: false,
+      // Store configuration
+      skipFailedRequests: false
     };
 
     this.jwt = {
@@ -39,9 +45,72 @@ class AppConfig {
       }
     };
 
-    this.fatSecret = {
-      clientId: process.env.FATSECRET_CLIENT_ID,
-      clientSecret: process.env.FATSECRET_CLIENT_SECRET
+    this.foodData = {
+      filePath: process.env.FOOD_DATA_FILE_PATH || 'data.json',
+      defaultData: [
+        {
+          "fdcId": 170379,
+          "description": "Chicken breast, meat only, cooked",
+          "foodCategory": "Poultry",
+          "foodNutrients": [
+            {
+              "nutrient": {
+                "id": 1003,
+                "name": "Protein",
+                "unitName": "g"
+              },
+              "amount": 31.02
+            },
+            {
+              "nutrient": {
+                "id": 1004,
+                "name": "Total lipid (fat)",
+                "unitName": "g"
+              },
+              "amount": 3.57
+            },
+            {
+              "nutrient": {
+                "id": 1008,
+                "name": "Energy",
+                "unitName": "kcal"
+              },
+              "amount": 165
+            }
+          ]
+        },
+        {
+          "fdcId": 175196,
+          "description": "Rice, white, cooked",
+          "foodCategory": "Grains and Pasta",
+          "foodNutrients": [
+            {
+              "nutrient": {
+                "id": 1003,
+                "name": "Protein",
+                "unitName": "g"
+              },
+              "amount": 2.69
+            },
+            {
+              "nutrient": {
+                "id": 1004,
+                "name": "Total lipid (fat)",
+                "unitName": "g"
+              },
+              "amount": 0.28
+            },
+            {
+              "nutrient": {
+                "id": 1008,
+                "name": "Energy",
+                "unitName": "kcal"
+              },
+              "amount": 130
+            }
+          ]
+        }
+      ]
     };
 
     this.upload = {
@@ -68,12 +137,12 @@ class AppConfig {
 
   validate() {
     const required = [
-      'JWT_SECRET', 
-      'GOOGLE_WEB_CLIENT_ID', 
+      'JWT_SECRET',
+      'GOOGLE_WEB_CLIENT_ID',
       'GOOGLE_WEB_CLIENT_SECRET',
       'DATABASE_URL'
     ];
-    
+
     const missing = required.filter(key => !process.env[key]);
 
     if (missing.length > 0) {
@@ -82,14 +151,13 @@ class AppConfig {
 
     // Optional variables warning
     const optional = [
-      'GOOGLE_ANDROID_CLIENT_ID', 
+      'GOOGLE_ANDROID_CLIENT_ID',
       'GOOGLE_IOS_CLIENT_ID',
-      'FATSECRET_CLIENT_ID',
-      'FATSECRET_CLIENT_SECRET'
+      'FOOD_DATA_FILE_PATH'
     ];
-    
+
     const missingOptional = optional.filter(key => !process.env[key]);
-    
+
     if (missingOptional.length > 0) {
       console.warn(`Missing optional environment variables: ${missingOptional.join(', ')}`);
     }

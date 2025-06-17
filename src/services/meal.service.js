@@ -1,349 +1,500 @@
 // src/services/meal.service.js
 const BaseService = require('./base.service');
+const CalorieUtil = require('../libs/utils/calorie.util');
 const ApiError = require('../libs/http/ApiError');
-const FatSecretUtil = require('../libs/utils/fatsecret.util');
-const AppConfig = require('../config/app.config');
+const HttpStatus = require('../libs/http/HttpStatus');
 const { parseDate } = require('../libs/utils/date');
 
 class MealService extends BaseService {
   constructor() {
     super('userMeal');
-    this.fatSecret = new FatSecretUtil(
-      AppConfig.fatSecret.clientId,
-      AppConfig.fatSecret.clientSecret
-    );
   }
 
   async createMeal(data) {
     try {
-      this.logger.info(`Creating meal for user ${data.userId}`);
+      const { userId, foodId, mealType, date, quantity = 1, unit = "porsi" } = data;
 
-      const { userId, fatSecretFoodId, servingId, quantity, unit, nutritionData, mealType, ...mealData } = data;
-      this.logger.debug('Meal data:', { fatSecretFoodId, servingId, quantity, unit, mealType, ...mealData });
-
-      if (!mealType || !['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'].includes(mealType)) {
-        this.logger.warn('Meal type is required and must be one of BREAKFAST, LUNCH, DINNER, SNACK');
-        throw ApiError.badRequest('Meal type is required and must be one of BREAKFAST, LUNCH, DINNER, SNACK');
+      // Parse and validate date
+      const parsedDate = parseDate(date);
+      if (!parsedDate) {
+        throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
       }
 
-      let finalNutritionData = nutritionData;
-      if (fatSecretFoodId) {
-        // Fetch nutrition data from FatSecret
-        this.logger.debug('Fetching food data from FatSecret...');
-        const foodData = await this.fatSecret.getFood(fatSecretFoodId);
-        if (!foodData) {
-          this.logger.warn(`Food not found in FatSecret: ${fatSecretFoodId}`);
-          throw ApiError.notFound('Food not found');
-        }
-        // Find the selected serving
-        this.logger.debug('Finding selected serving...');
-        const serving = foodData.servings.find(s => s.servingId === servingId);
-        if (!serving) {
-          this.logger.warn(`Invalid serving ID: ${servingId}`);
-          throw ApiError.badRequest('Invalid serving ID');
-        }
-        // Calculate nutrition for the quantity
-        this.logger.debug('Calculating nutrition data...');
-        finalNutritionData = this.fatSecret.calculateNutrition(serving, quantity, unit);
-        this.logger.debug('Calculated nutrition:', finalNutritionData);
+      const food = await this.prisma.food.findUnique({
+        where: { id: foodId, isActive: true },
+        include: { category: true }
+      });
+
+      if (!food) {
+        throw new ApiError('Food not found', HttpStatus.NOT_FOUND);
       }
 
-      // Create meal with nutrition data
-      this.logger.debug('Creating meal record in database...');
+      const totalCalories = food.calory * quantity;
+      const totalProtein = food.protein * quantity;
+      const totalFat = food.fat * quantity;
+      const totalCarbs = food.carbohydrate * quantity;
+
       const meal = await this.prisma.userMeal.create({
         data: {
-          fatSecretFoodId: fatSecretFoodId || null,
-          servingId: servingId || null,
+          userId,
+          foodId,
+          mealType,
+          date: parsedDate,
           quantity,
           unit,
-          nutritionData: finalNutritionData,
-          foodName: mealData.foodName,
-          brandName: mealData.brandName,
-          date: new Date(mealData.date),
-          userId,
-          mealType
+          totalCalories,
+          totalProtein,
+          totalFat,
+          totalCarbs
+        },
+        include: {
+          food: {
+            include: { category: true }
+          }
         }
       });
 
-      this.logger.info(`Meal created successfully for user ${userId}`);
       return meal;
     } catch (error) {
-      this.logger.error('Error creating meal', {
-        error: error.message,
-        stack: error.stack,
-        userId: data.userId,
-        mealData: data
-      });
+      this.logger.error('Error creating meal:', error);
       throw error;
     }
   }
 
-  async getUserMeals(userId, category, search, limit = 10, offset = 0) {
+  async getUserMeals(userId, filters = {}) {
     try {
-      this.logger.info(`Fetching meals for user ${userId}`);
+      const { page = 0, limit = 10, date, mealType } = filters;
+      const skip = parseInt(page) * parseInt(limit);
 
       const where = { userId };
-      if (category) {
-        where.category = category;
+      if (date) {
+        const parsedDate = parseDate(date);
+        if (!parsedDate) {
+          throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
+        }
+        where.date = parsedDate;
       }
-      if (search) {
-        where.OR = [
-          { foodName: { contains: search, mode: 'insensitive' } },
-          { brandName: { contains: search, mode: 'insensitive' } }
-        ];
-      }
+      if (mealType) where.mealType = mealType;
 
-      this.logger.debug('Querying meals from database...');
       const meals = await this.prisma.userMeal.findMany({
         where,
-        orderBy: [
-          { date: 'desc' },
-          { mealType: 'asc' }
-        ],
-        skip: Number(offset),
-        take: Number(limit)
+        include: {
+          food: {
+            include: { category: true }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        },
+        skip,
+        take: parseInt(limit)
       });
 
-      this.logger.debug(`Found ${meals.length} meals`);
-      this.logger.info(`Meals retrieved successfully for user ${userId}`);
-      return meals;
+      const total = await this.prisma.userMeal.count({ where });
+
+      return {
+        data: meals,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          totalPages: Math.ceil(total / parseInt(limit))
+        }
+      };
     } catch (error) {
-      this.logger.error('Error getting user meals', {
-        error: error.message,
-        stack: error.stack,
-        userId
-      });
+      this.logger.error('Error getting user meals:', error);
       throw error;
     }
   }
 
-  async updateMeal(userId, mealType, data) {
+  async updateMeal(userId, mealId, data) {
     try {
-      this.logger.info(`Updating meal for user ${userId}, meal type ${mealType}`);
-
-      this.logger.debug('Finding existing meal...');
       const existingMeal = await this.prisma.userMeal.findFirst({
         where: {
-          userId,
-          mealType,
-          date: data.date
-        }
+          id: mealId,
+          userId
+        },
+        include: { food: true }
       });
 
       if (!existingMeal) {
-        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealType}`);
-        throw ApiError.notFound('Meal not found');
+        throw new ApiError('Meal not found', HttpStatus.NOT_FOUND);
       }
 
-      let nutritionData = existingMeal.nutritionData;
+      const { quantity, unit } = data;
+      const food = existingMeal.food;
 
-      // Recalculate nutrition if quantity or serving changed
-      if (data.servingId !== existingMeal.servingId || data.quantity !== existingMeal.quantity) {
-        this.logger.debug('Recalculating nutrition data...');
-        const foodData = await this.fatSecret.getFood(existingMeal.fatSecretFoodId);
-        const serving = foodData.servings.find(s => s.servingId === data.servingId);
+      const totalCalories = food.calory * (quantity || existingMeal.quantity);
+      const totalProtein = food.protein * (quantity || existingMeal.quantity);
+      const totalFat = food.fat * (quantity || existingMeal.quantity);
+      const totalCarbs = food.carbohydrate * (quantity || existingMeal.quantity);
 
-        if (!serving) {
-          this.logger.warn(`Invalid serving ID: ${data.servingId}`);
-          throw ApiError.badRequest('Invalid serving ID');
-        }
-
-        nutritionData = this.fatSecret.calculateNutrition(serving, data.quantity, data.unit);
-        this.logger.debug('Recalculated nutrition:', nutritionData);
-      }
-
-      this.logger.debug('Updating meal record...');
       const updatedMeal = await this.prisma.userMeal.update({
-        where: {
-          userId_mealType_date: {
-            userId,
-            mealType,
-            date: existingMeal.date
-          }
-        },
+        where: { id: mealId },
         data: {
           ...data,
-          nutritionData
+          totalCalories,
+          totalProtein,
+          totalFat,
+          totalCarbs
+        },
+        include: {
+          food: {
+            include: { category: true }
+          }
         }
       });
 
-      this.logger.info(`Meal updated successfully for user ${userId}`);
       return updatedMeal;
     } catch (error) {
-      this.logger.error('Error updating meal', {
-        error: error.message,
-        stack: error.stack,
-        userId,
-        mealType
-      });
+      this.logger.error('Error updating meal:', error);
       throw error;
     }
   }
 
-  async deleteMeal(userId, mealType, date) {
+  async deleteMeal(userId, mealId) {
     try {
-      this.logger.info(`Deleting meal for user ${userId}, meal type ${mealType}, date ${date}`);
-
-      const meal = await this.prisma.userMeal.findUnique({
+      const meal = await this.prisma.userMeal.findFirst({
         where: {
-          userId_mealType_date: {
-            userId,
-            mealType,
-            date
-          }
+          id: mealId,
+          userId
         }
       });
 
       if (!meal) {
-        this.logger.warn(`Meal not found for user ${userId}, meal type ${mealType}, date ${date}`);
-        throw ApiError.notFound('Meal not found');
+        throw new ApiError('Meal not found', HttpStatus.NOT_FOUND);
       }
 
-      this.logger.debug('Deleting meal record...');
       await this.prisma.userMeal.delete({
-        where: {
-          userId_mealType_date: {
-            userId,
-            mealType,
-            date
-          }
-        }
+        where: { id: mealId }
       });
 
-      this.logger.info(`Meal deleted successfully for user ${userId}`);
       return true;
     } catch (error) {
-      this.logger.error('Error deleting meal', {
-        error: error.message,
-        stack: error.stack,
-        userId,
-        mealType,
-        date
-      });
+      this.logger.error('Error deleting meal:', error);
       throw error;
     }
   }
 
   async getDailySummary(userId, date) {
     try {
-      this.logger.info(`Fetching daily meal summary for user ${userId} on ${date}`);
+      const targetDate = parseDate(date);
+      if (!targetDate) {
+        throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
+      }
 
-      this.logger.debug('Querying meals for the day...');
       const meals = await this.prisma.userMeal.findMany({
         where: {
           userId,
-          date: new Date(date)
-        }
-      });
-
-      this.logger.debug(`Found ${meals.length} meals`);
-
-      this.logger.debug('Calculating nutrition summary...');
-      const summary = meals.reduce((acc, meal) => {
-        const nutrition = meal.nutritionData;
-
-        acc.calories += nutrition.calories || 0;
-        acc.protein += nutrition.protein || 0;
-        acc.carbohydrates += nutrition.carbohydrate || 0;
-        acc.fat += nutrition.fat || 0;
-        acc.fiber += nutrition.fiber || 0;
-        acc.sugar += nutrition.sugar || 0;
-
-        return acc;
-      }, {
-        calories: 0,
-        protein: 0,
-        carbohydrates: 0,
-        fat: 0,
-        fiber: 0,
-        sugar: 0
-      });
-
-      this.logger.debug('Nutrition summary:', summary);
-
-      this.logger.debug('Fetching nutrition targets...');
-      const targets = await this.prisma.dailyNutritionTarget.findFirst({
-        where: {
-          userId,
-          isActive: true,
-          effectiveDate: {
-            lte: new Date(date)
-          }
+          date: targetDate
         },
-        orderBy: {
-          effectiveDate: 'desc'
+        include: {
+          food: {
+            include: { category: true }
+          }
         }
       });
 
-      const result = {
-        summary,
-        targets,
-        meals
+      const summary = {
+        date: targetDate,
+        totalCalories: 0,
+        totalProtein: 0,
+        totalFat: 0,
+        totalCarbs: 0,
+        mealsByType: {
+          BREAKFAST: [],
+          LUNCH: [],
+          DINNER: [],
+          SNACK: []
+        },
+        nutritionBreakdown: {
+          calories: 0,
+          protein: 0,
+          fat: 0,
+          carbs: 0
+        }
       };
 
-      this.logger.info(`Daily meal summary retrieved successfully for user ${userId}`);
-      return result;
-    } catch (error) {
-      this.logger.error('Error getting daily summary', {
-        error: error.message,
-        stack: error.stack,
-        userId,
-        date
+      meals.forEach(meal => {
+        summary.totalCalories += meal.totalCalories;
+        summary.totalProtein += meal.totalProtein;
+        summary.totalFat += meal.totalFat;
+        summary.totalCarbs += meal.totalCarbs;
+
+        summary.mealsByType[meal.mealType].push(meal);
       });
+
+      summary.nutritionBreakdown = {
+        calories: summary.totalCalories,
+        protein: summary.totalProtein,
+        fat: summary.totalFat,
+        carbs: summary.totalCarbs
+      };
+
+      return summary;
+    } catch (error) {
+      this.logger.error('Error getting daily summary:', error);
       throw error;
     }
   }
 
-  async searchFoods(query, page = 0) {
+  async getAllFoods(search = '', category = '', page = 0, limit = 50) {
     try {
-      this.logger.info(`Searching foods with query: "${query}", page: ${page}`);
+      const skip = parseInt(page) * parseInt(limit);
 
-      this.logger.debug('Calling FatSecret API...');
-      const results = await this.fatSecret.searchFoods(query, page);
+      const where = {
+        isActive: true,
+        ...(search && {
+          name: {
+            contains: search
+          }
+        }),
+        ...(category && {
+          category: {
+            slug: category
+          }
+        })
+      };
 
-      this.logger.debug(`Found ${results.length} results`);
-      this.logger.info('Food search completed successfully');
-      return results;
-    } catch (error) {
-      this.logger.error('Error searching foods', {
-        error: error.message,
-        stack: error.stack,
-        query,
-        page
+      const foods = await this.prisma.food.findMany({
+        where,
+        include: {
+          category: true
+        },
+        orderBy: {
+          name: 'asc'
+        },
+        skip,
+        take: parseInt(limit)
       });
+
+      const total = await this.prisma.food.count({ where });
+
+      return {
+        data: foods,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          totalPages: Math.ceil(total / parseInt(limit))
+        }
+      };
+    } catch (error) {
+      this.logger.error('Error getting all foods:', error);
+      throw error;
+    }
+  }
+
+  async searchFoods(query, page = 0, limit = 20) {
+    try {
+      const skip = parseInt(page) * parseInt(limit);
+
+      const foods = await this.prisma.food.findMany({
+        where: {
+          isActive: true,
+          name: {
+            contains: query
+          }
+        },
+        include: {
+          category: true
+        },
+        orderBy: {
+          name: 'asc'
+        },
+        skip,
+        take: parseInt(limit)
+      });
+
+      const total = await this.prisma.food.count({
+        where: {
+          isActive: true,
+          name: {
+            contains: query
+          }
+        }
+      });
+
+      return {
+        data: foods,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          totalPages: Math.ceil(total / parseInt(limit))
+        }
+      };
+    } catch (error) {
+      this.logger.error('Error searching foods:', error);
       throw error;
     }
   }
 
   async getFoodDetails(foodId) {
     try {
-      this.logger.info(`Fetching food details for ID: ${foodId}`);
-
-      this.logger.debug('Calling FatSecret API...');
-      const foodDetails = await this.fatSecret.getFood(foodId);
-
-      if (!foodDetails) {
-        this.logger.warn(`Food not found: ${foodId}`);
-        throw ApiError.notFound('Food not found');
-      }
-
-      this.logger.info('Food details retrieved successfully');
-      return foodDetails;
-    } catch (error) {
-      this.logger.error('Error getting food details', {
-        error: error.message,
-        stack: error.stack,
-        foodId
+      const food = await this.prisma.food.findUnique({
+        where: {
+          id: foodId,
+          isActive: true
+        },
+        include: {
+          category: true
+        }
       });
+
+      return food;
+    } catch (error) {
+      this.logger.error('Error getting food details:', error);
       throw error;
     }
   }
 
-  async getAllMeals({ page = 0, limit = 10 }) {
-    this.logger.info(`Fetching all foods from FatSecret: page=${page}, limit=${limit}`);
-    const foods = await this.fatSecret.searchFoods('', page, limit);
-    this.logger.info(`Found ${foods.length} foods from FatSecret`);
-    return { source: 'fatsecret', foods };
+  async autoCompleteFood(query, limit = 10) {
+    try {
+      const foods = await this.prisma.food.findMany({
+        where: {
+          isActive: true,
+          name: {
+            contains: query
+          }
+        },
+        select: {
+          id: true,
+          name: true,
+          calory: true,
+          category: {
+            select: {
+              name: true,
+              slug: true
+            }
+          }
+        },
+        orderBy: {
+          name: 'asc'
+        },
+        take: parseInt(limit)
+      });
+
+      return foods;
+    } catch (error) {
+      this.logger.error('Error autocompleting foods:', error);
+      throw error;
+    }
+  }
+
+  async getFoodCategories() {
+    try {
+      const categories = await this.prisma.foodCategory.findMany({
+        orderBy: {
+          name: 'asc'
+        },
+        include: {
+          _count: {
+            select: {
+              foods: {
+                where: {
+                  isActive: true
+                }
+              }
+            }
+          }
+        }
+      });
+
+      return categories;
+    } catch (error) {
+      this.logger.error('Error getting food categories:', error);
+      throw error;
+    }
+  }
+
+  async addToFavorites(userId, foodId) {
+    try {
+      const food = await this.prisma.food.findUnique({
+        where: { id: foodId, isActive: true }
+      });
+
+      if (!food) {
+        throw new ApiError('Food not found', HttpStatus.NOT_FOUND);
+      }
+
+      const favorite = await this.prisma.favoriteFood.upsert({
+        where: {
+          userId_foodId: {
+            userId,
+            foodId
+          }
+        },
+        update: {},
+        create: {
+          userId,
+          foodId
+        },
+        include: {
+          food: {
+            include: { category: true }
+          }
+        }
+      });
+
+      return favorite;
+    } catch (error) {
+      this.logger.error('Error adding to favorites:', error);
+      throw error;
+    }
+  }
+
+  async removeFromFavorites(userId, foodId) {
+    try {
+      await this.prisma.favoriteFood.deleteMany({
+        where: {
+          userId,
+          foodId
+        }
+      });
+
+      return true;
+    } catch (error) {
+      this.logger.error('Error removing from favorites:', error);
+      throw error;
+    }
+  }
+
+  async getFavorites(userId, page = 0, limit = 20) {
+    try {
+      const skip = parseInt(page) * parseInt(limit);
+
+      const favorites = await this.prisma.favoriteFood.findMany({
+        where: { userId },
+        include: {
+          food: {
+            include: { category: true }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        },
+        skip,
+        take: parseInt(limit)
+      });
+
+      const total = await this.prisma.favoriteFood.count({
+        where: { userId }
+      });
+
+      return {
+        data: favorites,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          totalPages: Math.ceil(total / parseInt(limit))
+        }
+      };
+    } catch (error) {
+      this.logger.error('Error getting favorites:', error);
+      throw error;
+    }
   }
 }
 

@@ -363,7 +363,7 @@ const options = {
                             enum: ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'],
                             example: 'BREAKFAST'
                         },
-                        fatSecretFoodId: {
+                        foodId: {
                             type: 'string',
                             example: '33691'
                         },
@@ -439,6 +439,77 @@ const options = {
                             type: 'string',
                             nullable: true,
                             example: 'Morning run'
+                        }
+                    }
+                },
+                CreateMealRequest: {
+                    type: 'object',
+                    required: ['mealType', 'foodName', 'date', 'quantity', 'unit'],
+                    properties: {
+                        mealType: {
+                            type: 'string',
+                            enum: ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'],
+                            example: 'BREAKFAST'
+                        },
+                        foodId: {
+                            type: 'string',
+                            example: '170379'
+                        },
+                        servingId: {
+                            type: 'string',
+                            example: '1'
+                        },
+                        foodName: {
+                            type: 'string',
+                            example: 'Chicken Breast'
+                        },
+                        brandName: {
+                            type: 'string',
+                            example: null
+                        },
+                        date: {
+                            type: 'string',
+                            format: 'date',
+                            example: '01-01-2023'
+                        },
+                        quantity: {
+                            type: 'number',
+                            minimum: 0,
+                            example: 100
+                        },
+                        unit: {
+                            type: 'string',
+                            example: 'g'
+                        },
+                        nutritionData: {
+                            type: 'object',
+                            properties: {
+                                calories: {
+                                    type: 'number',
+                                    minimum: 0,
+                                    example: 165
+                                },
+                                protein: {
+                                    type: 'number',
+                                    minimum: 0,
+                                    example: 31
+                                },
+                                carbohydrates: {
+                                    type: 'number',
+                                    minimum: 0,
+                                    example: 0
+                                },
+                                fat: {
+                                    type: 'number',
+                                    minimum: 0,
+                                    example: 3.6
+                                },
+                                fiber: {
+                                    type: 'number',
+                                    minimum: 0,
+                                    example: 0
+                                }
+                            }
                         }
                     }
                 }

@@ -43,8 +43,7 @@ jobs:
         GOOGLE_WEB_REDIRECT_URI: ${{ secrets.GOOGLE_WEB_REDIRECT_URI }}
         GOOGLE_ANDROID_CLIENT_ID: ${{ secrets.GOOGLE_ANDROID_CLIENT_ID }}
         GOOGLE_IOS_CLIENT_ID: ${{ secrets.GOOGLE_IOS_CLIENT_ID }}
-        FATSECRET_CLIENT_ID: ${{ secrets.FATSECRET_CLIENT_ID }}
-        FATSECRET_CLIENT_SECRET: ${{ secrets.FATSECRET_CLIENT_SECRET }}
+        FOOD_DATA_FILE_PATH: ${{ secrets.FOOD_DATA_FILE_PATH }}
         CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
         RATE_LIMIT_MAX: ${{ secrets.RATE_LIMIT_MAX }}
         UPLOAD_DIR: ${{ secrets.UPLOAD_DIR }}

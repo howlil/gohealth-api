@@ -753,3 +753,829 @@
 
 [31mInvalid scalar field `mealType` for include statement on model UserMeal. Available options are marked with ?.[39m
 [31mNote that include statements only accept relation fields. - /api/meals?limit=10&offset=0 - GET - ::1[39m
+2025-06-16 20:37:34:3734 [31merror[39m: [31mError creating meal[39m
+2025-06-16 20:37:34:3734 [31merror[39m: [31mFood not found - /api/meals - POST - ::1[39m
+2025-06-16 20:56:24:5624 [31merror[39m: [31mError getting food details[39m
+2025-06-16 20:56:24:5624 [31merror[39m: [31mFood not found - /api/meals/foods/autocomplete?query=chi&limit=10 - GET - ::1[39m
+2025-06-16 21:20:46:2046 [31merror[39m: [31mOnly image files (JPEG, PNG, GIF, WEBP) are allowed - /api/users/profile/image - POST - ::1[39m
+2025-06-16 21:21:04:214 [31merror[39m: [31mOnly image files (JPEG, PNG, GIF, WEBP) are allowed - /api/users/profile/image - POST - ::1[39m
+2025-06-16 21:21:14:2114 [31merror[39m: [31mOnly image files (JPEG, PNG, GIF, WEBP) are allowed - /api/users/profile/image - POST - ::1[39m
+2025-06-16 21:59:02:592 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-16 22:00:49:049 [31merror[39m: [31mRoute /api/v1/callback not found - /api/v1/callback - POST - ::1[39m
+2025-06-17 15:15:27:1527 [31merror[39m: [31mRoute /favicon.ico not found - /favicon.ico - GET - ::1[39m
+2025-06-17 16:10:20:1020 [31merror[39m: [31mLogin failed[39m
+2025-06-17 16:10:20:1020 [31merror[39m: [31mEmail tidak ditemukan - /api/auth/login - POST - ::1[39m
+2025-06-17 16:38:51:3851 [31merror[39m: [31mRoute /api/bmi/goals/b2b76d23-c38c-49f1-8a36-ce1d2b74770e not found - /api/bmi/goals/b2b76d23-c38c-49f1-8a36-ce1d2b74770e - DELETE - ::1[39m
+2025-06-17 23:50:30:5030 [31merror[39m: [31mError getting all foods[39m
+2025-06-17 23:50:48:5048 [31merror[39m: [31mError getting all foods[39m
+2025-06-17 23:51:02:512 [31merror[39m: [31mError getting all foods[39m
+2025-06-17 23:54:39:5439 [31merror[39m: [31mError getting all foods[39m
+2025-06-18 00:02:19:219 [31merror[39m: [31mError getting all foods[39m
+2025-06-18 00:16:52:1652 [31merror[39m: [31mError getting all foods[39m
+2025-06-18 01:48:10:4810 [31merror[39m: [31mLogin failed[39m
+2025-06-18 01:48:10:4810 [31merror[39m: [31mEmail tidak ditemukan - /api/auth/login - POST - ::1[39m
+2025-06-18 01:48:55:4855 [31merror[39m: [31mError getting user meals: Cannot read properties of undefined (reading 'findMany')[39m
+2025-06-18 01:48:55:4855 [31merror[39m: [31mCannot read properties of undefined (reading 'findMany') - /api/meals?page=0&limit=10 - GET - ::1[39m
+2025-06-18 01:49:04:494 [31merror[39m: [31mError getting all foods: Cannot read properties of undefined (reading 'findMany')[39m
+2025-06-18 01:49:04:494 [31merror[39m: [31mCannot read properties of undefined (reading 'findMany') - /api/meals/foods?search=chicken&category=Poultry&page=0&limit=50 - GET - ::1[39m
+2025-06-18 01:54:42:5442 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chicken",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    },[39m
+[31m    category: {[39m
+[31m      slug: "poultry"[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    category: true[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 50[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:54:42:5442 [31merror[39m: [31mError getting all foods: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chicken",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    },[39m
+[31m    category: {[39m
+[31m      slug: "poultry"[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    category: true[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 50[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:54:42:5442 [31merror[39m: [31m[39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chicken",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    },[39m
+[31m    category: {[39m
+[31m      slug: "poultry"[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    category: true[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 50[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?. - /api/meals/foods?search=chicken&category=poultry&page=0&limit=50 - GET - ::1[39m
+2025-06-18 01:59:07:597 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chi",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:59:07:597 [31merror[39m: [31mError autocompleting foods: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chi",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:59:07:597 [31merror[39m: [31m[39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "chi",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?. - /api/meals/foods/autocomplete?query=chi&limit=10 - GET - ::1[39m
+2025-06-18 01:59:13:5913 [31merror[39m: [31mPrisma Error: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "ay",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:59:13:5913 [31merror[39m: [31mError autocompleting foods: [39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "ay",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?.[39m
+2025-06-18 01:59:13:5913 [31merror[39m: [31m[39m
+[31mInvalid `prisma.food.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    isActive: true,[39m
+[31m    name: {[39m
+[31m      contains: "ay",[39m
+[31m      mode: "insensitive",[39m
+[31m      ~~~~[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[],[39m
+[31m?     notIn?: String[],[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     search?: String,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  select: {[39m
+[31m    id: true,[39m
+[31m    name: true,[39m
+[31m    calory: true,[39m
+[31m    category: {[39m
+[31m      select: {[39m
+[31m        name: true,[39m
+[31m        slug: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    name: "asc"[39m
+[31m  },[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `mode`. Did you mean `lte`? Available options are marked with ?. - /api/meals/foods/autocomplete?query=ay&limit=10 - GET - ::1[39m
+2025-06-18 02:00:49:049 [31merror[39m: [31mToken refresh failed[39m
+2025-06-18 02:00:49:049 [31merror[39m: [31mInvalid refresh token - /api/auth/refresh - POST - ::1[39m
+2025-06-18 02:04:26:426 [31merror[39m: [31mError adding to favorites: Food not found[39m
+2025-06-18 02:04:26:426 [31merror[39m: [31mFood not found - /api/meals/favorites/SAYUR-001%22 - POST - ::1[39m
+2025-06-18 02:06:11:611 [31merror[39m: [31mToken refresh failed[39m
+2025-06-18 02:06:11:611 [31merror[39m: [31mInvalid refresh token - /api/auth/refresh - POST - ::1[39m
+2025-06-18 02:06:15:615 [31merror[39m: [31mToken refresh failed[39m
+2025-06-18 02:06:15:615 [31merror[39m: [31mInvalid refresh token - /api/auth/refresh - POST - ::1[39m
+2025-06-18 02:06:59:659 [31merror[39m: [31mLogin failed[39m
+2025-06-18 02:06:59:659 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-18 02:07:38:738 [31merror[39m: [31mLogin failed[39m
+2025-06-18 02:07:38:738 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-18 02:08:51:851 [31merror[39m: [31mLogin failed[39m
+2025-06-18 02:08:51:851 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-18 02:09:24:924 [31merror[39m: [31mLogin failed[39m
+2025-06-18 02:09:24:924 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-18 02:09:53:953 [31merror[39m: [31mLogin failed[39m
+2025-06-18 02:09:53:953 [31merror[39m: [31mPassword salah - /api/auth/login - POST - ::1[39m
+2025-06-18 02:15:11:1511 [31merror[39m: [31mError calculating BMI[39m
+2025-06-18 02:15:11:1511 [31merror[39m: [31mUser profile incomplete (age, gender, activity level required) - /api/bmi/calculate - POST - ::1[39m
+2025-06-18 02:40:13:4013 [31merror[39m: [31mError creating meal: Food not found[39m
+2025-06-18 02:40:13:4013 [31merror[39m: [31mFood not found - /api/meals - POST - ::1[39m
+2025-06-18 02:57:21:5721 [31merror[39m: [31mError getting daily summary: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 02:57:21:5721 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals/summary?date=18-06-2025 - GET - ::1[39m
+2025-06-18 02:57:21:5721 [31merror[39m: [31mError getting user meals: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 02:57:21:5721 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals?page=0&limit=10&date=18-06-2025 - GET - ::1[39m
+2025-06-18 03:04:23:423 [31merror[39m: [31mError getting user meals: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:04:23:423 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals?page=0&limit=10&date=18-06-2025 - GET - ::1[39m
+2025-06-18 03:04:23:423 [31merror[39m: [31mError getting daily summary: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:04:23:423 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals/summary?date=18-06-2025 - GET - ::1[39m
+2025-06-18 03:04:59:459 [31merror[39m: [31mError creating meal: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:04:59:459 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals - POST - ::1[39m
+2025-06-18 03:05:07:57 [31merror[39m: [31mError creating meal: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:05:07:57 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals - POST - ::1[39m
+2025-06-18 03:05:19:519 [31merror[39m: [31mError creating meal: [39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:05:19:519 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    foodId: "DAGING-001",[39m
+[31m    mealType: "BREAKFAST",[39m
+[31m    date: new Date("Invalid Date"),[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    quantity: 100,[39m
+[31m    unit: "gram",[39m
+[31m    totalCalories: 15000,[39m
+[31m    totalProtein: 2000,[39m
+[31m    totalFat: 1000,[39m
+[31m    totalCarbs: 0[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals - POST - ::1[39m
+2025-06-18 03:06:42:642 [31merror[39m: [31mError getting user meals: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:06:42:642 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals?page=0&limit=10&date=18-06-2025 - GET - ::1[39m
+2025-06-18 03:06:43:643 [31merror[39m: [31mError getting daily summary: [39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-06-18 03:06:43:643 [31merror[39m: [31m[39m
+[31mInvalid `prisma.userMeal.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "05110d89-00ca-4d66-8630-0632463e2c65",[39m
+[31m    date: new Date("Invalid Date")[39m
+[31m          ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    food: {[39m
+[31m      include: {[39m
+[31m        category: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. - /api/meals/summary?date=18-06-2025 - GET - ::1[39m
+2025-06-18 03:07:07:77 [31merror[39m: [31mExpected property name or '}' in JSON at position 1 - /api/meals - POST - ::1[39m
+2025-06-18 03:11:14:1114 [31merror[39m: [31mOnly image files (JPEG, PNG, GIF, WEBP) are allowed - /api/users/profile/image - POST - ::1[39m

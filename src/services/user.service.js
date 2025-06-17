@@ -2,6 +2,7 @@
 const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
+const { parseDate, formatDate } = require('../libs/utils/date');
 
 class UserService extends BaseService {
   constructor() {
@@ -137,6 +138,12 @@ class UserService extends BaseService {
       this.logger.debug('Getting user profile...');
       const user = await this.getProfile(userId);
 
+      // Parse the input date
+      const parsedDate = parseDate(date);
+      if (!parsedDate) {
+        throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+      }
+
       let caloriesTracker = [];
       if (range === 'month') {
         // Determine month boundaries
@@ -144,7 +151,7 @@ class UserService extends BaseService {
         if (month) {
           targetMonth = new Date(`${month}-01T00:00:00.000Z`);
         } else {
-          targetMonth = new Date(date);
+          targetMonth = new Date(parsedDate);
           targetMonth.setUTCDate(1);
         }
         const year = targetMonth.getUTCFullYear();
@@ -176,11 +183,11 @@ class UserService extends BaseService {
               }
             }
           });
-          const calories = meals.reduce((sum, meal) => sum + (meal.nutritionData?.calories || 0), 0);
+          const calories = meals.reduce((sum, meal) => sum + (meal.totalCalories || 0), 0);
           caloriesTracker.push({
             label: `Week ${weekNum}`,
-            start: weekStart.toISOString().split('T')[0],
-            end: weekEnd.toISOString().split('T')[0],
+            start: formatDate(weekStart),
+            end: formatDate(weekEnd),
             calories
           });
           weekNum++;
@@ -188,7 +195,7 @@ class UserService extends BaseService {
         }
       } else {
         // Default: week (7 days, Sun-Sat containing 'date')
-        const refDate = new Date(date);
+        const refDate = new Date(parsedDate);
         refDate.setUTCHours(0, 0, 0, 0);
         // Find Sunday of the week
         const dayOfWeek = refDate.getUTCDay();
@@ -204,8 +211,8 @@ class UserService extends BaseService {
               date: d
             }
           });
-          const calories = meals.reduce((sum, meal) => sum + (meal.nutritionData?.calories || 0), 0);
-          caloriesTracker.push({ label, date: d.toISOString().split('T')[0], calories });
+          const calories = meals.reduce((sum, meal) => sum + (meal.totalCalories || 0), 0);
+          caloriesTracker.push({ label, date: formatDate(d), calories });
         }
       }
 
@@ -214,7 +221,7 @@ class UserService extends BaseService {
       const meals = await this.prisma.userMeal.findMany({
         where: {
           userId,
-          date: new Date(date)
+          date: parsedDate
         }
       });
       this.logger.debug(`Found ${meals.length} meals`);
@@ -224,7 +231,7 @@ class UserService extends BaseService {
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
-          date: new Date(date)
+          date: parsedDate
         }
       });
       this.logger.debug(`Found ${activities.length} activities`);
@@ -232,7 +239,7 @@ class UserService extends BaseService {
       // Calculate calories consumed
       this.logger.debug('Calculating calories consumed...');
       const caloriesConsumed = meals.reduce((sum, meal) => {
-        return sum + (meal.nutritionData?.calories || 0);
+        return sum + (meal.totalCalories || 0);
       }, 0);
       this.logger.debug(`Total calories consumed: ${caloriesConsumed}`);
 
@@ -250,7 +257,7 @@ class UserService extends BaseService {
           userId,
           isActive: true,
           effectiveDate: {
-            lte: new Date(date)
+            lte: parsedDate
           }
         },
         orderBy: {
@@ -297,7 +304,7 @@ class UserService extends BaseService {
         },
         weightGoal,
         latestBMI,
-        date,
+        date: formatDate(parsedDate),
         caloriesTracker
       };
 

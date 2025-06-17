@@ -46,21 +46,51 @@ enum ACTIVITYLEVEL {
   EXTRA_ACTIVE
 }
 
+model FoodCategory {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  foods Food[]
+
+  @@index([slug])
+}
+
+model Food {
+  id           String       @id @default(cuid())
+  name         String
+  categoryId   String
+  protein      Float        @default(0)
+  fat          Float        @default(0)
+  carbohydrate Float        @default(0)
+  calory       Float        @default(0)
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  category      FoodCategory   @relation(fields: [categoryId], references: [id])
+  userMeals     UserMeal[]
+  favoriteFoods FavoriteFood[]
+
+  @@index([categoryId])
+  @@index([name])
+  @@index([isActive])
+}
+
 model FavoriteFood {
   id              String   @id @default(uuid())
   userId          String
-  fatSecretFoodId String
-  foodName        String
-  brandName       String?
-  description     String?
-  defaultServing  Float?
-  defaultUnit     String?
-  nutritionData   Json
+  foodId          String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  user            User     @relation(fields: [userId], references: [id])
 
-  @@unique([userId, fatSecretFoodId])
+  user            User     @relation(fields: [userId], references: [id])
+  food            Food     @relation(fields: [foodId], references: [id])
+
+  @@unique([userId, foodId])
   @@index([userId])
 }
 
@@ -72,25 +102,27 @@ enum MEAL_TYPE {
 }
 
 model UserMeal {
+  id              String    @id @default(uuid())
   userId          String
+  foodId          String
   mealType        MEAL_TYPE
-  fatSecretFoodId String
-  foodName        String
-  brandName       String?
-  date            DateTime @db.Date
-  quantity        Float
-  unit            String
-  servingId       String?
-  nutritionData   Json
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  date            DateTime  @db.Date
+  quantity        Float     @default(1)
+  unit            String    @default("porsi")
+  totalCalories   Float
+  totalProtein    Float
+  totalFat        Float
+  totalCarbs      Float
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  user     User     @relation(fields: [userId], references: [id])
+  user            User      @relation(fields: [userId], references: [id])
+  food            Food      @relation(fields: [foodId], references: [id])
 
-  @@id([userId, mealType, date])
   @@index([userId, date])
-  @@index([fatSecretFoodId])
+  @@index([foodId])
   @@index([mealType])
+  @@index([userId, mealType, date])
 }
 
 model ActivityType {

@@ -25,6 +25,9 @@ class App {
   }
 
   setupMiddleware() {
+    // Trust proxy - required for rate limiting and getting correct IP addresses
+    this.app.set('trust proxy', true);
+
     // Security middleware
     this.app.use(helmet({
       contentSecurityPolicy: false

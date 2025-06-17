@@ -3,6 +3,7 @@ const Database = require('../prisma');
 const MealTypeSeeder = require('./mealType.seeder');
 const ActivityTypeSeeder = require('./activityType.seeder');
 const UserSeeder = require('./user.seeder');
+const FoodSeeder = require('./food.seeder');
 const Logger = require('../../libs/logger/Logger');
 
 class DatabaseSeeder {
@@ -11,7 +12,8 @@ class DatabaseSeeder {
     this.seeders = [
       new MealTypeSeeder(),
       new ActivityTypeSeeder(),
-      new UserSeeder()
+      new UserSeeder(),
+      new FoodSeeder()
     ];
   }
 
@@ -56,9 +58,9 @@ class DatabaseSeeder {
 // Run seeder if called directly
 if (require.main === module) {
   const seeder = new DatabaseSeeder();
-  
+
   const command = process.argv[2];
-  
+
   switch (command) {
     case 'seed':
       seeder.seed()

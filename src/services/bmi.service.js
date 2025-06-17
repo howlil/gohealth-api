@@ -126,79 +126,149 @@ class BMIService extends BaseService {
     }
   }
 
-  async getLatestBMI(userId) {
+  async updateBMI(userId, bmiId, height, weight) {
     try {
-      this.logger.info(`Fetching latest BMI for user ${userId}`);
+      this.logger.info(`Updating BMI for user ${userId}, record ID: ${bmiId}`);
 
-      this.logger.debug('Querying latest BMI record from database...');
-      const latestBMI = await this.prisma.bMIRecord.findFirst({
+      // Check if BMI record exists and belongs to user
+      const existingRecord = await this.prisma.bMIRecord.findUnique({
+        where: { id: bmiId }
+      });
+
+      if (!existingRecord) {
+        throw ApiError.notFound('BMI record not found');
+      }
+
+      if (existingRecord.userId !== userId) {
+        throw ApiError.forbidden('You do not have permission to update this BMI record');
+      }
+
+      // Calculate new BMI
+      this.logger.debug('Calculating new BMI value...');
+      const bmi = this.calorieUtil.calculateBMI(weight, height);
+      const status = this.calorieUtil.getBMIStatus(bmi);
+      this.logger.debug(`Calculated new BMI: ${bmi}, Status: ${status}`);
+
+      // Get user for nutrition calculations
+      const user = await this.prisma.user.findUnique({ where: { id: userId } });
+      if (!user) throw ApiError.notFound('User not found');
+
+      // Recalculate nutrition summary
+      const bmr = this.calorieUtil.calculateBMR(weight, height, user.age, user.gender);
+      const tdee = this.calorieUtil.calculateTDEE(bmr, user.activityLevel);
+
+      const caloriesMin = Math.round(tdee * 0.9);
+      const caloriesMax = Math.round(tdee * 1.1);
+      const proteinMin = Math.round((caloriesMin * 0.15) / 4);
+      const proteinMax = Math.round((caloriesMax * 0.20) / 4);
+      const carbMin = Math.round((caloriesMin * 0.50) / 4);
+      const carbMax = Math.round((caloriesMax * 0.60) / 4);
+      const fatMin = Math.round((caloriesMin * 0.20) / 9);
+      const fatMax = Math.round((caloriesMax * 0.30) / 9);
+      const nutritionSummary = {
+        calories: { min: caloriesMin, max: caloriesMax },
+        protein: { min: proteinMin, max: proteinMax, unit: 'gram' },
+        carbohydrate: { min: carbMin, max: carbMax, unit: 'gram' },
+        fat: { min: fatMin, max: fatMax, unit: 'gram' }
+      };
+
+      // Update BMI record
+      this.logger.debug('Updating BMI record in database...');
+      const updatedBMI = await this.prisma.bMIRecord.update({
+        where: { id: bmiId },
+        data: {
+          height,
+          weight,
+          bmi,
+          status,
+          nutritionSummary
+        }
+      });
+
+      // Update user's current weight and height if this is the most recent record
+      const latestRecord = await this.prisma.bMIRecord.findFirst({
         where: { userId },
         orderBy: { recordedAt: 'desc' }
       });
 
-      if (!latestBMI) {
-        this.logger.warn(`No BMI records found for user ${userId}`);
-        throw ApiError.notFound('No BMI records found');
+      if (latestRecord && latestRecord.id === bmiId) {
+        this.logger.debug('Updating user\'s current weight and height...');
+        await this.prisma.user.update({
+          where: { id: userId },
+          data: { height, weight }
+        });
       }
 
-      this.logger.info(`Latest BMI retrieved successfully for user ${userId}`);
-      return latestBMI;
+      this.logger.info(`BMI updated successfully for user ${userId}, record ID: ${bmiId}`);
+
+      return {
+        id: updatedBMI.id,
+        height: updatedBMI.height,
+        weight: updatedBMI.weight,
+        bmi: updatedBMI.bmi,
+        status: updatedBMI.status,
+        recordedAt: updatedBMI.recordedAt,
+        nutritionSummary: updatedBMI.nutritionSummary
+      };
     } catch (error) {
-      this.logger.error('Error getting latest BMI', {
+      this.logger.error('Error updating BMI', {
         error: error.message,
         stack: error.stack,
-        userId
+        userId,
+        bmiId,
+        height,
+        weight
       });
       throw error;
     }
   }
 
-  async getBMIAnalysis(userId) {
+  async deleteBMI(userId, bmiId) {
     try {
-      this.logger.info(`Fetching BMI analysis for user ${userId}`);
+      this.logger.info(`Deleting BMI record ${bmiId} for user ${userId}`);
 
-      this.logger.debug('Querying BMI records for analysis...');
-      const records = await this.prisma.bMIRecord.findMany({
-        where: { userId },
-        orderBy: { recordedAt: 'asc' },
-        take: 30 // Last 30 records
+      // Check if BMI record exists and belongs to user
+      const existingRecord = await this.prisma.bMIRecord.findUnique({
+        where: { id: bmiId }
       });
 
-      if (records.length === 0) {
-        this.logger.warn(`No BMI records found for analysis for user ${userId}`);
-        throw ApiError.notFound('No BMI records found');
+      if (!existingRecord) {
+        throw ApiError.notFound('BMI record not found');
       }
 
-      this.logger.debug(`Found ${records.length} records for analysis`);
+      if (existingRecord.userId !== userId) {
+        throw ApiError.forbidden('You do not have permission to delete this BMI record');
+      }
 
-      const latest = records[records.length - 1];
-      const oldest = records[0];
-      const change = latest.bmi - oldest.bmi;
-      const trend = change > 0 ? 'increasing' : change < 0 ? 'decreasing' : 'stable';
+      // Delete BMI record
+      await this.prisma.bMIRecord.delete({
+        where: { id: bmiId }
+      });
 
-      // Calculate average BMI
-      const averageBMI = records.reduce((sum, record) => sum + record.bmi, 0) / records.length;
+      // If this was the latest record, update user with the values from the new latest record
+      const latestRecord = await this.prisma.bMIRecord.findFirst({
+        where: { userId },
+        orderBy: { recordedAt: 'desc' }
+      });
 
-      this.logger.debug(`Analysis results - Trend: ${trend}, Change: ${change}, Average BMI: ${averageBMI}`);
+      if (latestRecord) {
+        await this.prisma.user.update({
+          where: { id: userId },
+          data: {
+            height: latestRecord.height,
+            weight: latestRecord.weight
+          }
+        });
+      }
 
-      const analysis = {
-        latest: latest,
-        trend: {
-          direction: trend,
-          change: Math.abs(change),
-          percentage: Math.abs((change / oldest.bmi) * 100)
-        },
-        average: averageBMI,
-        history: records
-      };
-
-      this.logger.info(`BMI analysis completed successfully for user ${userId}`);
-      return analysis;
+      this.logger.info(`BMI record ${bmiId} deleted successfully for user ${userId}`);
+      return true;
     } catch (error) {
-      this.logger.error('Error getting BMI analysis', {
+      this.logger.error('Error deleting BMI record', {
         error: error.message,
         stack: error.stack,
-        userId
+        userId,
+        bmiId
       });
       throw error;
     }
@@ -311,6 +381,110 @@ class BMIService extends BaseService {
         error: error.message,
         stack: error.stack,
         userId
+      });
+      throw error;
+    }
+  }
+
+  async updateWeightGoal(userId, goalId, data) {
+    try {
+      this.logger.info(`Updating weight goal ${goalId} for user ${userId}`);
+
+      // Check if goal exists and belongs to user
+      const existingGoal = await this.prisma.weightGoal.findUnique({
+        where: { id: goalId }
+      });
+
+      if (!existingGoal) {
+        throw ApiError.notFound('Weight goal not found');
+      }
+
+      if (existingGoal.userId !== userId) {
+        throw ApiError.forbidden('You do not have permission to update this weight goal');
+      }
+
+      const { targetWeight, targetDate } = data;
+      const updateData = {};
+
+      if (targetWeight) {
+        updateData.targetWeight = targetWeight;
+      }
+
+      if (targetDate) {
+        const parsedTargetDate = parseDate(targetDate);
+        if (!parsedTargetDate) {
+          throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+        }
+        updateData.targetDate = parsedTargetDate;
+      }
+
+      // Update weight goal
+      this.logger.debug('Updating weight goal in database...');
+      const updatedGoal = await this.prisma.weightGoal.update({
+        where: { id: goalId },
+        data: updateData
+      });
+
+      this.logger.info(`Weight goal ${goalId} updated successfully for user ${userId}`);
+
+      // Get current weight from latest BMI record for progress calculation
+      const latestBMI = await this.prisma.bMIRecord.findFirst({
+        where: { userId },
+        orderBy: { recordedAt: 'desc' }
+      });
+
+      const currentWeight = latestBMI ? latestBMI.weight : updatedGoal.startWeight;
+      const progress = ((updatedGoal.startWeight - currentWeight) / (updatedGoal.startWeight - updatedGoal.targetWeight)) * 100;
+
+      return {
+        ...updatedGoal,
+        currentWeight,
+        progress: Math.min(Math.max(progress, 0), 100), // Clamp between 0-100
+        weightLost: updatedGoal.startWeight - currentWeight,
+        weightRemaining: currentWeight - updatedGoal.targetWeight
+      };
+    } catch (error) {
+      this.logger.error('Error updating weight goal', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        goalId,
+        data
+      });
+      throw error;
+    }
+  }
+
+  async deleteWeightGoal(userId, goalId) {
+    try {
+      this.logger.info(`Deleting weight goal ${goalId} for user ${userId}`);
+
+      // Check if goal exists and belongs to user
+      const existingGoal = await this.prisma.weightGoal.findUnique({
+        where: { id: goalId }
+      });
+
+      if (!existingGoal) {
+        throw ApiError.notFound('Weight goal not found');
+      }
+
+      if (existingGoal.userId !== userId) {
+        throw ApiError.forbidden('You do not have permission to delete this weight goal');
+      }
+
+      // Delete weight goal
+      await this.prisma.weightGoal.delete({
+        where: { id: goalId }
+      });
+
+      this.logger.info(`Weight goal ${goalId} deleted successfully for user ${userId}`);
+      return true;
+    } catch (error) {
+      this.logger.error('Error deleting weight goal', {
+        error: error.message,
+        stack: error.stack,
+        userId,
+        goalId
       });
       throw error;
     }

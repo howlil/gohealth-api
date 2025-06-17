@@ -68,7 +68,8 @@ class UserController extends BaseController {
 
   async getDashboard(req, res) {
     try {
-      const { date = new Date().toISOString().split('T')[0], range = 'week', month = null } = req.query;
+      const { formatDate } = require('../libs/utils/date');
+      const { date = formatDate(new Date()), range = 'week', month = null } = req.query;
       const dashboard = await this.userService.getDashboardData(req.user.id, date, range, month);
 
       this.logger.info(`User ${req.user.id} accessed dashboard for date: ${date}, range: ${range}, month: ${month}`);

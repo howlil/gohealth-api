@@ -26,13 +26,18 @@ class MealController extends BaseController {
     }
   }
 
-
   async getUserMeals(req, res) {
     try {
-      const { page = 0, limit = 10 } = req.query;
-      const result = await this.mealService.getAllMeals({ page, limit });
+      const { page = 0, limit = 10, date, mealType } = req.query;
+      const result = await this.mealService.getUserMeals(req.user.id, {
+        page,
+        limit,
+        date,
+        mealType
+      });
+
       res.status(200).json(
-        ApiResponse.success(result.foods, 'Foods retrieved successfully from FatSecret')
+        ApiResponse.success(result, 'User meals retrieved successfully')
       );
     } catch (error) {
       throw error;
@@ -41,10 +46,10 @@ class MealController extends BaseController {
 
   async updateMeal(req, res) {
     try {
-      const { mealType } = req.params;
+      const { mealId } = req.params;
       const meal = await this.mealService.updateMeal(
         req.user.id,
-        mealType,
+        mealId,
         req.body
       );
 
@@ -58,8 +63,8 @@ class MealController extends BaseController {
 
   async deleteMeal(req, res) {
     try {
-      const { mealType, date } = req.params;
-      await this.mealService.deleteMeal(req.user.id, mealType, date);
+      const { mealId } = req.params;
+      await this.mealService.deleteMeal(req.user.id, mealId);
 
       res.status(200).json(
         ApiResponse.deleted('Meal deleted successfully')
@@ -87,7 +92,7 @@ class MealController extends BaseController {
 
   async searchFoods(req, res) {
     try {
-      const { query, page = 0 } = req.query;
+      const { query, page = 0, limit = 20 } = req.query;
 
       if (!query) {
         return res.status(400).json(
@@ -95,7 +100,7 @@ class MealController extends BaseController {
         );
       }
 
-      const foods = await this.mealService.searchFoods(query, page);
+      const foods = await this.mealService.searchFoods(query, page, limit);
 
       res.status(200).json(
         ApiResponse.success(foods, 'Foods retrieved successfully')
@@ -118,6 +123,103 @@ class MealController extends BaseController {
 
       res.status(200).json(
         ApiResponse.success(food, 'Food details retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getAllFoods(req, res) {
+    try {
+      const { search = '', category = '', page = 0, limit = 50 } = req.query;
+
+      const foods = await this.mealService.getAllFoods(
+        search,
+        category,
+        parseInt(page),
+        parseInt(limit)
+      );
+
+      res.status(200).json(
+        ApiResponse.success(foods, 'Foods retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async autoCompleteFood(req, res) {
+    try {
+      const { query = '', limit = 10 } = req.query;
+
+      if (!query || query.length < 2) {
+        return res.status(200).json(
+          ApiResponse.success([], 'Query too short, minimum 2 characters required')
+        );
+      }
+
+      const suggestions = await this.mealService.autoCompleteFood(
+        query,
+        parseInt(limit)
+      );
+
+      res.status(200).json(
+        ApiResponse.success(suggestions, 'Food suggestions retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getFoodCategories(req, res) {
+    try {
+      const categories = await this.mealService.getFoodCategories();
+
+      res.status(200).json(
+        ApiResponse.success(categories, 'Food categories retrieved successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addToFavorites(req, res) {
+    try {
+      const { foodId } = req.params;
+      const favorite = await this.mealService.addToFavorites(req.user.id, foodId);
+
+      res.status(201).json(
+        ApiResponse.created(favorite, 'Food added to favorites successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeFromFavorites(req, res) {
+    try {
+      const { foodId } = req.params;
+      await this.mealService.removeFromFavorites(req.user.id, foodId);
+
+      res.status(200).json(
+        ApiResponse.deleted('Food removed from favorites successfully')
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getFavorites(req, res) {
+    try {
+      const { page = 0, limit = 20 } = req.query;
+      const favorites = await this.mealService.getFavorites(
+        req.user.id,
+        parseInt(page),
+        parseInt(limit)
+      );
+
+      res.status(200).json(
+        ApiResponse.success(favorites, 'Favorite foods retrieved successfully')
       );
     } catch (error) {
       throw error;
