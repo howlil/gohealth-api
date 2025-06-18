@@ -198,7 +198,7 @@ const schemas = {
     // Common schemas
     pagination: Joi.object({
         query: Joi.object({
-            page: Joi.number().integer().min(0).default(0),
+            page: Joi.number().integer().min(1).default(1),
             limit: Joi.number().integer().min(1).max(100).default(10),
             search: Joi.string().max(100),
             category: Joi.string().max(50),

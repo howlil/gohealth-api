@@ -3,6 +3,7 @@ const express = require('express');
 const BMIController = require('../controllers/bmi.controller');
 const AuthMiddleware = require('../middleware/auth.middleware');
 const ValidationMiddleware = require('../middleware/validation.middleware');
+const PaginationMiddleware = require('../middleware/pagination.middleware');
 const ErrorMiddleware = require('../middleware/error.middleware');
 const schemas = require('../validations/schemas');
 
@@ -27,6 +28,7 @@ class BMIRoutes {
     // Get BMI history
     this.router.get(
       '/history',
+      PaginationMiddleware.normalizePageNumber(),
       ValidationMiddleware.validate(schemas.pagination),
       ErrorMiddleware.asyncHandler(this.bmiController.getBMIHistory.bind(this.bmiController))
     );

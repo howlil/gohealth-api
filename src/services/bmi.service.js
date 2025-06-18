@@ -2,7 +2,7 @@
 const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
-const { parseDate } = require('../libs/utils/date');
+const { parseDate, formatDate } = require('../libs/utils/date');
 
 class BMIService extends BaseService {
   constructor() {
@@ -292,11 +292,22 @@ class BMIService extends BaseService {
       }
 
       const startWeight = latestBMI.weight;
-      const parsedStartDate = new Date();
-      const parsedTargetDate = parseDate(targetDate);
+      const startDateString = formatDate(new Date()); // Today as DD-MM-YYYY
 
-      if (!parsedTargetDate) {
-        throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+      // Handle target date
+      let targetDateString;
+      if (targetDate) {
+        if (targetDate instanceof Date) {
+          targetDateString = formatDate(targetDate);
+        } else if (typeof targetDate === 'string') {
+          const parsedTargetDate = parseDate(targetDate);
+          if (!parsedTargetDate) {
+            throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+          }
+          targetDateString = targetDate;
+        } else {
+          throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+        }
       }
 
       // Deactivate existing active goals
@@ -318,8 +329,8 @@ class BMIService extends BaseService {
           userId,
           startWeight,
           targetWeight,
-          startDate: parsedStartDate,
-          targetDate: parsedTargetDate,
+          startDate: startDateString,
+          targetDate: targetDateString,
           isActive: true
         }
       });
@@ -411,11 +422,19 @@ class BMIService extends BaseService {
       }
 
       if (targetDate) {
-        const parsedTargetDate = parseDate(targetDate);
-        if (!parsedTargetDate) {
+        let targetDateString;
+        if (targetDate instanceof Date) {
+          targetDateString = formatDate(targetDate);
+        } else if (typeof targetDate === 'string') {
+          const parsedTargetDate = parseDate(targetDate);
+          if (!parsedTargetDate) {
+            throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
+          }
+          targetDateString = targetDate;
+        } else {
           throw ApiError.badRequest('Invalid target date format. Use DD-MM-YYYY');
         }
-        updateData.targetDate = parsedTargetDate;
+        updateData.targetDate = targetDateString;
       }
 
       // Update weight goal

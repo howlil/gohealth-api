@@ -3,7 +3,7 @@ const BaseService = require('./base.service');
 const CalorieUtil = require('../libs/utils/calorie.util');
 const ApiError = require('../libs/http/ApiError');
 const HttpStatus = require('../libs/http/HttpStatus');
-const { parseDate } = require('../libs/utils/date');
+const { parseDate, formatDate } = require('../libs/utils/date');
 
 class MealService extends BaseService {
   constructor() {
@@ -14,10 +14,20 @@ class MealService extends BaseService {
     try {
       const { userId, foodId, mealType, date, quantity = 1, unit = "porsi" } = data;
 
-      // Parse and validate date
-      const parsedDate = parseDate(date);
-      if (!parsedDate) {
-        throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
+      // Date is now stored as string in DD-MM-YYYY format
+      let dateString;
+      if (date instanceof Date) {
+        // If date comes as Date object from validation, format it
+        dateString = formatDate(date);
+      } else if (typeof date === 'string') {
+        // Validate date format
+        const parsedDate = parseDate(date);
+        if (!parsedDate) {
+          throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
+        }
+        dateString = date; // Use the string as-is
+      } else {
+        throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
       }
 
       const food = await this.prisma.food.findUnique({
@@ -39,7 +49,7 @@ class MealService extends BaseService {
           userId,
           foodId,
           mealType,
-          date: parsedDate,
+          date: dateString, // Store as string
           quantity,
           unit,
           totalCalories,
@@ -63,16 +73,27 @@ class MealService extends BaseService {
 
   async getUserMeals(userId, filters = {}) {
     try {
-      const { page = 0, limit = 10, date, mealType } = filters;
-      const skip = parseInt(page) * parseInt(limit);
+      const { page = 1, limit = 10, date, mealType } = filters;
+      // Convert to zero-based for skip calculation
+      const skip = (parseInt(page) - 1) * parseInt(limit);
 
       const where = { userId };
       if (date) {
-        const parsedDate = parseDate(date);
-        if (!parsedDate) {
-          throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
+        // Date is now stored as string in DD-MM-YYYY format
+        let dateString;
+        if (date instanceof Date) {
+          dateString = formatDate(date);
+        } else if (typeof date === 'string') {
+          // Validate date format
+          const parsedDate = parseDate(date);
+          if (!parsedDate) {
+            throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
+          }
+          dateString = date;
+        } else {
+          throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
         }
-        where.date = parsedDate;
+        where.date = dateString;
       }
       if (mealType) where.mealType = mealType;
 
@@ -178,15 +199,25 @@ class MealService extends BaseService {
 
   async getDailySummary(userId, date) {
     try {
-      const targetDate = parseDate(date);
-      if (!targetDate) {
-        throw new ApiError('Invalid date format. Please use DD-MM-YYYY or ISO format', HttpStatus.BAD_REQUEST);
+      // Date is now stored as string in DD-MM-YYYY format
+      let dateString;
+      if (date instanceof Date) {
+        dateString = formatDate(date);
+      } else if (typeof date === 'string') {
+        // Validate date format
+        const parsedDate = parseDate(date);
+        if (!parsedDate) {
+          throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
+        }
+        dateString = date;
+      } else {
+        throw new ApiError('Invalid date format. Please use DD-MM-YYYY', HttpStatus.BAD_REQUEST);
       }
 
       const meals = await this.prisma.userMeal.findMany({
         where: {
           userId,
-          date: targetDate
+          date: dateString
         },
         include: {
           food: {
@@ -196,7 +227,7 @@ class MealService extends BaseService {
       });
 
       const summary = {
-        date: targetDate,
+        date: dateString,
         totalCalories: 0,
         totalProtein: 0,
         totalFat: 0,
@@ -238,9 +269,9 @@ class MealService extends BaseService {
     }
   }
 
-  async getAllFoods(search = '', category = '', page = 0, limit = 50) {
+  async getAllFoods(search = '', category = '', page = 1, limit = 50) {
     try {
-      const skip = parseInt(page) * parseInt(limit);
+      const skip = (parseInt(page) - 1) * parseInt(limit);
 
       const where = {
         isActive: true,
@@ -285,9 +316,9 @@ class MealService extends BaseService {
     }
   }
 
-  async searchFoods(query, page = 0, limit = 20) {
+  async searchFoods(query, page = 1, limit = 20) {
     try {
-      const skip = parseInt(page) * parseInt(limit);
+      const skip = (parseInt(page) - 1) * parseInt(limit);
 
       const foods = await this.prisma.food.findMany({
         where: {
@@ -460,9 +491,9 @@ class MealService extends BaseService {
     }
   }
 
-  async getFavorites(userId, page = 0, limit = 20) {
+  async getFavorites(userId, page = 1, limit = 20) {
     try {
-      const skip = parseInt(page) * parseInt(limit);
+      const skip = (parseInt(page) - 1) * parseInt(limit);
 
       const favorites = await this.prisma.favoriteFood.findMany({
         where: { userId },

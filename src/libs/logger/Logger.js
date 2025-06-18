@@ -6,7 +6,7 @@ const AppConfig = require('../../config/app.config');
 class Logger {
   constructor() {
     const logDir = 'logs';
-    
+
     const levels = {
       error: 0,
       warn: 1,
@@ -29,7 +29,14 @@ class Logger {
       winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
       winston.format.colorize({ all: true }),
       winston.format.printf(
-        (info) => `${info.timestamp} ${info.level}: ${info.message}`,
+        (info) => {
+          const { timestamp, level, message, ...meta } = info;
+          let msg = `${timestamp} ${level}: ${message}`;
+          if (Object.keys(meta).length > 0) {
+            msg += ` ${JSON.stringify(meta, null, 2)}`;
+          }
+          return msg;
+        }
       ),
     );
 

@@ -13,18 +13,6 @@ class AppConfig {
       optionsSuccessStatus: 200
     };
 
-    this.rateLimit = {
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: parseInt(process.env.RATE_LIMIT_MAX || '100', 10),
-      message: 'Too many requests from this IP, please try again later.',
-      standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-      legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-      // Skip successful requests from rate limiting
-      skipSuccessfulRequests: false,
-      // Store configuration
-      skipFailedRequests: false
-    };
-
     this.jwt = {
       secret: process.env.JWT_SECRET,
       expiresIn: process.env.JWT_EXPIRES_IN || '7d',
@@ -119,7 +107,7 @@ class AppConfig {
     };
 
     this.logging = {
-      level: process.env.LOG_LEVEL || 'info'
+      level: process.env.LOG_LEVEL || (this.env === 'development' ? 'debug' : 'info')
     };
   }
 

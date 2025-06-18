@@ -106,7 +106,7 @@ model UserMeal {
   userId          String
   foodId          String
   mealType        MEAL_TYPE
-  date            DateTime  @db.Date
+  date            String    // Changed from DateTime to String (DD-MM-YYYY)
   quantity        Float     @default(1)
   unit            String    @default("porsi")
   totalCalories   Float
@@ -155,8 +155,8 @@ enum USER_ACTIVITY {
 model UserActivity {
   userId         String
   activityTypeId String
-  date           DateTime       @db.Date
-  duration       Float // in minutes
+  date           String         // Changed from DateTime to String (DD-MM-YYYY)
+  duration       Float          // in minutes
   caloriesBurned Float
   intensity      USER_ACTIVITY? // Low, Moderate, High
   notes          String?
@@ -178,8 +178,8 @@ model ActivityPlan {
   userId      String
   name        String
   description String?
-  startDate   DateTime  @db.Date
-  endDate     DateTime? @db.Date
+  startDate   String    // Changed from DateTime to String (DD-MM-YYYY)
+  endDate     String?   // Changed from DateTime to String (DD-MM-YYYY)
   isActive    Boolean   @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -235,10 +235,10 @@ enum BMI {
 model WeightGoal {
   id           String    @id @default(uuid())
   userId       String
-  startWeight  Float // in kg
-  targetWeight Float // in kg
-  startDate    DateTime  @db.Date
-  targetDate   DateTime? @db.Date
+  startWeight  Float     // in kg
+  targetWeight Float     // in kg
+  startDate    String    // Changed from DateTime to String (DD-MM-YYYY)
+  targetDate   String?   // Changed from DateTime to String (DD-MM-YYYY)
   isActive     Boolean   @default(true)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -256,7 +256,7 @@ model DailyNutritionTarget {
   carbohydrates Float
   fat           Float
   fiber         Float
-  effectiveDate DateTime @db.Date
+  effectiveDate String   // Changed from DateTime to String (DD-MM-YYYY)
   isActive      Boolean  @default(true)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

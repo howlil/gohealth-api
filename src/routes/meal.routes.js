@@ -3,6 +3,7 @@ const express = require('express');
 const MealController = require('../controllers/meal.controller');
 const AuthMiddleware = require('../middleware/auth.middleware');
 const ValidationMiddleware = require('../middleware/validation.middleware');
+const PaginationMiddleware = require('../middleware/pagination.middleware');
 const ErrorMiddleware = require('../middleware/error.middleware');
 const schemas = require('../validations/schemas');
 
@@ -41,6 +42,7 @@ class MealRoutes {
         // 3. Search foods - juga spesifik
         this.router.get(
             '/foods/search',
+            PaginationMiddleware.normalizePageNumber(),
             ValidationMiddleware.validate(schemas.pagination),
             ErrorMiddleware.asyncHandler(this.mealController.searchFoods.bind(this.mealController))
         );
@@ -48,6 +50,7 @@ class MealRoutes {
         // 4. Get user favorites
         this.router.get(
             '/favorites',
+            PaginationMiddleware.normalizePageNumber(),
             ValidationMiddleware.validate(schemas.pagination),
             ErrorMiddleware.asyncHandler(this.mealController.getFavorites.bind(this.mealController))
         );
@@ -73,6 +76,7 @@ class MealRoutes {
         // 8. Get all foods with filters - paling umum, harus di posisi terakhir
         this.router.get(
             '/foods',
+            PaginationMiddleware.normalizePageNumber(),
             ValidationMiddleware.validate(schemas.pagination),
             ErrorMiddleware.asyncHandler(this.mealController.getAllFoods.bind(this.mealController))
         );
@@ -87,6 +91,7 @@ class MealRoutes {
         // Get user meals
         this.router.get(
             '/',
+            PaginationMiddleware.normalizePageNumber(),
             ValidationMiddleware.validate(schemas.pagination),
             ErrorMiddleware.asyncHandler(this.mealController.getUserMeals.bind(this.mealController))
         );

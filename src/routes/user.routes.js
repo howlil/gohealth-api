@@ -4,7 +4,7 @@ const UserController = require('../controllers/user.controller');
 const AuthMiddleware = require('../middleware/auth.middleware');
 const ErrorMiddleware = require('../middleware/error.middleware');
 const ValidationMiddleware = require('../middleware/validation.middleware');
-const { body } = require('express-validator');
+const schemas = require('../validations/schemas');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -66,21 +66,7 @@ class UserRoutes {
     this.router.put(
       '/profile',
       AuthMiddleware.authenticate(),
-      [
-        body('name').optional().isString().trim(),
-        body('age').optional().isInt({ min: 1, max: 120 }),
-        body('gender').optional().isIn(['MALE', 'FEMALE']),
-        body('height').optional().isFloat({ min: 50, max: 300 }),
-        body('weight').optional().isFloat({ min: 20, max: 500 }),
-        body('activityLevel').optional().isIn([
-          'SEDENTARY',
-          'LIGHTLY',
-          'MODERATELY_ACTIVE',
-          'VERY_ACTIVE',
-          'EXTRA_ACTIVE'
-        ])
-      ],
-      ValidationMiddleware.validate(),
+      ValidationMiddleware.validate(schemas.updateProfile),
       ErrorMiddleware.asyncHandler(this.userController.updateProfile.bind(this.userController))
     );
 

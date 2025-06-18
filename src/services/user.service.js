@@ -138,9 +138,17 @@ class UserService extends BaseService {
       this.logger.debug('Getting user profile...');
       const user = await this.getProfile(userId);
 
-      // Parse the input date
-      const parsedDate = parseDate(date);
-      if (!parsedDate) {
+      // Handle date string
+      let dateString;
+      if (date instanceof Date) {
+        dateString = formatDate(date);
+      } else if (typeof date === 'string') {
+        const parsedDate = parseDate(date);
+        if (!parsedDate) {
+          throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+        }
+        dateString = date;
+      } else {
         throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
       }
 
@@ -151,6 +159,7 @@ class UserService extends BaseService {
         if (month) {
           targetMonth = new Date(`${month}-01T00:00:00.000Z`);
         } else {
+          const parsedDate = parseDate(dateString);
           targetMonth = new Date(parsedDate);
           targetMonth.setUTCDate(1);
         }
@@ -173,21 +182,26 @@ class UserService extends BaseService {
           if (weekEnd.getUTCMonth() !== monthIdx) {
             weekEnd = new Date(Date.UTC(year, monthIdx, daysInMonth));
           }
+
+          // Convert dates to string format for query
+          const weekStartString = formatDate(weekStart);
+          const weekEndString = formatDate(weekEnd);
+
           // Query all meals in this week
           const meals = await this.prisma.userMeal.findMany({
             where: {
               userId,
               date: {
-                gte: weekStart,
-                lte: weekEnd
+                gte: weekStartString,
+                lte: weekEndString
               }
             }
           });
           const calories = meals.reduce((sum, meal) => sum + (meal.totalCalories || 0), 0);
           caloriesTracker.push({
             label: `Week ${weekNum}`,
-            start: formatDate(weekStart),
-            end: formatDate(weekEnd),
+            start: weekStartString,
+            end: weekEndString,
             calories
           });
           weekNum++;
@@ -195,6 +209,7 @@ class UserService extends BaseService {
         }
       } else {
         // Default: week (7 days, Sun-Sat containing 'date')
+        const parsedDate = parseDate(dateString);
         const refDate = new Date(parsedDate);
         refDate.setUTCHours(0, 0, 0, 0);
         // Find Sunday of the week
@@ -205,14 +220,15 @@ class UserService extends BaseService {
           const d = new Date(sunday);
           d.setUTCDate(sunday.getUTCDate() + i);
           const label = d.toLocaleDateString('en-US', { weekday: 'short' });
+          const dayString = formatDate(d);
           const meals = await this.prisma.userMeal.findMany({
             where: {
               userId,
-              date: d
+              date: dayString
             }
           });
           const calories = meals.reduce((sum, meal) => sum + (meal.totalCalories || 0), 0);
-          caloriesTracker.push({ label, date: formatDate(d), calories });
+          caloriesTracker.push({ label, date: dayString, calories });
         }
       }
 
@@ -221,7 +237,7 @@ class UserService extends BaseService {
       const meals = await this.prisma.userMeal.findMany({
         where: {
           userId,
-          date: parsedDate
+          date: dateString
         }
       });
       this.logger.debug(`Found ${meals.length} meals`);
@@ -231,7 +247,7 @@ class UserService extends BaseService {
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
-          date: parsedDate
+          date: dateString
         }
       });
       this.logger.debug(`Found ${activities.length} activities`);
@@ -257,7 +273,7 @@ class UserService extends BaseService {
           userId,
           isActive: true,
           effectiveDate: {
-            lte: parsedDate
+            lte: dateString
           }
         },
         orderBy: {
@@ -304,7 +320,7 @@ class UserService extends BaseService {
         },
         weightGoal,
         latestBMI,
-        date: formatDate(parsedDate),
+        date: dateString,
         caloriesTracker
       };
 

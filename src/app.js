@@ -1,9 +1,7 @@
 // src/app.js
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
 const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
 const passport = require('passport');
 const path = require('path');
 
@@ -25,20 +23,10 @@ class App {
   }
 
   setupMiddleware() {
-    // Trust proxy - required for rate limiting and getting correct IP addresses
-    this.app.set('trust proxy', true);
-
-    // Security middleware
-    this.app.use(helmet({
-      contentSecurityPolicy: false
-    }));
+   
     this.app.use(cors(this.config.cors));
 
-    // Rate limiting
-    const limiter = rateLimit(this.config.rateLimit);
-    this.app.use(limiter);
 
-    // Logging
     this.app.use(morgan('combined', {
       stream: {
         write: (message) => Logger.http(message.trim())
@@ -49,7 +37,6 @@ class App {
     this.app.use(express.json({ limit: '10mb' }));
     this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-    // Static file serving
     this.app.use('/uploads', express.static(path.join(process.cwd(), this.config.upload.uploadDir)));
 
     // Passport
@@ -61,7 +48,6 @@ class App {
   }
 
   setupRoutes() {
-    // Swagger documentation
     SwaggerMiddleware.setup(this.app);
 
     // API routes
@@ -77,19 +63,15 @@ class App {
   }
 
   setupErrorHandling() {
-    // 404 handler
     this.app.use(ErrorMiddleware.notFound());
 
-    // Global error handler
     this.app.use(ErrorMiddleware.errorHandler());
   }
 
   async start() {
     try {
-      // Validate configuration
       this.config.validate();
 
-      // Connect to database
       await Database.connect();
 
       // Start server

@@ -2,7 +2,7 @@
 const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
-const { parseDate } = require('../libs/utils/date');
+const { parseDate, formatDate } = require('../libs/utils/date');
 
 class ActivityService extends BaseService {
   constructor() {
@@ -80,12 +80,33 @@ class ActivityService extends BaseService {
     try {
       this.logger.info(`Fetching activities for user ${userId} from ${startDate} to ${endDate}`);
 
-      // Parse dates
-      const parsedStartDate = parseDate(startDate);
-      const parsedEndDate = parseDate(endDate);
+      // Dates are now stored as strings in DD-MM-YYYY format
+      let startDateString, endDateString;
 
-      if (!parsedStartDate || !parsedEndDate) {
-        throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+      // Handle startDate
+      if (startDate instanceof Date) {
+        startDateString = formatDate(startDate);
+      } else if (typeof startDate === 'string') {
+        const parsedStartDate = parseDate(startDate);
+        if (!parsedStartDate) {
+          throw ApiError.badRequest('Invalid start date format. Please use DD-MM-YYYY');
+        }
+        startDateString = startDate;
+      } else {
+        throw ApiError.badRequest('Invalid start date format. Please use DD-MM-YYYY');
+      }
+
+      // Handle endDate
+      if (endDate instanceof Date) {
+        endDateString = formatDate(endDate);
+      } else if (typeof endDate === 'string') {
+        const parsedEndDate = parseDate(endDate);
+        if (!parsedEndDate) {
+          throw ApiError.badRequest('Invalid end date format. Please use DD-MM-YYYY');
+        }
+        endDateString = endDate;
+      } else {
+        throw ApiError.badRequest('Invalid end date format. Please use DD-MM-YYYY');
       }
 
       this.logger.debug('Querying activities from database...');
@@ -93,8 +114,8 @@ class ActivityService extends BaseService {
         where: {
           userId,
           date: {
-            gte: parsedStartDate,
-            lte: parsedEndDate
+            gte: startDateString,
+            lte: endDateString
           }
         },
         include: {
@@ -235,9 +256,17 @@ class ActivityService extends BaseService {
     try {
       this.logger.info(`Fetching daily activity summary for user ${userId} on ${date}`);
 
-      // Parse date
-      const parsedDate = parseDate(date);
-      if (!parsedDate) {
+      // Date is now stored as string in DD-MM-YYYY format
+      let dateString;
+      if (date instanceof Date) {
+        dateString = formatDate(date);
+      } else if (typeof date === 'string') {
+        const parsedDate = parseDate(date);
+        if (!parsedDate) {
+          throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
+        }
+        dateString = date;
+      } else {
         throw ApiError.badRequest('Invalid date format. Please use DD-MM-YYYY');
       }
 
@@ -245,7 +274,7 @@ class ActivityService extends BaseService {
       const activities = await this.prisma.userActivity.findMany({
         where: {
           userId,
-          date: parsedDate
+          date: dateString
         },
         include: {
           activityType: true
