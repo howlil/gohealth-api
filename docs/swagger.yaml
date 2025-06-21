@@ -37,6 +37,8 @@ tags:
     description: Meal tracking and nutrition data management
   - name: Activities
     description: Activity tracking and calories burned management
+  - name: Notifications
+    description: Push notification management and in-app notification history
 
 components:
   securitySchemes:
@@ -45,6 +47,48 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: JWT token obtained from login endpoint
+
+  responses:
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unauthorized access
+              error:
+                type: string
+                example: UNAUTHORIZED
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Internal server error
+              error:
+                type: string
+                example: INTERNAL_ERROR
+
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
 
   schemas:
     User:
@@ -860,6 +904,84 @@ components:
                 caloriesBurned:
                   type: number
                   example: 150
+
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440001
+        userId:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440001
+        type:
+          type: string
+          enum: [DAILY_CALORY_ACHIEVEMENT, MEAL_REMINDER, WEIGHT_GOAL_PROGRESS, BMI_UPDATE, ACTIVITY_REMINDER, GOAL_ACHIEVED, SYSTEM_UPDATE, GENERAL]
+          example: DAILY_CALORY_ACHIEVEMENT
+        title:
+          type: string
+          example: 🎉 Daily Calory Goal Achieved!
+        body:
+          type: string
+          example: Congratulations! You've consumed 2000 out of 2200 calories (91%). Keep up the great work!
+        data:
+          type: object
+          additionalProperties: true
+          example:
+            type: DAILY_CALORY_ACHIEVEMENT
+            currentCalories: "2000"
+            targetCalories: "2200"
+            percentage: "91"
+            timestamp: "2023-01-01T12:00:00.000Z"
+        isRead:
+          type: boolean
+          example: false
+        isSent:
+          type: boolean
+          example: true
+        sentAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: 2023-01-01T12:00:00.000Z
+        readAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: null
+        createdAt:
+          type: string
+          format: date-time
+          example: 2023-01-01T12:00:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2023-01-01T12:00:00.000Z
+
+    NotificationResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
+        pagination:
+          type: object
+          properties:
+            page:
+              type: integer
+              example: 0
+            limit:
+              type: integer
+              example: 20
+            total:
+              type: integer
+              example: 100
+            totalPages:
+              type: integer
+              example: 5
 
     PaginationParams:
       type: object
@@ -2569,7 +2691,22 @@ paths:
   /users/profile/image:
     post:
       summary: Upload profile image
-      description: Uploads a profile image for the authenticated user
+      description: |
+        Uploads a profile image for the authenticated user.
+        
+        **Important Notes for Mobile/Flutter Developers:**
+        - Use field name "image" for the file upload
+        - Supported formats: JPEG, PNG, GIF, WEBP
+        - Maximum file size: 5MB
+        - Set proper Content-Type header for multipart/form-data
+        - Ensure file extension matches content type
+        
+        **Example for Flutter/Dart:**
+        ```dart
+        var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/users/profile/image'));
+        request.headers.addAll({'Authorization': 'Bearer $token'});
+        request.files.add(await http.MultipartFile.fromPath('image', imagePath));
+        ```
       tags:
         - Users
       security:
@@ -2584,7 +2721,13 @@ paths:
                 image:
                   type: string
                   format: binary
-                  description: Profile image file (max 5MB)
+                  description: |
+                    Profile image file
+                    - Accepted formats: JPEG (.jpg, .jpeg), PNG (.png), GIF (.gif), WEBP (.webp)
+                    - Maximum size: 5MB
+                    - Field name must be "image"
+              required:
+                - image
       responses:
         "200":
           description: Profile image uploaded successfully
@@ -2604,13 +2747,37 @@ paths:
                     properties:
                       profileImage:
                         type: string
-                        example: https://storage.example.com/profile/123.jpg
+                        example: /uploads/profile/550e8400-e29b-41d4-a716-446655440001/1640995200000-123456789.jpg
         "400":
-          description: Invalid file or file too large
+          description: Bad request - Invalid file, wrong field name, or file too large
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid file type. Only JPEG, PNG, GIF, and WEBP images are allowed.
+                  error:
+                    type: string
+                    enum: [FILE_TOO_LARGE, INVALID_FIELD_NAME, INVALID_FILE_TYPE, UPLOAD_ERROR]
+                    example: INVALID_FILE_TYPE
+                  details:
+                    type: object
+                    properties:
+                      allowedTypes:
+                        type: array
+                        items:
+                          type: string
+                        example: ["image/jpeg", "image/png", "image/gif", "image/webp"]
+                      allowedExtensions:
+                        type: array
+                        items:
+                          type: string
+                        example: [".jpg", ".jpeg", ".png", ".gif", ".webp"]
         "401":
           description: Unauthorized
           content:
@@ -2859,6 +3026,319 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
- 
+  /users/fcm-token:
+    put:
+      tags:
+        - Users
+      summary: Update FCM token
+      description: Update Firebase Cloud Messaging token for push notifications
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fcmToken
+              properties:
+                fcmToken:
+                  type: string
+                  description: Firebase Cloud Messaging token
+      responses:
+        '200':
+          description: FCM token updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: FCM token updated successfully
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                      message:
+                        type: string
+                        example: FCM token updated successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Users
+      summary: Remove FCM token
+      description: Remove Firebase Cloud Messaging token
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: FCM token removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: FCM token removed successfully
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                      message:
+                        type: string
+                        example: FCM token removed successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /notifications:
+    get:
+      tags:
+        - Notifications
+      summary: Get user notifications
+      description: |
+        Returns a paginated list of notifications for the authenticated user.
+        Supports filtering by read status and notification type.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          description: Page number (0-based pagination)
+          example: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 50
+          description: Number of notifications to return per page
+          example: 20
+        - name: isRead
+          in: query
+          schema:
+            type: boolean
+          description: Filter by read status (true for read, false for unread)
+          example: false
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [DAILY_CALORY_ACHIEVEMENT, MEAL_REMINDER, MEAL_LOGGED, WEIGHT_GOAL_PROGRESS, BMI_UPDATE, ACTIVITY_REMINDER, GOAL_ACHIEVED, SYSTEM_UPDATE, GENERAL]
+          description: Filter by notification type
+          example: MEAL_REMINDER
+      responses:
+        '200':
+          description: Notifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Notifications retrieved successfully
+                  data:
+                    $ref: '#/components/schemas/NotificationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /notifications/unread-count:
+    get:
+      tags:
+        - Notifications
+      summary: Get unread notification count
+      description: Returns the number of unread notifications for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Unread notification count retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Unread notification count retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 5
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /notifications/{notificationId}/read:
+    patch:
+      tags:
+        - Notifications
+      summary: Mark notification as read
+      description: Marks a specific notification as read for the authenticated user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The ID of the notification to mark as read
+          example: 550e8400-e29b-41d4-a716-446655440001
+      responses:
+        '200':
+          description: Notification marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Notification marked as read
+                  data:
+                    $ref: '#/components/schemas/Notification'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Notification not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Notification not found
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /notifications/read-all:
+    patch:
+      tags:
+        - Notifications
+      summary: Mark all notifications as read
+      description: Marks all unread notifications as read for the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: All notifications marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: All notifications marked as read
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: Number of notifications that were marked as read
+                        example: 12
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /notifications/{notificationId}:
+    delete:
+      tags:
+        - Notifications
+      summary: Delete notification
+      description: Deletes a specific notification for the authenticated user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The ID of the notification to delete
+          example: 550e8400-e29b-41d4-a716-446655440001
+      responses:
+        '200':
+          description: Notification deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Notification deleted successfully
+                  data:
+                    type: null
+                    example: null
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          description: Notification not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Notification not found
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
 security:
   - bearerAuth: [] 

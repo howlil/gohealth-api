@@ -5,6 +5,7 @@ const userRoutes = require('./user.routes');
 const mealRoutes = require('./meal.routes');
 const activityRoutes = require('./activity.routes');
 const bmiRoutes = require('./bmi.routes');
+const notificationRoutes = require('./notification.routes');
 const ApiResponse = require('../libs/http/ApiResponse');
 
 class Routes {
@@ -43,6 +44,7 @@ class Routes {
     this.router.use('/meals', mealRoutes);
     this.router.use('/activities', activityRoutes);
     this.router.use('/bmi', bmiRoutes);
+    this.router.use('/notifications', notificationRoutes);
   }
 
   getRouter() {

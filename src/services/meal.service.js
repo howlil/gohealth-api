@@ -4,15 +4,22 @@ const CalorieUtil = require('../libs/utils/calorie.util');
 const ApiError = require('../libs/http/ApiError');
 const HttpStatus = require('../libs/http/HttpStatus');
 const { parseDate, formatDate } = require('../libs/utils/date');
+const NotificationService = require('./notification.service');
 
 class MealService extends BaseService {
   constructor() {
     super('userMeal');
+    this.notificationService = new NotificationService();
   }
 
   async createMeal(data) {
     try {
       const { userId, foodId, mealType, date, quantity = 1, unit = "porsi" } = data;
+
+      // ✅ Validate quantity to prevent unrealistic values
+      if (quantity <= 0 || quantity > 20) {
+        throw new ApiError('Quantity must be between 0.1 and 20 servings for realistic portion sizes', HttpStatus.BAD_REQUEST);
+      }
 
       // Date is now stored as string in DD-MM-YYYY format
       let dateString;
@@ -63,6 +70,34 @@ class MealService extends BaseService {
           }
         }
       });
+
+      this.logger.info(`Meal created successfully for user ${userId}: ${food.name} (${totalCalories} kcal)`);
+
+      // Send meal logged notification
+      try {
+        const mealTypeText = mealType.charAt(0) + mealType.slice(1).toLowerCase();
+        await this.notificationService.sendPushNotification(userId, {
+          type: 'MEAL_LOGGED', // ✅ Fixed: Use proper type for meal confirmation
+          title: `🍽️ ${mealTypeText} Logged!`,
+          body: `You've logged ${food.name} (${Math.round(totalCalories)} kcal) for ${mealTypeText.toLowerCase()}. Keep tracking your nutrition!`,
+          data: {
+            type: 'MEAL_LOGGED',
+            mealId: meal.id,
+            foodName: food.name,
+            mealType: mealType,
+            calories: String(Math.round(totalCalories)),
+            date: dateString,
+            timestamp: new Date().toISOString()
+          }
+        });
+        this.logger.info(`Meal logged notification sent to user ${userId}`);
+      } catch (notifError) {
+        this.logger.error(`Failed to send meal logged notification for user ${userId}:`, notifError);
+        // Don't fail meal creation if notification fails
+      }
+
+      // Check daily calory achievement
+      await this.checkDailyCaloryAchievement(userId, dateString);
 
       return meal;
     } catch (error) {
@@ -526,6 +561,132 @@ class MealService extends BaseService {
       this.logger.error('Error getting favorites:', error);
       throw error;
     }
+  }
+
+  async checkDailyCaloryAchievement(userId, date) {
+    try {
+      this.logger.info(`Checking daily calory achievement for user ${userId} on date ${date}`);
+
+      // Get user's latest BMI record for nutrition targets
+      const latestBMI = await this.prisma.bMIRecord.findFirst({
+        where: { userId },
+        orderBy: { recordedAt: 'desc' }
+      });
+
+      if (!latestBMI) {
+        this.logger.info(`No BMI record found for user ${userId}. Please calculate BMI first to set nutrition targets.`);
+        return;
+      }
+
+      if (!latestBMI.nutritionSummary) {
+        this.logger.info(`BMI record found for user ${userId} but no nutrition summary available`);
+        return;
+      }
+
+      const nutritionSummary = latestBMI.nutritionSummary;
+      const targetCalories = nutritionSummary.calories?.max || 0;
+
+      if (!targetCalories) {
+        this.logger.info(`No target calories found in nutrition summary for user ${userId}`);
+        return;
+      }
+
+      this.logger.info(`Target calories for user ${userId}: ${targetCalories} kcal`);
+
+      // Get daily summary for the date
+      const dailySummary = await this.getDailySummary(userId, date);
+      const currentCalories = dailySummary.totalCalories;
+
+      this.logger.info(`Current calories consumed by user ${userId} on ${date}: ${currentCalories} kcal`);
+
+      // Calculate percentage
+      const percentage = Math.round((currentCalories / targetCalories) * 100);
+      this.logger.info(`Calory achievement percentage for user ${userId}: ${percentage}% (${currentCalories}/${targetCalories})`);
+
+      // ✅ Enhanced logic: Check for both achievement and abnormal values
+      if (currentCalories > targetCalories * 5) {
+        // If calories are more than 5x target, it's likely an error
+        this.logger.warn(`⚠️ Abnormal calorie consumption detected for user ${userId}: ${currentCalories} kcal (${percentage}%). Please verify data accuracy.`);
+
+        // Send warning notification
+        try {
+          await this.notificationService.sendPushNotification(userId, {
+            type: 'SYSTEM_UPDATE',
+            title: '⚠️ Unusual Calorie Data Detected',
+            body: `Your logged calories (${Math.round(currentCalories)} kcal) seem unusually high. Please verify your meal quantities.`,
+            data: {
+              type: 'CALORIE_WARNING',
+              currentCalories: String(Math.round(currentCalories)),
+              targetCalories: String(Math.round(targetCalories)),
+              percentage: String(percentage),
+              timestamp: new Date().toISOString()
+            }
+          });
+        } catch (notifError) {
+          this.logger.error(`Failed to send calorie warning notification for user ${userId}:`, notifError);
+        }
+      } else if (percentage >= 80 && percentage <= 120) {
+        // ✅ Expanded range: 80-120% for achievement (more realistic)
+        this.logger.info(`User ${userId} achieved ${percentage}% of daily calory target - sending achievement notification`);
+
+        // Check if notification already sent today
+        const notificationKey = `calory_achievement_${userId}_${date}`;
+        const alreadySent = await this.checkNotificationSent(notificationKey);
+
+        if (alreadySent) {
+          this.logger.info(`Daily calory achievement notification already sent for user ${userId} on ${date}`);
+          return;
+        }
+
+        try {
+          // Send push notification with dynamic message
+          const achievementMessage = percentage >= 90 && percentage <= 110
+            ? "Perfect! You've hit your daily calorie target!"
+            : percentage < 90
+              ? "Good progress! You're getting close to your calorie goal!"
+              : "Great job! You've reached your calorie target!";
+
+          await this.notificationService.sendDailyCaloryAchievementNotification(userId, {
+            currentCalories: Math.round(currentCalories),
+            targetCalories: Math.round(targetCalories),
+            percentage,
+            customMessage: achievementMessage
+          });
+
+          // Mark notification as sent
+          await this.markNotificationSent(notificationKey);
+          this.logger.info(`Daily calory achievement notification sent successfully to user ${userId}`);
+        } catch (notifError) {
+          this.logger.error(`Failed to send daily calory achievement notification for user ${userId}:`, notifError);
+        }
+      } else {
+        this.logger.info(`User ${userId} has not yet achieved daily calory target: ${percentage}% (need 80-120% for achievement)`);
+      }
+    } catch (error) {
+      this.logger.error('Error checking daily calory achievement:', error);
+      // Don't throw error to not interrupt meal creation
+    }
+  }
+
+  async checkNotificationSent(key) {
+    // Simple in-memory check to prevent duplicate notifications
+    // In production, you might want to use Redis or database
+    if (!this.notificationsSent) {
+      this.notificationsSent = new Set();
+    }
+    return this.notificationsSent.has(key);
+  }
+
+  async markNotificationSent(key) {
+    if (!this.notificationsSent) {
+      this.notificationsSent = new Set();
+    }
+    this.notificationsSent.add(key);
+
+    // Clear old entries after 24 hours
+    setTimeout(() => {
+      this.notificationsSent.delete(key);
+    }, 24 * 60 * 60 * 1000);
   }
 }
 

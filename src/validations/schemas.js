@@ -164,22 +164,15 @@ const schemas = {
     // Weight Goal schemas
     createWeightGoal: Joi.object({
         body: Joi.object({
-            startWeight: Joi.number().min(20).max(500).required(),
-            targetWeight: Joi.number().min(20).max(500).required(),
-            startDate: Joi.date().required(),
-            targetDate: Joi.date().greater(Joi.ref('startDate')).allow(null)
+            targetWeight: Joi.number().positive().required(),
+            targetDate: Joi.string().pattern(/^\d{2}-\d{2}-\d{4}$/).optional()
         })
     }),
 
     updateWeightGoal: Joi.object({
-        params: Joi.object({
-            goalId: Joi.string().uuid().required().messages({
-                'any.required': 'Goal ID is required'
-            })
-        }),
         body: Joi.object({
-            targetWeight: Joi.number().min(20).max(500),
-            targetDate: Joi.date()
+            targetWeight: Joi.number().positive().optional(),
+            targetDate: Joi.string().pattern(/^\d{2}-\d{2}-\d{4}$/).optional()
         })
     }),
 
@@ -304,6 +297,78 @@ const schemas = {
 
     uuid: Joi.object({
         id: Joi.string().uuid().required()
+    }),
+
+    // FCM token schemas
+    updateFCMToken: Joi.object({
+        body: Joi.object({
+            fcmToken: Joi.string().required()
+        })
+    }),
+
+    // Dashboard schema
+    getDashboard: Joi.object({
+        query: Joi.object({
+            date: Joi.date(),
+            range: Joi.string().valid('week', 'month', 'year').default('week'),
+            month: Joi.number().integer().min(1).max(12).allow(null)
+        })
+    }),
+
+    // Notification schemas
+    getNotifications: Joi.object({
+        query: Joi.object({
+            page: Joi.number().integer().min(0).default(0),
+            limit: Joi.number().integer().min(1).max(50).default(20),
+            isRead: Joi.boolean(),
+            type: Joi.string().valid(
+                'DAILY_CALORY_ACHIEVEMENT',
+                'MEAL_REMINDER',
+                'MEAL_LOGGED',  // ✅ Added: New validation for get notifications
+                'WEIGHT_GOAL_PROGRESS',
+                'BMI_UPDATE',
+                'ACTIVITY_REMINDER',
+                'GOAL_ACHIEVED',
+                'SYSTEM_UPDATE',
+                'GENERAL'
+            )
+        })
+    }),
+
+    markNotificationAsRead: Joi.object({
+        params: Joi.object({
+            notificationId: Joi.string().uuid().required().messages({
+                'any.required': 'Notification ID is required',
+                'string.uuid': 'Invalid notification ID format'
+            })
+        })
+    }),
+
+    deleteNotification: Joi.object({
+        params: Joi.object({
+            notificationId: Joi.string().uuid().required().messages({
+                'any.required': 'Notification ID is required',
+                'string.uuid': 'Invalid notification ID format'
+            })
+        })
+    }),
+
+    testNotification: Joi.object({
+        body: Joi.object({
+            title: Joi.string().max(100),
+            body: Joi.string().max(500),
+            type: Joi.string().valid(
+                'DAILY_CALORY_ACHIEVEMENT',
+                'MEAL_REMINDER',
+                'MEAL_LOGGED',  // ✅ Added: New validation for test notification
+                'WEIGHT_GOAL_PROGRESS',
+                'BMI_UPDATE',
+                'ACTIVITY_REMINDER',
+                'GOAL_ACHIEVED',
+                'SYSTEM_UPDATE',
+                'GENERAL'
+            ).default('GENERAL')
+        })
     })
 };
 

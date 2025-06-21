@@ -3,11 +3,13 @@ const BaseService = require('./base.service');
 const ApiError = require('../libs/http/ApiError');
 const CalorieUtil = require('../libs/utils/calorie.util');
 const { parseDate, formatDate } = require('../libs/utils/date');
+const NotificationService = require('./notification.service');
 
 class BMIService extends BaseService {
   constructor() {
     super('bMIRecord');
     this.calorieUtil = new CalorieUtil();
+    this.notificationService = new NotificationService();
   }
 
   async calculateAndSaveBMI(userId, weight, height) {
@@ -66,6 +68,36 @@ class BMIService extends BaseService {
       });
 
       this.logger.info(`BMI calculated and saved successfully for user ${userId}`);
+
+      // Send BMI update notification
+      try {
+        const statusText = {
+          'UNDERWEIGHT': 'Underweight',
+          'NORMAL': 'Normal',
+          'OVERWEIGHT': 'Overweight',
+          'OBESE': 'Obese'
+        }[status] || status;
+
+        await this.notificationService.sendPushNotification(userId, {
+          type: 'BMI_UPDATE',
+          title: '📊 BMI Updated!',
+          body: `Your BMI is ${bmi.toFixed(1)} (${statusText}). Daily calorie target: ${caloriesMin}-${caloriesMax} kcal`,
+          data: {
+            type: 'BMI_UPDATE',
+            bmi: String(bmi.toFixed(1)),
+            status: status,
+            height: String(height),
+            weight: String(weight),
+            caloriesMin: String(caloriesMin),
+            caloriesMax: String(caloriesMax),
+            timestamp: new Date().toISOString()
+          }
+        });
+        this.logger.info(`BMI update notification sent to user ${userId}`);
+      } catch (notifError) {
+        this.logger.error(`Failed to send BMI update notification for user ${userId}:`, notifError);
+        // Don't fail BMI calculation if notification fails
+      }
 
       const schema = {
         id: bmiRecord.id,

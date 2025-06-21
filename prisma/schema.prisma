@@ -20,6 +20,7 @@ model User {
   weight        Float? // in kg
   activityLevel ACTIVITYLEVEL? // Sedentary, Lightly Active, Moderately Active, Very Active, Extra Active
   profileImage  String?
+  fcmToken      String?         @db.Text // FCM token for push notifications
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -30,6 +31,40 @@ model User {
   favoriteFoods    FavoriteFood[]
   activities       UserActivity[]
   activityPlans    ActivityPlan[]
+  notifications    Notification[]
+}
+
+model Notification {
+  id          String           @id @default(uuid())
+  userId      String
+  type        NOTIFICATION_TYPE
+  title       String
+  body        String           @db.Text
+  data        Json?            // Additional data payload
+  isRead      Boolean          @default(false)
+  isSent      Boolean          @default(false) // Whether push notification was sent
+  sentAt      DateTime?        // When push notification was sent
+  readAt      DateTime?        // When user read the notification
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  user        User             @relation(fields: [userId], references: [id])
+
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+  @@index([type])
+}
+
+enum NOTIFICATION_TYPE {
+  DAILY_CALORY_ACHIEVEMENT
+  MEAL_REMINDER
+  MEAL_LOGGED  // ✅ Added: New type for meal confirmation
+  WEIGHT_GOAL_PROGRESS
+  BMI_UPDATE
+  ACTIVITY_REMINDER
+  GOAL_ACHIEVED
+  SYSTEM_UPDATE
+  GENERAL
 }
 
 enum GENDER {
